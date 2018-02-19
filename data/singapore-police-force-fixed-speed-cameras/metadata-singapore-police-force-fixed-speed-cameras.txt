@@ -1,0 +1,41 @@
+# Metadata for Singapore Police Force Fixed Speed Cameras
+---
+Identifier: '6e01a8ad-0224-4211-b307-2c5d4e2359b8'
+Name: 'singapore-police-force-fixed-speed-cameras'
+Title: 'Singapore Police Force Fixed Speed Cameras'
+Description: 'Fixed Speed Camera (FSC) consists of SPF wholly owned traffic fixed
+  enforcement cameras deployed to deter and detect vehicles from committing the traffic
+  offence of speeding.'
+Topics:
+  - 'Infrastructure'
+Keywords:
+  - 'FSC'
+  - 'Fixed Speed Camera'
+  - 'SPF'
+  - 'Traffic'
+  - 'onemap'
+  - 'themes'
+Publisher:
+  Name: 'Ministry of Home Affairs - Singapore Police Force'
+  Admin 1:
+    Name: 'Benson Lim'
+    Department: 'Ministry of Home Affairs - Singapore Police Force'
+    Email: 'benson_lim@spf.gov.sg'
+Sources:
+  - 'Ministry of Home Affairs - Singapore Police Force'
+License: 'https://data.gov.sg/open-data-licence'
+Frequency: 'Ad-hoc'
+Last Updated: '2017-06-14T09:03:41.776602'
+Resources:
+  -
+    Identifier: '044d5beb-4ce0-4267-9592-9bdd00ed9407'
+    Title: 'Singapore Police Force Fixed Speed Cameras (KML)'
+    Url: 'https://geo.data.gov.sg/spf-fsc/2016/12/30/kml/spf-fsc.zip'
+    Format: 'KML'
+    Last Updated: '2016-12-29T16:00:00'
+  -
+    Identifier: 'bfa0426c-48df-4864-8073-7c7431ea4c55'
+    Title: 'Singapore Police Force Fixed Speed Cameras (SHP)'
+    Url: 'https://geo.data.gov.sg/spf-fsc/2016/12/30/shp/spf-fsc.zip'
+    Format: 'SHP'
+    Last Updated: '2016-12-29T16:00:00'

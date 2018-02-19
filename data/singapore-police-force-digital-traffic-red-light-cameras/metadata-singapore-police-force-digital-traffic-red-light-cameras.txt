@@ -1,0 +1,46 @@
+# Metadata for Singapore Police Force Digital Traffic Red Light Cameras
+---
+Identifier: '0ebbdf2a-7284-4a46-98d5-edec0659f0ef'
+Name: 'singapore-police-force-digital-traffic-red-light-cameras'
+Title: 'Singapore Police Force Digital Traffic Red Light Cameras'
+Description: 'Digital Traffic Red Light System (DTRLS) consists of SPF wholly owned
+  traffic enforcement cameras deployed at road junctions to deter and detect vehicles
+  from committing the traffic offence of red-running. Implementation approach is in
+  phases.'
+Topics:
+  - 'Infrastructure'
+  - 'Transport'
+Keywords:
+  - 'CCTV'
+  - 'CCTVs'
+  - 'Cameras'
+  - 'DTRLS'
+  - 'NSMI'
+  - 'SPF'
+  - 'onemap'
+  - 'sensors'
+  - 'themes'
+Publisher:
+  Name: 'Ministry of Home Affairs - Singapore Police Force'
+  Admin 1:
+    Name: 'Muhammad Fauzi'
+    Department: 'Ministry of Home Affairs - Singapore Police Force'
+    Email: 'benson_lim@spf.gov.sg'
+Sources:
+  - 'Ministry of Home Affairs - Singapore Police Force'
+License: 'https://data.gov.sg/open-data-licence'
+Frequency: 'Ad-hoc'
+Last Updated: '2017-04-01T04:07:06.328025'
+Resources:
+  -
+    Identifier: '26ecbfde-ef66-4afa-8075-08e707577935'
+    Title: 'Singapore Police Force Digital Traffic Red Light Cameras (KML)'
+    Url: 'https://geo.data.gov.sg/spf-dtrls/2016/12/30/kml/spf-dtrls.zip'
+    Format: 'KML'
+    Last Updated: '2016-12-29T16:00:00'
+  -
+    Identifier: 'ca2969ef-465c-4ce8-a899-a5f0ebed2d6e'
+    Title: 'Singapore Police Force Digital Traffic Red Light Cameras (SHP)'
+    Url: 'https://geo.data.gov.sg/spf-dtrls/2016/12/30/shp/spf-dtrls.zip'
+    Format: 'SHP'
+    Last Updated: '2016-12-29T16:00:00'

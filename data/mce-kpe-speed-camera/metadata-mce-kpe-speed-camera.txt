@@ -1,0 +1,41 @@
+# Metadata for MCE KPE Speed Camera
+---
+Identifier: '8120f6cb-203c-4011-b588-b09420676e35'
+Name: 'mce-kpe-speed-camera'
+Title: 'MCE KPE Speed Camera'
+Description: 'The layer contains the camera installed along MCE and KPE undeground
+  tunnels for detering illegal speeding.'
+Topics:
+  - 'Transport'
+Keywords:
+  - 'KPE'
+  - 'MCE'
+  - 'Road Camera'
+  - 'Road Elements'
+  - 'Road Inventory'
+  - 'Sensor'
+  - 'Sensors'
+Publisher:
+  Name: 'Land Transport Authority'
+  Admin 1:
+    Name: 'Chan Bee Ling'
+    Department: 'Land Transport Authority'
+    Email: 'chan_bee_ling@lta.gov.sg'
+Sources:
+  - 'Land Transport Authority'
+License: 'https://data.gov.sg/open-data-licence'
+Frequency: 'Ad-hoc'
+Last Updated: '2017-06-23T03:57:37.492721'
+Resources:
+  -
+    Identifier: 'fa8749c4-7322-4abd-b6a5-5c5fe8b9b33e'
+    Title: 'MCE KPE Speed Camera (KML)'
+    Url: 'https://geo.data.gov.sg/mce-kpe-speed-camera/2016/06/20/kml/mce-kpe-speed-camera.zip'
+    Format: 'KML'
+    Last Updated: '2016-06-19T16:00:00'
+  -
+    Identifier: 'f58f7367-d11b-4fe5-94fe-f604a6c3aaff'
+    Title: 'MCE KPE Speed Camera (SHP)'
+    Url: 'https://geo.data.gov.sg/mce-kpe-speed-camera/2016/06/20/shp/mce-kpe-speed-camera.zip'
+    Format: 'SHP'
+    Last Updated: '2016-06-19T16:00:00'

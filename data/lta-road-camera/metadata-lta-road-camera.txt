@@ -1,0 +1,40 @@
+# Metadata for LTA Road Camera
+---
+Identifier: '714fbc7c-a0a9-49bb-ae85-7d5194029f51'
+Name: 'lta-road-camera'
+Title: 'LTA Road Camera'
+Description: 'The layer contains the camera installed along the roads for detering
+  illegal parking.'
+Topics:
+  - 'Transport'
+Keywords:
+  - 'CCTV'
+  - 'Road Camera'
+  - 'Road Elements'
+  - 'Road Inventory'
+  - 'Sensor'
+  - 'Sensors'
+Publisher:
+  Name: 'Land Transport Authority'
+  Admin 1:
+    Name: 'Chan Bee Ling'
+    Department: 'Land Transport Authority'
+    Email: 'chan_bee_ling@lta.gov.sg'
+Sources:
+  - 'Land Transport Authority'
+License: 'https://data.gov.sg/open-data-licence'
+Frequency: 'Ad-hoc'
+Last Updated: '2017-06-23T03:57:34.568104'
+Resources:
+  -
+    Identifier: 'ce5d025c-90d7-4413-9998-15c2390e2744'
+    Title: 'LTA Road Camera (KML)'
+    Url: 'https://geo.data.gov.sg/lta-road-enforcement-camera/2015/11/18/kml/lta-road-enforcement-camera.zip'
+    Format: 'KML'
+    Last Updated: '2015-11-17T16:00:00'
+  -
+    Identifier: '462275e5-5aae-45da-ab6c-d41f4fba514b'
+    Title: 'LTA Road Camera (SHP)'
+    Url: 'https://geo.data.gov.sg/lta-road-enforcement-camera/2015/11/18/shp/lta-road-enforcement-camera.zip'
+    Format: 'SHP'
+    Last Updated: '2015-11-17T16:00:00'

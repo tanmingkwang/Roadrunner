@@ -1,0 +1,41 @@
+# Metadata for Singapore Police Force Police Speed Laser Cameras
+---
+Identifier: 'f616993b-a5f7-447f-b0bd-e880da8f187e'
+Name: 'singapore-police-force-police-speed-laser-cameras'
+Title: 'Singapore Police Force Police Speed Laser Cameras'
+Description: 'Police Speed Laser Camera (PSLC) consists of SPF wholly owned manned
+  traffic enforcement cameras deployed to detect vehicles from committing the traffic
+  offence of speeding.'
+Topics:
+  - 'Infrastructure'
+Keywords:
+  - 'Laser Speed Camera'
+  - 'PSLC'
+  - 'SPF'
+  - 'Traffic'
+  - 'onemap'
+  - 'themes'
+Publisher:
+  Name: 'Ministry of Home Affairs - Singapore Police Force'
+  Admin 1:
+    Name: 'Benson Lim'
+    Department: 'Ministry of Home Affairs - Singapore Police Force'
+    Email: 'benson_lim@spf.gov.sg'
+Sources:
+  - 'Ministry of Home Affairs - Singapore Police Force'
+License: 'https://data.gov.sg/open-data-licence'
+Frequency: 'Ad-hoc'
+Last Updated: '2017-06-14T09:03:48.513150'
+Resources:
+  -
+    Identifier: '816dde29-b981-4586-9f1a-fa0baa53127c'
+    Title: 'Singapore Police Force Police Speed Laser Cameras (KML)'
+    Url: 'https://geo.data.gov.sg/spf-pslc/2016/12/30/kml/spf-pslc.zip'
+    Format: 'KML'
+    Last Updated: '2016-12-29T16:00:00'
+  -
+    Identifier: '5f02b9a0-6463-4706-b621-2c82134fd098'
+    Title: 'Singapore Police Force Police Speed Laser Cameras (SHP)'
+    Url: 'https://geo.data.gov.sg/spf-pslc/2016/12/30/shp/spf-pslc.zip'
+    Format: 'SHP'
+    Last Updated: '2016-12-29T16:00:00'
