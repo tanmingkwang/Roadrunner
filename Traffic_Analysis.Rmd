@@ -1,0 +1,64 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+***
+###Creating PPP
+
+Import the traffic dataset and coverting the crs from WGS84 to SVY21, at the same time, fixing the x and y for ppp function later. Result is exported to a temp csv file located in /data.
+```{r}
+trafficReport <- read_csv("data/LTATrafficDataClean2.csv")
+trafficReport_shp <- st_as_sf(trafficReport, coords = c("Longitude", "Latitude"), crs = "+proj=longlat +datum=WGS84 +no_defs")
+traffic_Report_svy21 <- st_transform(trafficReport_shp, crs = 3414)
+st_write(traffic_Report_svy21, "data/temp.csv", layer_options = "GEOMETRY=AS_XY") # writes X and Y as columns
+```
+
+***
+Reading the temp csv and creating the ppp
+```{r}
+temp <- read_csv("data/temp.csv")
+accidents <- temp %>% filter(Type == "Accident")
+roadworks <- temp %>% filter(Type == "Roadwork")
+accidents_ppp <- ppp(accidents$X, accidents$Y, c(min(accidents$X), max(accidents$X)), c(min(accidents$Y), max(accidents$Y)))
+roadworks_ppp <- ppp(roadworks$X, roadworks$Y, c(min(roadworks$X), max(roadworks$X)), c(min(roadworks$Y), max(roadworks$Y)))
+plot(accidents_ppp)
+plot(roadworks_ppp)
+```
+
+##Preparing the linnet
+```{r}
+roadNetwork <- readShapeSpatial("data/RoadNetwork/roads_expressway")
+roadNetwork_psp <- as.psp(roadNetwork, window=NULL, marks=NULL, check=spatstat.options("checksegments"), fatal=TRUE)
+roadNetwork_linnet <- as.linnet.psp(roadNetwork_psp, sparse=TRUE)
+plot(roadNetwork_linnet)
+```
+
+##LPP
+Generating the LPP
+
+```{r}
+accidents_lpp <- lpp(accidents_ppp, roadNetwork_linnet)
+```
+
+***
+###K Function
+Plotting the K function
+```{r}
+plot(linearK(accidents_lpp, correction="none", ratio=FALSE))
+```
+
+***
+###Kernel Density Estimation
+Plotting the KDE
+```{r}
+plot(density.lpp(accidents_lpp, 1000))
+```
+
+***
+###K Nearest Neighbour
+Plotting the knn
+```{r}
+plot(nndist.lpp(accidents_lpp, k=10, method="C"))
+```
+
+
