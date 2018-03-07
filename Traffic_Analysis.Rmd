@@ -7,6 +7,7 @@ output: html_notebook
 
 Import the traffic dataset and coverting the crs from WGS84 to SVY21, at the same time, fixing the x and y for ppp function later. Result is exported to a temp csv file located in /data.
 ```{r}
+library(readr)
 trafficReport <- read_csv("data/LTATrafficDataClean2.csv")
 trafficReport_shp <- st_as_sf(trafficReport, coords = c("Longitude", "Latitude"), crs = "+proj=longlat +datum=WGS84 +no_defs")
 traffic_Report_svy21 <- st_transform(trafficReport_shp, crs = 3414)
@@ -16,6 +17,8 @@ st_write(traffic_Report_svy21, "data/temp.csv", layer_options = "GEOMETRY=AS_XY"
 ***
 Reading the temp csv and creating the ppp
 ```{r}
+library(tidyverse)
+library(spatstat)
 temp <- read_csv("data/temp.csv")
 accidents <- temp %>% filter(Type == "Accident")
 roadworks <- temp %>% filter(Type == "Roadwork")
@@ -27,6 +30,7 @@ plot(roadworks_ppp)
 
 ##Preparing the linnet
 ```{r}
+library(maptools)
 roadNetwork <- readShapeSpatial("data/RoadNetwork/roads_expressway")
 roadNetwork_psp <- as.psp(roadNetwork, window=NULL, marks=NULL, check=spatstat.options("checksegments"), fatal=TRUE)
 roadNetwork_linnet <- as.linnet.psp(roadNetwork_psp, sparse=TRUE)
@@ -52,13 +56,18 @@ plot(linearK(accidents_lpp, correction="none", ratio=FALSE))
 Plotting the KDE
 ```{r}
 plot(density.lpp(accidents_lpp, 1000))
+plot(density.ppp(accidents_ppp, 1000))
 ```
+
 
 ***
 ###K Nearest Neighbour
 Plotting the knn
 ```{r}
+library(spatstat)
 plot(nndist.lpp(accidents_lpp, k=10, method="C"))
+plot(nnfun.lpp(accidents_lpp, k=10, method="C"))
+plot(Gest(accidents_ppp))
 ```
 
 
