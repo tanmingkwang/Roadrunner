@@ -8,6 +8,7 @@ output: html_notebook
 Import the traffic dataset and coverting the crs from WGS84 to SVY21, at the same time, fixing the x and y for ppp function later. Result is exported to a temp csv file located in /data.
 ```{r}
 library(readr)
+library(sf)
 trafficReport <- read_csv("data/LTATrafficDataClean2.csv")
 trafficReport_shp <- st_as_sf(trafficReport, coords = c("Longitude", "Latitude"), crs = "+proj=longlat +datum=WGS84 +no_defs")
 traffic_Report_svy21 <- st_transform(trafficReport_shp, crs = 3414)
@@ -22,10 +23,13 @@ library(spatstat)
 temp <- read_csv("data/temp.csv")
 accidents <- temp %>% filter(Type == "Accident")
 roadworks <- temp %>% filter(Type == "Roadwork")
+heavytraffic <- temp %>% filter(Type == "Heavy Traffic")
 accidents_ppp <- ppp(accidents$X, accidents$Y, c(min(accidents$X), max(accidents$X)), c(min(accidents$Y), max(accidents$Y)))
 roadworks_ppp <- ppp(roadworks$X, roadworks$Y, c(min(roadworks$X), max(roadworks$X)), c(min(roadworks$Y), max(roadworks$Y)))
+heavytraffic_ppp <- ppp(heavytraffic$X, heavytraffic$Y, c(min(heavytraffic$X), max(heavytraffic$X)), c(min(heavytraffic$Y), max(heavytraffic$Y)))
 plot(accidents_ppp)
 plot(roadworks_ppp)
+plot(heavytraffic_ppp)
 ```
 
 ##Preparing the linnet
@@ -42,6 +46,7 @@ Generating the LPP
 
 ```{r}
 accidents_lpp <- lpp(accidents_ppp, roadNetwork_linnet)
+heavytraffic_lpp <- lpp(heavytraffic_ppp, roadNetwork_linnet)
 ```
 
 ***
@@ -57,6 +62,8 @@ Plotting the KDE
 ```{r}
 plot(density.lpp(accidents_lpp, 1000))
 plot(density.ppp(accidents_ppp, 1000))
+plot(density.lpp(heavytraffic_lpp, 1000))
+plot(density.ppp(heavytraffic_ppp, 1000))
 ```
 
 
@@ -66,8 +73,11 @@ Plotting the knn
 ```{r}
 library(spatstat)
 plot(nndist.lpp(accidents_lpp, k=10, method="C"))
-plot(nnfun.lpp(accidents_lpp, k=10, method="C"))
+plot(nnfun.lpp(accidents_lpp, k=100, method="C"))
 plot(Gest(accidents_ppp))
+plot(nndist.lpp(heavytraffic_lpp, k=10, method="C"))
+plot(nnfun.lpp(heavytraffic_lpp, k=100, method="C"))
+plot(Gest(heavytraffic_ppp))
 ```
 
 
