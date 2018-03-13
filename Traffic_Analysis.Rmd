@@ -62,7 +62,7 @@ Plotting the KDE
 ```{r}
 plot(density.lpp(accidents_lpp, 1000))
 plot(density.ppp(accidents_ppp, 1000))
-plot(density.lpp(heavytraffic_lpp, 1000))
+plot(density.lpp(heavytraffic_lpp, 3000))
 plot(density.ppp(heavytraffic_ppp, 1000))
 ```
 
@@ -72,12 +72,33 @@ plot(density.ppp(heavytraffic_ppp, 1000))
 Plotting the knn
 ```{r}
 library(spatstat)
-plot(nndist.lpp(accidents_lpp, k=10, method="C"))
-plot(nnfun.lpp(accidents_lpp, k=100, method="C"))
-plot(Gest(accidents_ppp))
-plot(nndist.lpp(heavytraffic_lpp, k=10, method="C"))
-plot(nnfun.lpp(heavytraffic_lpp, k=100, method="C"))
-plot(Gest(heavytraffic_ppp))
+hist(nndist.lpp(accidents_lpp, k=10, method="C"))
+plot(nnfun.lpp(accidents_lpp, k=10, method="C"))
+plot(Gest(accidents_ppp), xlim=c(0,2000))
+hist(nndist.lpp(heavytraffic_lpp, k=10, method="C"))
+plot(nnfun.lpp(heavytraffic_lpp, k=10, method="C"))
+plot(Gest(heavytraffic_ppp), xlim=c(0,2000))
 ```
 
+***
+###Extra stuffs
+Trying to map kde onto osm, ignore for now
+
+```{r}
+temp <- density.lpp(accidents_lpp, 1000)
+class(temp)
+```
+
+
+```{r}
+library(leaflet.extras)
+library(maptools)
+temp <- readShapeSpatial("data/RoadNetwork/roads_expressway", proj4string=CRS("+proj=longlat +datum=WGS84 +no_defs"))
+ m <- leaflet() %>% 
+       addProviderTiles(providers$CartoDB.Positron) %>%
+       addCSVHeatmap(temp, trafficReport)
+       #addCircleMarkers(trafficReport, lng = trafficReport$Longitude, lat = trafficReport$Latitude, popup = trafficReport$Descriptions, radius = .5, opacity = .2, col = "Blue")
+
+m
+```
 
