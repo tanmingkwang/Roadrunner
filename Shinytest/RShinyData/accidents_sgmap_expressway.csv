@@ -1,0 +1,341 @@
+X,Y,Type,Date,Descriptions,PLN_AREA_C,PLN_AREA_N,REGION_C,REGION_N,RoadType
+30266.5155946379,33543.4300297279,Accident,22/2/2018,Accident on CTE (towards SLE) after Moulmein Rd Exit with congestion till Kramat Rd Entrance. Avoid lanes 1 and 2.,KL,KALLANG,CR,CENTRAL REGION,expressway
+25097.5656133878,35625.628968257,Accident,22/2/2018,Accident on PIE (towards Changi Airport) after Eng Neo Ave. Avoid lane 1.,BT,BUKIT TIMAH,CR,CENTRAL REGION,expressway
+14942.9340604012,33859.0900070224,Accident,22/2/2018,Accident on AYE (towards Tuas) at Jurong Port Rd Entrance.,BL,BOON LAY,WR,WEST REGION,expressway
+39533.8219500587,32442.1310438266,Accident,22/2/2018,Accident on ECP (towards City) after East Coast Park Carpark F3 Exit. Avoid lane 1.,BD,BEDOK,ER,EAST REGION,expressway
+28495.9735690427,29782.6500322591,Accident,22/2/2018,Accident in CTE Tunnel (towards SLE) after Outram Rd Exit with congestion till AYE Entrance. Avoid lane 1.,OT,OUTRAM,CR,CENTRAL REGION,expressway
+25240.2705508427,35489.8199585126,Accident,22/2/2018,Accident on PIE (towards Tuas) before Eng Neo Ave with congestion till Thomson Rd Exit. Avoid lane 1.,BT,BUKIT TIMAH,CR,CENTRAL REGION,expressway
+25000.8012028955,29579.1599593479,Accident,22/2/2018,Accident on AYE (towards Tuas) after Lower Delta Rd Exit.,BM,BUKIT MERAH,CR,CENTRAL REGION,expressway
+29754.6947421285,38321.7380021828,Accident,22/2/2018,Accident on Ang Mo Kio Avenue 1 (towards Bishan Road) after Ang Mo Kio Street 32. Avoid left lane.,AM,ANG MO KIO,NER,NORTH-EAST REGION,non_expressway
+37048.0234273953,31666.1989702265,Accident,22/2/2018,Accident on ECP (towards City) before Still Rd Sth Exit with congestion till East Coast Park Carpark F3 Exit. Avoid lane 1.,MP,MARINE PARADE,CR,CENTRAL REGION,expressway
+39175.305516835,32271.6700276179,Accident,21/2/2018,Accident on ECP (towards City) at Bedok South Ave 1 Entrance.,BD,BEDOK,ER,EAST REGION,expressway
+33019.0441460658,33566.5509491088,Accident,21/2/2018,Accident on PIE (towards Tuas) after KPE Exit.,GL,GEYLANG,CR,CENTRAL REGION,expressway
+26584.5639429465,40968.0900278334,Accident,21/2/2018,Accident on Upper Thomson Road (towards Newton) after SLE.,AM,ANG MO KIO,NER,NORTH-EAST REGION,non_expressway
+19012.2355270653,33776.9299864482,Accident,21/2/2018,Accident on AYE (towards MCE) after Jurong Town Hall Entrance.,CL,CLEMENTI,WR,WEST REGION,expressway
+34351.4460601023,33952.7300360409,Accident,21/2/2018,Accident on PIE (towards Changi Airport) at Paya Lebar Rd Exit.,GL,GEYLANG,CR,CENTRAL REGION,expressway
+34351.4460601023,33952.7300360409,Accident,21/2/2018,Accident on PIE (towards Changi Airport) at Paya Lebar Rd Exit.,GL,GEYLANG,CR,CENTRAL REGION,expressway
+34351.4460601023,33952.7300360409,Accident,21/2/2018,Accident on PIE (towards Changi Airport) at Paya Lebar Rd Exit.,GL,GEYLANG,CR,CENTRAL REGION,expressway
+34351.4460601023,33952.7300360409,Accident,21/2/2018,Accident on PIE (towards Changi Airport) at Paya Lebar Rd Exit.,GL,GEYLANG,CR,CENTRAL REGION,expressway
+6960.65620533004,35404.8790290286,Accident,21/2/2018,Accident on Tuas West Road (towards Tuas Avenue 1) after Tuas Link 4 with congestion.,TS,TUAS,WR,WEST REGION,non_expressway
+17712.4293617687,36353.2300181513,Accident,21/2/2018,Accident on PIE (towards Tuas) after Toh Guan Rd Exit.,JE,JURONG EAST,WR,WEST REGION,expressway
+26900.8602792593,34579.9300080056,Accident,21/2/2018,Accident on PIE (towards Tuas) after Stevens Rd Exit. Avoid lanes 3 and 4.,NV,NOVENA,CR,CENTRAL REGION,expressway
+17699.6867632374,36353.5310440454,Accident,21/2/2018,Accident on PIE (towards Tuas) after Toh Guan Rd Exit. Avoid lane 3.,JE,JURONG EAST,WR,WEST REGION,expressway
+19888.5958079819,35856.7499681979,Accident,21/2/2018,Accident on Bukit Batok Street 25 (towards Bukit Batok East Avenue 3) after Bukit Batok East Avenue 6.,BK,BUKIT BATOK,WR,WEST REGION,non_expressway
+33816.5905389501,34795.3589476654,Accident,21/2/2018,Accident on KPE (towards ECP) after Airport Rd Entrance with congestion till Airport Rd Entrance. Avoid lane 2.,GL,GEYLANG,CR,CENTRAL REGION,expressway
+33816.5905389501,34795.3589476654,Accident,21/2/2018,Accident on KPE (towards ECP) after Airport Rd Entrance. Avoid lane 1.,GL,GEYLANG,CR,CENTRAL REGION,expressway
+36655.6051989629,41281.430014572,Accident,21/2/2018,Accident on TPE (towards PIE) after Punggol Rd Exit.,SE,SENGKANG,NER,NORTH-EAST REGION,expressway
+29368.2883276777,29861.9489792279,Accident,21/2/2018,Accident on Upper Pickering Street (towards Pickering Street) after New Bridge Road.,SR,SINGAPORE RIVER,CR,CENTRAL REGION,non_expressway
+36324.8145687304,39187.550951372,Accident,20/2/2018,Accident on KPE (towards ECP) after Buangkok Dr Entrance. Avoid lane 4.,PL,PAYA LEBAR,ER,EAST REGION,expressway
+42587.3110732228,37215.1289573273,Accident,20/2/2018,Accident on TPE (towards PIE) at Upper Changi Rd North Exit.,PR,PASIR RIS,ER,EAST REGION,expressway
+32574.3547471366,30603.6250487518,Accident,20/2/2018,Accident on MCE (towards KPE) at ECP (Changi) Exit.,ME,MARINA EAST,CR,CENTRAL REGION,expressway
+20823.758535767,34958.6290129691,Accident,20/2/2018,Accident on PIE (towards Tuas) before Clementi Ave 6 Exit.,BT,BUKIT TIMAH,CR,CENTRAL REGION,expressway
+32723.5545165938,32436.2210201469,Accident,20/2/2018,Accident on KPE (towards TPE) before Nicoll Highway Entrance. Avoid lane 3.,KL,KALLANG,CR,CENTRAL REGION,expressway
+34402.9855700296,33905.9100438129,Accident,20/2/2018,Accident on PIE (towards Changi Airport) after Paya Lebar Rd with congestion till Kallang. Avoid lanes 1 and 3.,GL,GEYLANG,CR,CENTRAL REGION,expressway
+28790.0037868856,34557.7500475568,Accident,20/2/2018,Accident on PIE (towards Tuas) after Thomson Rd Exit.,NV,NOVENA,CR,CENTRAL REGION,expressway
+29154.3975152466,32441.368961739,Accident,20/2/2018,Accident in CTE Tunnel (towards AYE) before Cairnhill Circle Exit. Avoid lane 1.,NT,NEWTON,CR,CENTRAL REGION,expressway
+9087.05620674033,33859.9220167295,Accident,20/2/2018,Accident on Jalan Ahmad Ibrahim (towards Tuas Road) after Upper Jurong Road. Avoid left lane.,PN,PIONEER,WR,WEST REGION,expressway
+22916.6149095311,45339.1289851806,Accident,20/2/2018,Accident on SLE (towards CTE) at Woodlands Ave 2 Entrance.,WD,WOODLANDS,NR,NORTH REGION,expressway
+25592.1050316533,29538.2399893507,Accident,20/2/2018,Accident on AYE (towards MCE) after Alexandra.,BM,BUKIT MERAH,CR,CENTRAL REGION,expressway
+28492.2218938456,36724.539029161,Accident,20/2/2018,Accident on Upper Thomson Road (towards Newton) after Jln Todak. Avoid left lane.,BS,BISHAN,CR,CENTRAL REGION,non_expressway
+29973.763614966,29239.9489478372,Accident,20/2/2018,Accident on Raffles Quay (towards Shenton Way) after Central Boulevard. Avoid right lane.,DT,DOWNTOWN CORE,CR,CENTRAL REGION,non_expressway
+33397.2968496113,33015.102005224,Accident,19/2/2018,Accident on Aljunied Road near Aljunied Road/Sims Avenue Junction.,GL,GEYLANG,CR,CENTRAL REGION,expressway
+12826.8948371984,33884.3200348574,Accident,19/2/2018,Accident on AYE (towards MCE) after Pioneer Rd Exit. Avoid lanes 2 and 3.,BL,BOON LAY,WR,WEST REGION,expressway
+22750.726461339,28963.7599502727,Accident,19/2/2018,Accident on West Coast Highway (towards Tuas) at W Coast Hwy Flyover. Avoid left lane.,QT,QUEENSTOWN,CR,CENTRAL REGION,non_expressway
+8820.55136431877,34217.6209803345,Accident,19/2/2018,Accident on AYE (towards MCE) at PIE(KJE) Exit.,TS,TUAS,WR,WEST REGION,expressway
+27321.8687335305,34313.3089636563,Accident,19/2/2018,Accident on PIE (towards Changi Airport) after Stevens Rd Exit with congestion till Lornie Rd. Avoid lane 2.,NV,NOVENA,CR,CENTRAL REGION,expressway
+40024.1940772839,39196.449015925,Accident,19/2/2018,Accident on TPE (towards PIE) before Pasir Ris Dr 8 Exit. Avoid lanes 1 and 2.,PR,PASIR RIS,ER,EAST REGION,expressway
+32747.3609105346,32358.221014658,Accident,19/2/2018,Accident on KPE (towards ECP) after PIE Entrance. Avoid lane 1.,KL,KALLANG,CR,CENTRAL REGION,expressway
+30606.1004722012,37667.3979851556,Accident,18/2/2018,Accident on CTE (towards SLE) at Ang Mo Kio Ave 1 Entrance.,AM,ANG MO KIO,NER,NORTH-EAST REGION,expressway
+29214.7585377107,30560.3300158549,Accident,18/2/2018,Accident on River Valley Road (towards Clemenceau Avenue) after Clarke Quay. Avoid right lane.,SR,SINGAPORE RIVER,CR,CENTRAL REGION,expressway
+35863.9117299479,34723.7889993148,Accident,18/2/2018,Accident on Eunos Link (towards Still Rd) after Kaki Bukit Avenue 1.,BD,BEDOK,ER,EAST REGION,non_expressway
+12766.0301914094,33885.1209639487,Accident,18/2/2018,Accident on AYE (towards MCE) after Pioneer Rd Exit. Avoid lane 3.,PN,PIONEER,WR,WEST REGION,expressway
+24050.2546297621,45276.8400141446,Accident,18/2/2018,Accident on Woodlands Avenue 12 (towards Woodlands Avenue 1) after SLE.,WD,WOODLANDS,NR,NORTH REGION,non_expressway
+29197.1290574185,30780.0510011932,Accident,18/2/2018,Accident on Clemenceau Avenue (towards Tank Road) after River Valley Road.,MU,MUSEUM,CR,CENTRAL REGION,expressway
+31828.3447360245,42561.5510499802,Accident,17/2/2018,Accident on TPE (towards PIE) at TPE(PIE) Entrance.,SL,SELETAR,NER,NORTH-EAST REGION,expressway
+25768.5804924374,35118.9610058959,Accident,17/2/2018,Accident on PIE (towards Changi Airport) before Lornie Rd with congestion till Eng Neo Ave. Avoid lanes 1 and 6.,BT,BUKIT TIMAH,CR,CENTRAL REGION,expressway
+24132.8059494821,29763.6089600811,Accident,17/2/2018,Accident on AYE (towards Tuas) after Alexandra Rd Entrance. Avoid lanes 1 and 2.,QT,QUEENSTOWN,CR,CENTRAL REGION,expressway
+37662.7003241498,31832.8690083339,Accident,17/2/2018,Accident on ECP (towards City) before Still Rd Sth Exit. Avoid lane 3.,BD,BEDOK,ER,EAST REGION,expressway
+39795.3424567889,33008.391050344,Accident,16/2/2018,Accident on Upper East Coast Road (towards Changi) after Bedok South Avenue 1. Avoid left lane.,BD,BEDOK,ER,EAST REGION,non_expressway
+25318.8958596113,35424.3279898695,Accident,16/2/2018,Accident on PIE (towards Changi Airport) before Lornie Rd. Avoid lane 1.,BT,BUKIT TIMAH,CR,CENTRAL REGION,expressway
+28789.1691204721,34555.3910408079,Accident,16/2/2018,Accident on PIE (towards Tuas) after Thomson Rd Exit with congestion till Toa Payoh Exit.,NV,NOVENA,CR,CENTRAL REGION,expressway
+30516.6590641168,31457.9200199219,Accident,16/2/2018,Accident on Victoria Street near Rochor Road/Victoria Street Junction.,DT,DOWNTOWN CORE,CR,CENTRAL REGION,non_expressway
+20395.0572297451,32444.2700348075,Accident,16/2/2018,Accident on AYE (towards MCE) before Clementi Ave 2 Exit. Avoid lanes 3 and 4.,CL,CLEMENTI,WR,WEST REGION,expressway
+42011.8503179883,34771.9610457998,Accident,16/2/2018,Accident on Xilin Avenue (towards Changi South Avenue 1) after Upper Changi Road East. Avoid left lane.,TM,TAMPINES,ER,EAST REGION,non_expressway
+35949.1176505655,34638.4100007813,Accident,16/2/2018,Accident on Eunos Link (towards Still Rd) after Bedok Reservoir Road. Avoid right lane.,BD,BEDOK,ER,EAST REGION,non_expressway
+30058.2553762106,30916.6600204431,Accident,16/2/2018,Accident on Victoria Street near Bras Basah Road/Victoria Street Junction.,DT,DOWNTOWN CORE,CR,CENTRAL REGION,non_expressway
+29783.0257392089,28394.12099973,Accident,16/2/2018,Accident on MCE (towards ECP) before Maxwell Rd Entrance. Avoid lane 4.,DT,DOWNTOWN CORE,CR,CENTRAL REGION,expressway
+34469.2184401836,42505.6409518701,Accident,15/2/2018,Accident on TPE (towards PIE) before Sengkang Exit.,PG,PUNGGOL,NER,NORTH-EAST REGION,expressway
+18471.5490286267,33943.6909832876,Accident,15/2/2018,Accident on AYE (towards MCE) at Jurong Town Hall Entrance.,JE,JURONG EAST,WR,WEST REGION,expressway
+21029.7623299953,44537.6719666258,Accident,15/2/2018,Accident on BKE (towards Woodlands) at SLE Exit.,SK,SUNGEI KADUT,NR,NORTH REGION,expressway
+24871.6257292423,44094.1719571204,Accident,15/2/2018,Accident on SLE (towards CTE) before Mandai Ave Exit with congestion till Woodlands Ave 12 Exit. Avoid lanes 1 and 2.,MD,MANDAI,NR,NORTH REGION,expressway
+21373.9709051193,42443.0200456297,Accident,15/2/2018,Accident on BKE (towards PIE) after Mandai Rd Exit with congestion till Mandai Rd Exit. Avoid lanes 1 and 2.,CC,CENTRAL WATER CATCHMENT,NR,NORTH REGION,expressway
+22249.3860056248,37917.640999573,Accident,15/2/2018,Accident on BKE (towards PIE) after Dairy Farm Rd Entrance. Avoid lane 1.,CC,CENTRAL WATER CATCHMENT,NR,NORTH REGION,expressway
+27415.1407792068,34322.1410276776,Accident,15/2/2018,Accident on PIE (towards Tuas) after Stevens Rd Exit with congestion till Toa Payoh Exit. Avoid lane 1.,NV,NOVENA,CR,CENTRAL REGION,expressway
+22793.3439292035,45324.8980266117,Accident,15/2/2018,Accident on SLE (towards BKE) at Woodlands Ave 2 Exit.,MD,MANDAI,NR,NORTH REGION,expressway
+21129.9311166314,44559.3280454786,Accident,15/2/2018,Accident on SLE (towards BKE) at BKE(PIE) Exit with congestion till BKE Exit.,MD,MANDAI,NR,NORTH REGION,expressway
+32120.6208575388,34305.5780044142,Accident,15/2/2018,Accident on PIE (towards Tuas) after KPE Exit with congestion till KPE Exit. Avoid lane 4.,KL,KALLANG,CR,CENTRAL REGION,expressway
+24025.0098898023,29839.800946894,Accident,15/2/2018,Accident on AYE (towards MCE) before Alexandra Rd Exit. Avoid lane 1.,QT,QUEENSTOWN,CR,CENTRAL REGION,expressway
+18399.11438683,41239.9299605012,Accident,14/2/2018,Accident on KJE (towards PIE) at Choa Chu Kang Dr Exit.,CK,CHOA CHU KANG,WR,WEST REGION,expressway
+9159.60139719754,33948.229945637,Accident,14/2/2018,Accident on PIE (towards Tuas) at AYE Exit.,PN,PIONEER,WR,WEST REGION,expressway
+28686.0077459875,32845.9299750464,Accident,14/2/2018,Accident on Newton Circus (towards City) after Newton Circus.,NV,NOVENA,CR,CENTRAL REGION,non_expressway
+25750.2349226973,42445.9220504659,Accident,14/2/2018,Accident on SLE (towards CTE) before Upper Thomson Rd Exit with congestion till Woodlands Ave 2 Exit. Avoid lanes 2 and 3.,YS,YISHUN,NR,NORTH REGION,expressway
+18896.7125311364,41242.5780063418,Accident,14/2/2018,Accident on KJE (towards PIE) before Choa Chu Kang Dr Exit with congestion till BKE Entrance.,CK,CHOA CHU KANG,WR,WEST REGION,expressway
+24542.8468034475,44377.3589833238,Accident,14/2/2018,Accident on SLE (towards BKE) after Mandai Rd Exit.,MD,MANDAI,NR,NORTH REGION,expressway
+19939.073071636,41279.9610234011,Accident,14/2/2018,Accident on KJE (towards PIE) at Senja Rd Entrance.,BP,BUKIT PANJANG,WR,WEST REGION,expressway
+29832.8935176205,42040.0309938488,Accident,13/2/2018,Accident on SLE (towards BKE) after TPE Exit.,AM,ANG MO KIO,NER,NORTH-EAST REGION,expressway
+25607.1627601401,29532.6989570409,Accident,13/2/2018,Accident on AYE (towards Tuas) after Lower Delta Rd Exit. Avoid lane 3.,BM,BUKIT MERAH,CR,CENTRAL REGION,expressway
+21102.6760289724,44097.2700435739,Accident,13/2/2018,Accident on BKE (towards Woodlands) after Mandai Rd Entrance. Avoid lane 3.,SK,SUNGEI KADUT,NR,NORTH REGION,expressway
+29532.8165604758,28778.3110237726,Accident,13/2/2018,Accident on Anson Road (towards Robinson Road) after Choon Guan Street.,DT,DOWNTOWN CORE,CR,CENTRAL REGION,non_expressway
+35689.6943734336,31260.0999988505,Accident,13/2/2018,Accident on ECP (towards Changi Airport) before Still Rd Sth Exit with congestion till Fort Rd Exit. Avoid lane 1.,MP,MARINE PARADE,CR,CENTRAL REGION,expressway
+35685.9079284836,34175.3279933058,Accident,13/2/2018,Accident on PIE (towards Changi Airport) before Jalan Eunos with congestion till Kallang Way. Avoid lane 1.,GL,GEYLANG,CR,CENTRAL REGION,expressway
+18068.8363523633,33993.7380431647,Accident,13/2/2018,Accident on AYE (towards Tuas) after Jurong Town Hall Exit.,JE,JURONG EAST,WR,WEST REGION,expressway
+44378.6966877225,35554.7500174291,Accident,13/2/2018,Accident on PIE (towards Changi Airport) at ECP(City) Exit.,CH,CHANGI,ER,EAST REGION,expressway
+30782.7382595123,39741.1090420855,Accident,13/2/2018,Accident on CTE (towards SLE) at Ang Mo Kio Ave 5 Exit.,AM,ANG MO KIO,NER,NORTH-EAST REGION,expressway
+31085.447033737,39187.5509710165,Accident,13/2/2018,Accident on Ang Mo Kio Avenue 5 (towards Ang Mo Kio Avenue 3) after CTE.,SG,SERANGOON,NER,NORTH-EAST REGION,expressway
+39986.9250158704,35407.5119707878,Accident,13/2/2018,Accident on PIE (towards Tuas) after Tampines.,TM,TAMPINES,ER,EAST REGION,expressway
+26864.0118760277,29006.3109492032,Accident,13/2/2018,Accident on AYE (towards Tuas) after Lower Delta Rd Exit with congestion till Lower Delta Rd Exit. Avoid lane 2.,BM,BUKIT MERAH,CR,CENTRAL REGION,expressway
+23294.8590507988,45157.0699812767,Accident,13/2/2018,Accident on SLE (towards BKE) before Woodlands Ave 2 Exit with congestion till Mandai Rd Exit. Avoid lane 2.,MD,MANDAI,NR,NORTH REGION,expressway
+21084.306615843,33498.069946295,Accident,13/2/2018,Accident on Ulu Pandan Road near Clementi Road/Ulu Pandan Road Junction.,BT,BUKIT TIMAH,CR,CENTRAL REGION,non_expressway
+18289.743936054,33900.0310305829,Accident,13/2/2018,Accident on AYE (towards Tuas) at Jurong Town Hall Exit.,JE,JURONG EAST,WR,WEST REGION,expressway
+30731.6354445602,41846.6599465433,Accident,13/2/2018,Accident on SLE (towards CTE) after TPE Exit. Avoid lanes 2 and 3.,SE,SENGKANG,NER,NORTH-EAST REGION,expressway
+28475.8260329373,32010.5390430815,Accident,13/2/2018,Accident on Cairnhill Road near Cairnhill Circle/Cairnhill Road Junction.,NT,NEWTON,CR,CENTRAL REGION,non_expressway
+35996.5534997421,33728.4609710573,Accident,12/2/2018,Accident on Jalan Eunos (towards Hougang) after Changi Road.,BD,BEDOK,ER,EAST REGION,non_expressway
+29922.6795323305,42047.9220442794,Accident,12/2/2018,Accident on SLE (towards CTE) before TPE Exit. Avoid lane 1.,AM,ANG MO KIO,NER,NORTH-EAST REGION,expressway
+36093.9021335873,34381.171970511,Accident,12/2/2018,Accident on PIE (towards Changi Airport) at Jalan Eunos Entrance.,BD,BEDOK,ER,EAST REGION,expressway
+24547.9327853392,44394.3009911491,Accident,12/2/2018,Accident on SLE (towards CTE) before Mandai Ave Exit with congestion till BKE Entrance. Avoid lane 2.,MD,MANDAI,NR,NORTH REGION,expressway
+36112.8799489183,34283.2380551058,Accident,12/2/2018,Accident on PIE (towards Changi Airport) before Jalan Eunos with congestion till Kallang. Avoid lanes 2 and 3.,BD,BEDOK,ER,EAST REGION,expressway
+28358.3667260393,34360.8710309434,Accident,12/2/2018,Accident on PIE (towards Changi Airport) before Thomson Rd with congestion till Lornie Rd. Avoid lane 1.,NV,NOVENA,CR,CENTRAL REGION,expressway
+24501.6358240861,29610.0509848853,Accident,12/2/2018,Accident on AYE (towards Tuas) before Alexandra Rd Entrance.,BM,BUKIT MERAH,CR,CENTRAL REGION,expressway
+41479.1338884849,36673.8400144023,Accident,12/2/2018,Accident on PIE (towards Changi Airport) before Tampines St 31. Avoid lane 2.,TM,TAMPINES,ER,EAST REGION,expressway
+19417.5787306828,33486.6090521782,Accident,12/2/2018,Accident on AYE (towards Tuas ) after Clementi Ave 6 Exit. Avoid lane 4.,CL,CLEMENTI,WR,WEST REGION,expressway
+22500.6706861661,31008.9390161129,Accident,12/2/2018,Accident on AYE (towards MCE) after Buona Vista Exit. Avoid lanes 1 and 2.,QT,QUEENSTOWN,CR,CENTRAL REGION,expressway
+23071.9230916234,45259.3590264391,Accident,12/2/2018,Accident on SLE (towards CTE) after Woodlands Ave 2 Exit. Avoid lane 3.,WD,WOODLANDS,NR,NORTH REGION,expressway
+33731.8401753906,34417.5779572596,Accident,12/2/2018,Accident on KPE (towards ECP) after Airport Rd Entrance. Avoid lane 3.,GL,GEYLANG,CR,CENTRAL REGION,expressway
+39399.2056096336,32961.6800093642,Accident,12/2/2018,Accident on Upper East Coast Road (towards City) after Bayshore Road with congestion till Bedok South Avenue 3. Avoid right lane.,BD,BEDOK,ER,EAST REGION,non_expressway
+22005.126187597,43617.8090133019,Accident,12/2/2018,Accident on Mandai Road (towards Mandai Lake Road) after Jalan Ulu Sembawang with congestion.,MD,MANDAI,NR,NORTH REGION,non_expressway
+44807.3415379894,36614.5199550232,Accident,12/2/2018,Accident on Airport Boulevard (towards South Perimeter Road) after T3 Departure Drive.,CH,CHANGI,ER,EAST REGION,non_expressway
+24529.3148773688,44407.840040918,Accident,12/2/2018,Accident on SLE (towards CTE) before Mandai Ave Exit with congestion till BKE Entrance. Avoid lane 1.,MD,MANDAI,NR,NORTH REGION,expressway
+21987.060960898,35593.0509980245,Accident,12/2/2018,Accident on Jalan Anak Bukit (towards City) after Jalan Jurong Kechil with congestion till Jalan Jurong Kechil. Avoid right lane.,BT,BUKIT TIMAH,CR,CENTRAL REGION,expressway
+29030.6836618421,30279.551014434,Accident,12/2/2018,Accident in CTE Tunnel (towards AYE) before Havelock Exit. Avoid lanes 1 and 2.,SR,SINGAPORE RIVER,CR,CENTRAL REGION,expressway
+14286.9295327503,33779.5310343856,Accident,11/2/2018,Accident on Jalan Boon Lay (towards Jurong Pier Road) after Jalan Ahmad Ibrahim.,BL,BOON LAY,WR,WEST REGION,non_expressway
+39823.5360305531,39324.9999633011,Accident,11/2/2018,Accident on TPE (towards PIE) before Elias Rd Exit.,PR,PASIR RIS,ER,EAST REGION,expressway
+39175.7640979803,35243.9609976839,Accident,11/2/2018,Accident on PIE (towards Tuas) at Bedok North Ave 3 Exit.,BD,BEDOK,ER,EAST REGION,expressway
+20980.936074792,36808.738047616,Accident,11/2/2018,Accident on Upper Bukit Timah Road (towards Woodlands) after Old Jurong Road. Avoid left lane.,BK,BUKIT BATOK,WR,WEST REGION,non_expressway
+21391.4757027708,41539.0119633955,Accident,11/2/2018,Accident on KJE (towards BKE) at BKE(Woodlands) Exit.,SK,SUNGEI KADUT,NR,NORTH REGION,expressway
+30828.1658955112,39738.7499632941,Accident,11/2/2018,Accident on CTE (towards AYE) after AMK Ave 5 Exit.,AM,ANG MO KIO,NER,NORTH-EAST REGION,expressway
+23640.0563753303,28667.1800343036,Accident,10/2/2018,Accident on West Coast Highway (towards City) at W Coast Hwy Flyover.,QT,QUEENSTOWN,CR,CENTRAL REGION,non_expressway
+32850.9958769037,33571.3979905089,Accident,10/2/2018,Accident on PIE (towards Tuas) after KPE Exit. Avoid lane 1.,GL,GEYLANG,CR,CENTRAL REGION,expressway
+27782.3304575145,34254.2189915051,Accident,10/2/2018,Accident on PIE (towards Tuas) after Thomson Rd Exit. Avoid lane 3.,NV,NOVENA,CR,CENTRAL REGION,expressway
+25818.043298803,34441.0700188712,Accident,10/2/2018,Accident on Adam Road (towards Braddell) after Bt Timah Road. Avoid left lane.,BT,BUKIT TIMAH,CR,CENTRAL REGION,non_expressway
+30961.44546003,38601.6289833743,Accident,10/2/2018,Accident on CTE (towards SLE) after AMK Ave 3 Exit. Avoid lane 1.,AM,ANG MO KIO,NER,NORTH-EAST REGION,expressway
+30777.4467569881,40251.1989826884,Accident,10/2/2018,Accident on CTE (towards SLE) after AMK Ave 5 Exit.,AM,ANG MO KIO,NER,NORTH-EAST REGION,expressway
+20779.6677167009,46816.8400462898,Accident,10/2/2018,Accident on BKE (towards PIE) at Woodlands Checkpoint Entrance.,SK,SUNGEI KADUT,NR,NORTH REGION,expressway
+27415.752880488,34325.4799451947,Accident,10/2/2018,Accident on PIE (towards Changi Airport) after Stevens Rd Exit.,NV,NOVENA,CR,CENTRAL REGION,expressway
+21425.8291154393,41504.6720373716,Accident,10/2/2018,Accident on BKE (towards Woodlands) after KJE Exit. Avoid lane 1.,SK,SUNGEI KADUT,NR,NORTH REGION,expressway
+30493.969041496,33699.5700083796,Accident,10/2/2018,Accident on CTE (towards AYE) after Balestier Rd Exit. Avoid lane 4.,KL,KALLANG,CR,CENTRAL REGION,expressway
+30548.5564605181,33740.8200204919,Accident,10/2/2018,Accident on CTE (towards AYE) at Balestier Rd Exit.,KL,KALLANG,CR,CENTRAL REGION,expressway
+33518.8410432698,33935.354978524,Accident,10/2/2018,Accident on KPE (towards TPE) after Sims Ave Entrance. Avoid lane 2.,GL,GEYLANG,CR,CENTRAL REGION,expressway
+28368.9091777288,31862.3589606246,Accident,10/2/2018,Accident on Bideford Road (towards Cairnhill Road) after Orchard Link. Avoid right lane.,NT,NEWTON,CR,CENTRAL REGION,non_expressway
+29561.1984916573,28326.4490202864,Accident,9/2/2018,Accident on AYE (towards MCE) after Keppel Rd Entrance. Avoid lane 4.,DT,DOWNTOWN CORE,CR,CENTRAL REGION,expressway
+35826.3661787993,34205.2380461408,Accident,9/2/2018,Accident on PIE (towards Changi Airport) before Jalan Eunos. Avoid lane 1.,GL,GEYLANG,CR,CENTRAL REGION,expressway
+40982.9080675086,34540.039009842,Accident,9/2/2018,Accident on Upper Changi Road East (toward Changi) after Bedok Road. Avoid left lane.,BD,BEDOK,ER,EAST REGION,non_expressway
+15888.4264087644,37453.4999831953,Accident,9/2/2018,Accident on PIE (towards Tuas) after Jurong East Ave 2 with congestion till Jurong Town Hall Rd. Avoid lanes 2 and 3.,JW,JURONG WEST,WR,WEST REGION,expressway
+31066.4833854688,30228.2700546772,Accident,9/2/2018,Accident on Temasek Avenue near Bayfront Avenue/Raffles Avenue Junction.,DT,DOWNTOWN CORE,CR,CENTRAL REGION,non_expressway
+29405.2325055146,33018.6409891434,Accident,9/2/2018,Accident in CTE Tunnel (towards AYE) before Bukit Timah Rd Exit. Avoid lane 4.,KL,KALLANG,CR,CENTRAL REGION,expressway
+32844.1336497473,29445.6050382859,Accident,9/2/2018,Accident on MCE (towards ECP) before ECP (Changi) Exit. Avoid lane 5.,ME,MARINA EAST,CR,CENTRAL REGION,expressway
+28723.4422217085,29926.0510430966,Accident,9/2/2018,Accident in CTE Tunnel (towards AYE) before Outram Rd Exit.,OT,OUTRAM,CR,CENTRAL REGION,expressway
+22222.2239590411,31198.9390114304,Accident,9/2/2018,Accident on AYE (towards MCE) before Buona Vista Exit.,QT,QUEENSTOWN,CR,CENTRAL REGION,expressway
+7579.40569622802,33597.0390492126,Accident,9/2/2018,Accident on Pioneer Road (towards Tuas) after Tuas Road. Avoid left lane.,TS,TUAS,WR,WEST REGION,non_expressway
+18896.2674852436,41245.5390002244,Accident,9/2/2018,Accident on KJE (towards PIE) before Choa Chu Kang Dr Exit. Avoid lane 1.,CK,CHOA CHU KANG,WR,WEST REGION,expressway
+20889.7759880506,31940.2889941407,Accident,9/2/2018,Accident on AYE (towards MCE) after Clementi Ave 2 Exit with congestion till Jurong Town Hall Exit. Avoid lane 1.,CL,CLEMENTI,WR,WEST REGION,expressway
+17356.5320048217,35066.1090512124,Accident,9/2/2018,Accident on Jurong Town Hall Road near Jurong East Central/Jurong Town Hall Road Junction.,JE,JURONG EAST,WR,WEST REGION,non_expressway
+33897.8525831518,33835.0199459751,Accident,9/2/2018,Accident on PIE (towards Tuas) after Paya Lebar Rd with congestion till Paya Lebar Rd. Avoid lane 1.,GL,GEYLANG,CR,CENTRAL REGION,expressway
+33171.3526513048,36102.3090458508,Accident,9/2/2018,Accident on Bartley Road (towards Braddell) after Mount Vernon Road.,TP,TOA PAYOH,CR,CENTRAL REGION,expressway
+39848.8767366702,39315.3009989077,Accident,9/2/2018,Accident on TPE (towards PIE) before Elias Rd Exit with congestion till Pasir Ris Dr 12 Exit. Avoid lane 1.,PR,PASIR RIS,ER,EAST REGION,expressway
+33955.7524331901,42558.4219802724,Accident,9/2/2018,Accident on TPE (towards SLE) after Punggol Rd Exit. Avoid lane 1.,SE,SENGKANG,NER,NORTH-EAST REGION,expressway
+35195.8451682758,34072.1289992518,Accident,8/2/2018,Accident on PIE (towards Changi Airport) after Paya Lebar with congestion till Kallang Way. Avoid lane 1.,GL,GEYLANG,CR,CENTRAL REGION,expressway
+25534.6397902937,35233.1909617581,Accident,8/2/2018,Accident on PIE (towards Changi Airport) before Lornie Rd.,BT,BUKIT TIMAH,CR,CENTRAL REGION,expressway
+30867.8954908784,36621.359054144,Accident,8/2/2018,Accident on CTE (towards AYE) before PIE(Changi) Exit with congestion till Yio Chu Kang Rd Exit. Avoid lane 4.,SG,SERANGOON,NER,NORTH-EAST REGION,expressway
+25439.6949245999,42947.9690229273,Accident,8/2/2018,Accident on SLE (towards BKE) after Upper Thomson Rd Exit with congestion till Upper Thomson Rd Exit.,CC,CENTRAL WATER CATCHMENT,NR,NORTH REGION,expressway
+18204.7734373764,41233.1020412137,Accident,8/2/2018,Accident on KJE (towards PIE) after Choa Chu Kang Dr Exit with congestion till BKE Entrance. Avoid lane 1.,CK,CHOA CHU KANG,WR,WEST REGION,expressway
+19548.5530624744,41200.1209802262,Accident,8/2/2018,Accident on KJE (towards BKE) after Woodlands Rd Exit.,BP,BUKIT PANJANG,WR,WEST REGION,expressway
+13085.1378122578,37636.0900097113,Accident,8/2/2018,Accident on PIE (towards Tuas) before Jalan Bahar with congestion till KJE. Avoid lane 4.,JW,JURONG WEST,WR,WEST REGION,expressway
+21261.4863797546,43024.1209970791,Accident,8/2/2018,Accident on BKE (towards PIE) after Mandai Rd Exit with congestion till Mandai Rd Exit.,CC,CENTRAL WATER CATCHMENT,NR,NORTH REGION,expressway
+32091.4624828907,34334.2699856848,Accident,8/2/2018,Accident on PIE (towards Tuas) at CTE(CITY) Exit.,KL,KALLANG,CR,CENTRAL REGION,expressway
+26991.3649546743,29482.9100006214,Accident,7/2/2018,Accident on Lower Delta Road (towards Tiong Bahru Road) after Jalan Bukit Merah. Avoid left lane.,BM,BUKIT MERAH,CR,CENTRAL REGION,non_expressway
+26991.3649546743,29482.9100006214,Accident,7/2/2018,Accident on Lower Delta Road (towards Tiong Bahru Road) after Jalan Bukit Merah.,BM,BUKIT MERAH,CR,CENTRAL REGION,non_expressway
+26991.3649546743,29482.9100006214,Accident,7/2/2018,Accident on Lower Delta Road (towards Tiong Bahru Road) after Jalan Bukit Merah. Avoid left lane.,BM,BUKIT MERAH,CR,CENTRAL REGION,non_expressway
+26991.3649546743,29482.9100006214,Accident,7/2/2018,Accident on Lower Delta Road (towards Tiong Bahru Road) after Jalan Bukit Merah.,BM,BUKIT MERAH,CR,CENTRAL REGION,non_expressway
+34364.2304055274,42519.7110283378,Accident,7/2/2018,Accident on TPE (towards PIE) before Sengkang Exit.,PG,PUNGGOL,NER,NORTH-EAST REGION,expressway
+39636.5015807788,36326.9410258742,Accident,7/2/2018,Accident on Tampines Avenue 1 (towards Tampines Avenue 4) after Tampines Avenue 8.,TM,TAMPINES,ER,EAST REGION,non_expressway
+30073.0289824636,36163.8090504004,Accident,7/2/2018,Accident on Braddell Road (towards Bishan Road) after Lorong 6 Toa Payoh. Avoid left lane.,TP,TOA PAYOH,CR,CENTRAL REGION,non_expressway
+36679.3082138535,31566.8910134467,Accident,7/2/2018,Accident on ECP (towards Changi Airport) after Still Rd Sth Exit with congestion till Tg Katong Rd Exit.,MP,MARINE PARADE,CR,CENTRAL REGION,expressway
+32928.294195058,29991.5039868718,Accident,7/2/2018,Accident on MCE (towards AYE) after ECP (City) Entrance. Avoid lane 1.,ME,MARINA EAST,CR,CENTRAL REGION,expressway
+32292.7894343018,34104.4999646606,Accident,6/2/2018,Accident on PIE (towards Tuas) after KPE Exit with congestion till Paya Lebar Rd. Avoid lane 2.,KL,KALLANG,CR,CENTRAL REGION,expressway
+22055.5610627371,38694.9689965714,Accident,6/2/2018,Accident on BKE (towards PIE) at Dairy Farm Rd Exit. Dairy Farm Rd Exit closed.,CC,CENTRAL WATER CATCHMENT,NR,NORTH REGION,expressway
+26409.6787422461,33847.1909849351,Accident,6/2/2018,Accident on Bukit Timah Road (towards Woodlands) after Kheam Hock Road. Avoid left lane.,TN,TANGLIN,CR,CENTRAL REGION,non_expressway
+28809.4513540578,28873.6309785792,Accident,6/2/2018,Accident on Cantonment Road (towards Neil Road) after Everton Park. Avoid right lane.,BM,BUKIT MERAH,CR,CENTRAL REGION,non_expressway
+30560.4146673463,39030.0309990533,Accident,6/2/2018,Accident on Ang Mo Kio Avenue 3 (towards Ang Mo Kio Avenue 10) after Ang Mo Kio Street 43.,AM,ANG MO KIO,NER,NORTH-EAST REGION,non_expressway
+24721.391798347,44241.8910327642,Accident,6/2/2018,Accident on SLE (towards CTE) before Mandai Ave Exit with congestion till BKE Entrance. Avoid lane 1.,MD,MANDAI,NR,NORTH REGION,expressway
+30893.7037854997,29089.989993301,Accident,6/2/2018,Accident on Sheares Avenue (towards Marina Boulevard) after Sheares Link.,MS,MARINA SOUTH,CR,CENTRAL REGION,non_expressway
+28489.29663594,41907.2620275813,Accident,6/2/2018,Accident on SLE (towards BKE) before Lentor Ave Exit. Avoid lane 2.,AM,ANG MO KIO,NER,NORTH-EAST REGION,expressway
+16964.4568425114,40189.140966024,Accident,6/2/2018,Accident on KJE (towards PIE) at Sungei Tengah Rd Exit.,CK,CHOA CHU KANG,WR,WEST REGION,expressway
+20886.9715009835,31941.979977093,Accident,6/2/2018,Accident on AYE (towards MCE) after Clementi Ave 2 Exit with congestion till Jurong Town Hall Exit. Avoid lane 2.,CL,CLEMENTI,WR,WEST REGION,expressway
+24165.9490879616,44684.6909894012,Accident,6/2/2018,Accident on SLE (towards CTE) before Mandai Ave Exit. Avoid lane 4.,MD,MANDAI,NR,NORTH REGION,expressway
+25432.59491837,42953.8280173693,Accident,6/2/2018,Accident on SLE (towards BKE) after Upper Thomson Rd Exit.,CC,CENTRAL WATER CATCHMENT,NR,NORTH REGION,expressway
+25971.1684112614,41986.9689875231,Accident,6/2/2018,Accident on SLE (towards BKE) after Upper Thomson Rd Exit. Avoid lane 1.,CC,CENTRAL WATER CATCHMENT,NR,NORTH REGION,expressway
+27826.7250093995,35851.7619903395,Accident,5/2/2018,Accident on Macritchie Viaduct (towards Braddell) after PIE.,NV,NOVENA,CR,CENTRAL REGION,non_expressway
+35963.7842308451,33530.7700347664,Accident,5/2/2018,Accident on Sims Avenue near Jalan Eunos/Sims Avenue Junction.,GL,GEYLANG,CR,CENTRAL REGION,non_expressway
+29616.8549853769,39857.7699762358,Accident,5/2/2018,Accident on Ang Mo Kio Avenue 5 near Ang Mo Kio Avenue 5/Ang Mo Kio Avenue 8 Junction.,AM,ANG MO KIO,NER,NORTH-EAST REGION,non_expressway
+13339.4954278794,37969.9880271114,Accident,5/2/2018,"Accident on PIE (towards Changi Airport) before KJE. Avoid lanes 1, 2 and 3.",WC,WESTERN WATER CATCHMENT,WR,WEST REGION,expressway
+37226.1185923435,40640.8280366193,Accident,5/2/2018,Accident on TPE (towards PIE) before KPE Exit with congestion till Sengkang Exit. Avoid lane 1.,PR,PASIR RIS,ER,EAST REGION,expressway
+20304.9612001771,34224.8200291295,Accident,5/2/2018,Accident on Clementi Avenue 6 (towards Clementi Loop) after Commonwealth Avenue West. Avoid left lane.,CL,CLEMENTI,WR,WEST REGION,non_expressway
+23512.3689248516,36824.8979641636,Accident,5/2/2018,Accident on BKE (towards PIE) at PIE(Tuas) Exit.,BT,BUKIT TIMAH,CR,CENTRAL REGION,expressway
+24726.0303656125,35974.7890043626,Accident,4/2/2018,Accident on PIE (towards Tuas) after Eng Neo Ave with congestion till Eng Neo Ave. Avoid lanes 2 and 3.,BT,BUKIT TIMAH,CR,CENTRAL REGION,expressway
+34393.7040122509,33904.422043252,Accident,4/2/2018,Accident on PIE (towards Changi Airport) after Paya Lebar Rd with congestion till Paya Lebar Rd. Avoid lane 1.,GL,GEYLANG,CR,CENTRAL REGION,expressway
+30802.1007469736,28951.6799701912,Accident,4/2/2018,Accident on Sheares Avenue near Marina Boulevard/Sheares Avenue Junction.,MS,MARINA SOUTH,CR,CENTRAL REGION,non_expressway
+29016.2445135098,31570.4799920782,Accident,4/2/2018,Accident in CTE Tunnel (towards SLE) before Kramat Rd Entrance. Avoid lane 3.,OR,ORCHARD,CR,CENTRAL REGION,expressway
+9861.98053278355,33819.9609860235,Accident,3/2/2018,Accident on AYE (towards MCE) after PIE Entrance.,PN,PIONEER,WR,WEST REGION,expressway
+33057.7175211459,33564.6799514041,Accident,3/2/2018,Accident on PIE (towards Tuas) after KPE Exit with congestion till Jalan Eunos. Avoid lane 2.,GL,GEYLANG,CR,CENTRAL REGION,expressway
+21580.3162666716,31572.3690216184,Accident,3/2/2018,Accident on AYE (towards MCE) after Clementi Rd Exit with congestion till Clementi Ave 6 Exit. Avoid lane 1.,QT,QUEENSTOWN,CR,CENTRAL REGION,expressway
+37934.8061540751,40088.8520094946,Accident,3/2/2018,"Accident on TPE (towards PIE) after KPE Exit with congestion till Punggol Rd Exit. Avoid lanes 1, 2 and 4.",PL,PAYA LEBAR,ER,EAST REGION,expressway
+24943.2146180442,43988.1479523735,Accident,3/2/2018,Accident on SLE (towards CTE) after Mandai Ave Exit.,CC,CENTRAL WATER CATCHMENT,NR,NORTH REGION,expressway
+22468.2684285967,46348.440984517,Accident,3/2/2018,Accident on Woodlands Avenue 3 (towards Woodlands Checkpoint) after Woodlands Centre Road. Avoid right lane.,WD,WOODLANDS,NR,NORTH REGION,non_expressway
+32856.4602035476,33572.6210446488,Accident,3/2/2018,Accident on PIE (towards Tuas) after KPE Exit with congestion till Jalan Eunos. Avoid lanes 1 and 2.,GL,GEYLANG,CR,CENTRAL REGION,expressway
+34563.1810855398,33243.1720497892,Accident,3/2/2018,Accident at Paya Lebar Road/Sims Avenue Junction with congestion on Paya Lebar Road.,GL,GEYLANG,CR,CENTRAL REGION,expressway
+26983.3591623659,34524.1210029524,Accident,3/2/2018,Accident on PIE (towards Tuas) after Stevens Rd Exit with congestion till Thomson Rd Exit. Avoid lane 4.,NV,NOVENA,CR,CENTRAL REGION,expressway
+21149.5256036982,31806.2300026722,Accident,3/2/2018,Accident on AYE (towards MCE) after Clementi Ave 2 Exit with congestion till Clementi Ave 2 Exit. Avoid lanes 3 and 4.,QT,QUEENSTOWN,CR,CENTRAL REGION,expressway
+23592.4061155084,36717.0389994417,Accident,3/2/2018,Accident on BKE (towards PIE) at PIE(Tuas) Exit.,BT,BUKIT TIMAH,CR,CENTRAL REGION,expressway
+21870.5713922253,39377.319981383,Accident,3/2/2018,Accident on BKE (towards PIE) at Bukit Panjang Rd Entrance.,CC,CENTRAL WATER CATCHMENT,NR,NORTH REGION,expressway
+21904.3329488098,35795.1719790797,Accident,3/2/2018,Accident on PIE (towards Tuas) after Clementi Rd Exit. Avoid lane 4.,BT,BUKIT TIMAH,CR,CENTRAL REGION,expressway
+23638.5153359747,36855.3979932517,Accident,3/2/2018,Accident on PIE (towards Changi Airport) after BKE. Avoid lane 1.,CC,CENTRAL WATER CATCHMENT,NR,NORTH REGION,expressway
+44440.4645316753,35705.5310452832,Accident,2/2/2018,Accident on ECP (towards City) at PIE Exit.,CH,CHANGI,ER,EAST REGION,expressway
+23150.1289610757,37119.109034906,Accident,2/2/2018,Accident on BKE (towards Woodlands) after PIE Entrance.,CC,CENTRAL WATER CATCHMENT,NR,NORTH REGION,expressway
+26903.887372494,34582.9609637944,Accident,2/2/2018,Accident on PIE (towards Changi Airport) after Lornie Rd with congestion till Lornie Rd. Avoid lane 1.,NV,NOVENA,CR,CENTRAL REGION,expressway
+23702.9942737244,44932.8980155374,Accident,2/2/2018,Accident on SLE (towards BKE) after Woodlands Ave 12 Exit. Avoid lane 2.,MD,MANDAI,NR,NORTH REGION,expressway
+24659.306158683,44293.1479723529,Accident,2/2/2018,Accident on SLE (towards CTE) before Mandai Ave Exit with congestion till Woodlands Ave 12 Exit. Avoid lane 1.,MD,MANDAI,NR,NORTH REGION,expressway
+24863.7355450807,44092.3519889417,Accident,2/2/2018,Accident on SLE (towards BKE) before Mandai Rd Exit.,MD,MANDAI,NR,NORTH REGION,expressway
+23068.9339883167,37189.9609472091,Accident,2/2/2018,Accident on BKE (towards Woodlands) after PIE Entrance. Avoid lane 1.,BP,BUKIT PANJANG,WR,WEST REGION,expressway
+25719.0567522422,35131.269946817,Accident,2/2/2018,Accident on PIE (towards Changi Airport) before Lornie Rd. Avoid lane 1.,BT,BUKIT TIMAH,CR,CENTRAL REGION,expressway
+19059.1849903347,35708.8710302139,Accident,2/2/2018,Accident on PIE (towards Tuas) before Toh Guan Rd Exit with congestion till Clementi Ave 6 Exit. Avoid lane 3.,BK,BUKIT BATOK,WR,WEST REGION,expressway
+21499.2532190145,40932.4610203172,Accident,2/2/2018,Accident on BKE (towards Woodlands) before KJE Exit. Avoid lane 1.,BP,BUKIT PANJANG,WR,WEST REGION,expressway
+30870.5873020354,28092.8569543019,Accident,2/2/2018,Accident on MCE (towards ECP) before Central Blvd Exit. Avoid lane 2.,SV,STRAITS VIEW,CR,CENTRAL REGION,expressway
+19490.9833632739,33407.1409840491,Accident,2/2/2018,Accident on AYE (towards MCE) before Clementi Ave 6 Exit.,CL,CLEMENTI,WR,WEST REGION,expressway
+26349.9133002756,27682.5390490074,Accident,2/2/2018,Accident on West Coast Highway (towards City) at W Coast Hwy Flyover. Avoid right lane.,BM,BUKIT MERAH,CR,CENTRAL REGION,non_expressway
+36736.7629811044,34551.1989857304,Accident,2/2/2018,Accident on PIE (towards Tuas) after Bedok North Rd.,BD,BEDOK,ER,EAST REGION,expressway
+39823.8256704694,39318.4409927375,Accident,2/2/2018,Accident on TPE (towards SLE) after Tampines Rd Exit with congestion till Tampines Ave 7 Exit.,TM,TAMPINES,ER,EAST REGION,expressway
+18457.603369096,33914.5699926314,Accident,2/2/2018,Accident on AYE (towards MCE) after Jurong Town Hall Exit with congestion till Yuan Ching Entrance. Avoid lane 3.,JE,JURONG EAST,WR,WEST REGION,expressway
+29727.4048677327,42044.6989718693,Accident,2/2/2018,Accident on SLE (towards CTE) before TPE Exit with congestion till Lentor Ave Exit.,AM,ANG MO KIO,NER,NORTH-EAST REGION,expressway
+44167.4442848376,35216.6089706624,Accident,2/2/2018,Accident on ECP (towards Changi Airport) before PIE Exit. Avoid lane 3.,TM,TAMPINES,ER,EAST REGION,expressway
+41040.7683233933,38693.737953455,Accident,2/2/2018,Accident on TPE (towards PIE) after Pasir Ris Dr 8 Exit with congestion till Pasir Ris Dr 12 Exit.,PR,PASIR RIS,ER,EAST REGION,expressway
+32881.5678671854,33538.6989873626,Accident,2/2/2018,Accident on PIE (towards Tuas) at KPE(ECP) Exit.,GL,GEYLANG,CR,CENTRAL REGION,expressway
+37297.3786807458,40561.5119625962,Accident,2/2/2018,Accident on TPE (towards PIE) after KPE Exit. Avoid lane 1.,PR,PASIR RIS,ER,EAST REGION,expressway
+37287.0732016674,40569.0899711555,Accident,2/2/2018,Accident on TPE (towards PIE) after KPE Exit with congestion till Punggol Rd Exit.,PR,PASIR RIS,ER,EAST REGION,expressway
+24106.949118034,36632.2190531579,Accident,2/2/2018,Accident on PIE (towards Changi Airport) before Eng Neo Ave. Avoid lane 1.,CC,CENTRAL WATER CATCHMENT,NR,NORTH REGION,expressway
+24103.3099046418,36627.6720439795,Accident,2/2/2018,Accident on PIE (towards Tuas) before BKE. Avoid lane 1.,BT,BUKIT TIMAH,CR,CENTRAL REGION,expressway
+21081.7700235546,44683.1480396972,Accident,2/2/2018,Accident on SLE (towards BKE) at BKE(Woodlands) Exit.,SK,SUNGEI KADUT,NR,NORTH REGION,expressway
+42935.4188728445,36482.378977448,Accident,1/2/2018,Accident on PIE (towards Changi Airport) after TPE. Avoid lane 3.,CH,CHANGI,ER,EAST REGION,expressway
+30854.8634717624,36629.5309547608,Accident,1/2/2018,Accident on CTE (towards AYE) before PIE(Changi) Exit.,SG,SERANGOON,NER,NORTH-EAST REGION,expressway
+30970.7410574853,36304.0700171265,Accident,1/2/2018,Accident on CTE (towards AYE) after PIE(Changi) Exit. Avoid lane 4.,SG,SERANGOON,NER,NORTH-EAST REGION,expressway
+35482.2163990136,31180.2210513987,Accident,1/2/2018,Accident on ECP (towards Changi Airport) after Tg Katong Rd Exit.,MP,MARINE PARADE,CR,CENTRAL REGION,expressway
+9263.44547768298,33768.3090474628,Accident,1/2/2018,Accident on AYE (towards Tuas) at PIE Exit.,PN,PIONEER,WR,WEST REGION,expressway
+30420.9075531987,33645.9879824999,Accident,1/2/2018,Accident on CTE (towards SLE) after Moulmein Rd Exit. Avoid lane 4.,KL,KALLANG,CR,CENTRAL REGION,expressway
+42957.2668965594,36447.1990236405,Accident,1/2/2018,Accident on PIE (towards Changi Airport) after TPE.,CH,CHANGI,ER,EAST REGION,expressway
+21076.0186059611,31832.8199907664,Accident,1/2/2018,Accident on AYE (towards Tuas) before Clementi Ave 2 Exit with congestion till Buona Vista exit. Avoid lanes 2 and 3.,QT,QUEENSTOWN,CR,CENTRAL REGION,expressway
+19120.2189975975,33733.6210236237,Accident,1/2/2018,Accident on AYE (towards MCE) after Jurong Town Hall Entrance.,CL,CLEMENTI,WR,WEST REGION,expressway
+26449.3104520541,41790.5200504704,Accident,1/2/2018,Accident on SLE (towards CTE) after Upper Thomson Rd Exit.,YS,YISHUN,NR,NORTH REGION,expressway
+25069.9991150454,43684.0780520283,Accident,1/2/2018,Accident on SLE (towards CTE) after Mandai Ave Exit.,CC,CENTRAL WATER CATCHMENT,NR,NORTH REGION,expressway
+24307.8067949322,31060.5999623729,Accident,1/2/2018,Accident on Queensway (towards AYE) after Commonwealth Avenue with congestion till PIE. Avoid left lane.,QT,QUEENSTOWN,CR,CENTRAL REGION,non_expressway
+37070.3714961703,34706.3199531917,Accident,1/2/2018,Accident on PIE (towards Tuas) after Bedok North Rd with congestion till Tampines. Avoid lane 1.,BD,BEDOK,ER,EAST REGION,expressway
+36296.0827690261,39099.2070401866,Accident,1/2/2018,Accident on KPE (towards TPE) after Buangkok Dr Exit.,PL,PAYA LEBAR,ER,EAST REGION,expressway
+30861.5409702471,36614.0590532348,Accident,1/2/2018,Accident on CTE (towards AYE) before PIE(Changi) Exit. Avoid lanes 1 and 2.,SG,SERANGOON,NER,NORTH-EAST REGION,expressway
+34468.9181285541,42499.1089476562,Accident,1/2/2018,Accident on TPE (towards SLE) after Punggol Rd Exit.,SE,SENGKANG,NER,NORTH-EAST REGION,expressway
+21188.0062680242,43532.8979922116,Accident,1/2/2018,Accident on Mandai Road near BKE/Mandai Road Junction.,MD,MANDAI,NR,NORTH REGION,expressway
+31200.3398882942,35494.2889684774,Accident,31/1/2018,Accident on CTE (towards SLE) after Braddell Rd Exit. Avoid lane 1.,TP,TOA PAYOH,CR,CENTRAL REGION,expressway
+25905.2993448281,35074.550951377,Accident,31/1/2018,Accident on PIE (towards Tuas) after Adam Rd Exit. Avoid lane 1.,BT,BUKIT TIMAH,CR,CENTRAL REGION,expressway
+31010.8946604994,34233.5699971215,Accident,31/1/2018,Accident on CTE (towards SLE) after Jalan Bahagia Exit. Avoid lane 1.,NV,NOVENA,CR,CENTRAL REGION,expressway
+25977.6519477602,29380.1799872212,Accident,31/1/2018,Accident on AYE (towards Tuas) after Lower Delta Rd Exit with congestion till Lower Delta Rd Exit.,BM,BUKIT MERAH,CR,CENTRAL REGION,expressway
+25899.8350674361,35079.7109701627,Accident,31/1/2018,Accident on PIE (towards Changi Airport) after Lornie Rd with congestion till Eng Neo Ave. Avoid lane 1.,BT,BUKIT TIMAH,CR,CENTRAL REGION,expressway
+30515.36996693,33717.4689570229,Accident,31/1/2018,Accident on CTE (towards AYE) after Balestier Rd Exit with congestion till Braddell Rd/Lor Chuan Exit. Avoid lanes 3 and 4.,KL,KALLANG,CR,CENTRAL REGION,expressway
+33121.0619502236,32462.2110296603,Accident,31/1/2018,Accident on Guillemard Road (towards Lorong 12 Geylang) after Lorong 14 Geylang.,GL,GEYLANG,CR,CENTRAL REGION,non_expressway
+26984.7502697,34520.1209517363,Accident,31/1/2018,Accident on PIE (towards Tuas) after Stevens Rd Exit.,NV,NOVENA,CR,CENTRAL REGION,expressway
+26065.4444729081,34998.7189563566,Accident,31/1/2018,Accident on PIE (towards Changi Airport) after Lornie Rd.,BT,BUKIT TIMAH,CR,CENTRAL REGION,expressway
+26080.6242931795,34987.5000326609,Accident,31/1/2018,Accident on PIE (towards Changi Airport) after Lornie Rd.,BT,BUKIT TIMAH,CR,CENTRAL REGION,expressway
+27456.3494726431,38892.7889694716,Accident,31/1/2018,Accident on Ang Mo Kio Avenue 1 near Ang Mo Kio Avenue 1/Upper Thomson Road Junction.,AM,ANG MO KIO,NER,NORTH-EAST REGION,non_expressway
+41862.4761201397,36541.6800196604,Accident,31/1/2018,Accident on Simei Road (towards PIE) after Simei Street 1. Avoid left lane.,TM,TAMPINES,ER,EAST REGION,non_expressway
+8422.04477733832,34560.2810222861,Accident,31/1/2018,Accident on AYE (towards MCE) before PIE Exit. Avoid lane 4.,TS,TUAS,WR,WEST REGION,expressway
+28754.8655127917,31968.3199646961,Accident,31/1/2018,Accident in CTE Tunnel (towards AYE) before Orchard Rd Exit. Avoid lanes 2 and 3.,NT,NEWTON,CR,CENTRAL REGION,expressway
+40040.7808436358,37103.5199703158,Accident,31/1/2018,Accident on Tampines Avenue 5 near Tampines Avenue 4/Tampines Avenue 5 Junction.,TM,TAMPINES,ER,EAST REGION,non_expressway
+23579.4738290679,36685.4100291208,Accident,30/1/2018,Accident on PIE (towards Tuas) at BKE(Woodlands) Exit.,BT,BUKIT TIMAH,CR,CENTRAL REGION,expressway
+23302.7380862856,45158.8910069187,Accident,30/1/2018,Accident on SLE (towards CTE) before Woodlands Ave 12 Exit.,WD,WOODLANDS,NR,NORTH REGION,expressway
+21109.4165215662,43968.7620109326,Accident,30/1/2018,Accident on BKE (towards Woodlands) after Mandai Rd Entrance.,SK,SUNGEI KADUT,NR,NORTH REGION,expressway
+28159.1347709398,35914.1799535626,Accident,30/1/2018,Accident on Macritchie Viaduct (towards Braddell) after PIE with congestion till Commonwealth Avenue. Avoid left lane.,CC,CENTRAL WATER CATCHMENT,NR,NORTH REGION,non_expressway
+33860.0917965351,33837.7379588063,Accident,30/1/2018,Accident on PIE (towards Changi Airport) before Paya Lebar Rd with congestion till Kallang. Avoid lane 1.,GL,GEYLANG,CR,CENTRAL REGION,expressway
+22651.6223081946,30809.6499837629,Accident,30/1/2018,Accident on AYE (towards Tuas) at North Buona vista Entrance.,QT,QUEENSTOWN,CR,CENTRAL REGION,expressway
+36484.6039453398,31953.4200305938,Accident,30/1/2018,Accident on Marine Parade Road (towards Marine Drive) after Still Road South. Avoid left lane.,MP,MARINE PARADE,CR,CENTRAL REGION,non_expressway
+27517.0338901358,32102.4299705385,Accident,30/1/2018,Accident on Orchard Road (towards Bras Basah Rd) after Tanglin Road. Avoid left lane.,OR,ORCHARD,CR,CENTRAL REGION,non_expressway
+40043.0024696172,39180.679974521,Accident,30/1/2018,Accident on TPE (towards PIE) before Pasir Ris Dr 8 Exit. Avoid lane 1.,PR,PASIR RIS,ER,EAST REGION,expressway
+20788.0050372438,46498.8790513181,Accident,30/1/2018,Accident on BKE (towards Woodlands) before Woodlands Checkpoint. Avoid lane 2.,SK,SUNGEI KADUT,NR,NORTH REGION,expressway
+42569.7164728905,37005.2379522588,Accident,29/1/2018,Accident on Upper Changi Road East (toward City) after Upper Changi Road North. Avoid left lane.,TM,TAMPINES,ER,EAST REGION,expressway
+36680.5657805949,31567.6090154922,Accident,29/1/2018,Accident on ECP (towards Changi Airport) after Still Rd Sth Exit with congestion till Tg Katong Rd Exit.,MP,MARINE PARADE,CR,CENTRAL REGION,expressway
+21673.3502096244,36197.1719923154,Accident,29/1/2018,Accident on Jalan Anak Bukit (towards City) after Old Jurong Road. Avoid left lane.,BP,BUKIT PANJANG,WR,WEST REGION,non_expressway
+22109.8633973496,45336.6990240788,Accident,29/1/2018,Accident on SLE (towards BKE) between Woodlands Ave 12 Exit and Woodlands Ave 2 Exit with congestion till Upper Thomson Rd Exit.,MD,MANDAI,NR,NORTH REGION,expressway
+34321.2221538364,30895.3690065765,Accident,28/1/2018,Accident on ECP (towards Changi Airport) before Tg Katong Rd Exit.,MP,MARINE PARADE,CR,CENTRAL REGION,expressway
+30510.8035758079,31634.8500227464,Accident,28/1/2018,Accident on Queen Street (towards Rochor Road) after Ophir Road. Avoid right lane.,DT,DOWNTOWN CORE,CR,CENTRAL REGION,non_expressway
+35394.7145102602,37167.7379931973,Accident,28/1/2018,Accident on KPE (towards TPE) after Airport Rd Entrance. Avoid lane 3.,PL,PAYA LEBAR,ER,EAST REGION,expressway
+30622.8961752632,37434.0780177638,Accident,28/1/2018,Accident on CTE (towards AYE) after AMK Ave 1 Exit.,SG,SERANGOON,NER,NORTH-EAST REGION,expressway
+30774.4726948788,34005.5509464026,Accident,28/1/2018,Accident on CTE (towards AYE) after PIE(Jurong) Exit with congestion till PIE(Jurong) Exit. Avoid lane 1.,KL,KALLANG,CR,CENTRAL REGION,expressway
+16813.8045884805,36940.8399666514,Accident,28/1/2018,Accident on PIE (towards Tuas) after Jurong Town Hall Rd. Avoid lane 3.,JE,JURONG EAST,WR,WEST REGION,expressway
+26451.0950653402,34788.1210075784,Accident,28/1/2018,Accident on PIE (towards Changi Airport) after Lornie Rd. Avoid lanes 1 and 2.,NV,NOVENA,CR,CENTRAL REGION,expressway
+34402.3957326345,33905.9100301428,Accident,27/1/2018,Accident on PIE (towards Changi Airport) after Paya Lebar Rd with congestion till CTE. Avoid lane 1.,GL,GEYLANG,CR,CENTRAL REGION,expressway
+30177.7420695715,34619.039011205,Accident,27/1/2018,Accident on PIE (towards Changi Airport) after Thomson Rd with congestion till Lornie Rd.,NV,NOVENA,CR,CENTRAL REGION,expressway
+30346.3906483075,34606.0120234323,Accident,27/1/2018,Accident on PIE (towards Changi Airport) after Thomson Rd. Avoid lane 1.,TP,TOA PAYOH,CR,CENTRAL REGION,expressway
+28694.7662760229,32857.1409606154,Accident,27/1/2018,Accident on Newton Road (towards Newton Circus) after Evelyn Road with congestion. Avoid left lane.,NV,NOVENA,CR,CENTRAL REGION,non_expressway
+32767.30997281,29381.852026688,Accident,27/1/2018,Accident on MCE (towards ECP) before ECP (Changi) Exit. Avoid lanes 3 and 4.,ME,MARINA EAST,CR,CENTRAL REGION,expressway
+32131.9556370913,36155.6210093282,Accident,27/1/2018,Accident on Braddell Road (towards Tampines) after Upper Serangoon Road. Avoid left lane.,SG,SERANGOON,NER,NORTH-EAST REGION,non_expressway
+36642.1011405981,34509.3200356187,Accident,27/1/2018,Accident on PIE (towards Changi Airport) after Jalan Eunos. Avoid lanes 1 and 2.,BD,BEDOK,ER,EAST REGION,expressway
+22465.3961416744,46296.1020225714,Accident,26/1/2018,Accident on Woodlands Avenue 5 (towards Woodlands Avenue 3). Avoid right lane.,WD,WOODLANDS,NR,NORTH REGION,non_expressway
+33637.3925420738,32576.8910249947,Accident,26/1/2018,Accident on Guillemard Road (towards Lorong 24a Geylang) after Lorong 24 Geylang. Avoid left lane.,GL,GEYLANG,CR,CENTRAL REGION,non_expressway
+19408.2825604026,35514.2110203423,Accident,26/1/2018,Accident on PIE (towards Tuas) before Toh Guan Rd Exit.,CL,CLEMENTI,WR,WEST REGION,expressway
+29271.8810162977,31308.9100325504,Accident,26/1/2018,Accident on Orchard Road (towards Bras Basah Rd) after Buyong Road. Avoid right lane.,MU,MUSEUM,CR,CENTRAL REGION,non_expressway
+23230.9295158501,36767.4689452787,Accident,26/1/2018,Accident on PIE (towards Tuas) after BKE.,BT,BUKIT TIMAH,CR,CENTRAL REGION,expressway
+30763.2700520239,36888.262006669,Accident,26/1/2018,Accident on CTE (towards AYE) before Braddell Rd/Lor Chuan Exit.,SG,SERANGOON,NER,NORTH-EAST REGION,expressway
+33816.5905389501,34795.3589476654,Accident,26/1/2018,Accident on KPE (towards ECP) after Airport Rd Entrance with congestion till Airport Rd Entrance. Avoid lane 2.,GL,GEYLANG,CR,CENTRAL REGION,expressway
+33816.5905389501,34795.3589476654,Accident,26/1/2018,Accident on KPE (towards ECP) after Airport Rd Entrance. Avoid lane 1.,GL,GEYLANG,CR,CENTRAL REGION,expressway
+18036.2813319061,41143.4409509812,Accident,26/1/2018,Accident on KJE (towards PIE) after Choa Chu Kang Dr Exit with congestion till Woodlands Rd Exit. Avoid lane 2.,CK,CHOA CHU KANG,WR,WEST REGION,expressway
+31206.1199421518,35141.3399482111,Accident,25/1/2018,"Accident on CTE (towards SLE) after PIE(Changi) Exit with congestion till Moulmein Rd Exit. Avoid lanes 1, 2 and 3.",TP,TOA PAYOH,CR,CENTRAL REGION,expressway
+24659.9365868678,36045.9489573896,Accident,25/1/2018,Accident on PIE (towards Tuas) after Eng Neo Ave with congestion till Stevens Rd Exit. Avoid lanes 3 and 4.,BT,BUKIT TIMAH,CR,CENTRAL REGION,expressway
+36781.1977192323,41129.9690499808,Accident,25/1/2018,Accident on TPE (towards SLE) after Tampines Flyover.,SE,SENGKANG,NER,NORTH-EAST REGION,expressway
+28871.8443469357,42010.3199651619,Accident,25/1/2018,Accident on SLE (towards CTE) after Lentor Ave Exit with congestion till Lentor Ave Exit. Avoid lanes 1 and 2.,YS,YISHUN,NR,NORTH REGION,expressway
+20331.4229314977,32506.641017249,Accident,25/1/2018,Accident on AYE (towards Tuas) before  Clementi Ave 6 Exit with congestion till Clementi Rd Exit. Avoid lane 4.,CL,CLEMENTI,WR,WEST REGION,expressway
+29154.6347008608,42052.659980574,Accident,25/1/2018,Accident on SLE (towards CTE) after Lentor Ave Exit. Avoid lane 4.,YS,YISHUN,NR,NORTH REGION,expressway
+14705.3930646598,37226.0589869807,Accident,25/1/2018,Accident on Jurong West Avenue 2 (towards Corporation Road) after PIE.,JW,JURONG WEST,WR,WEST REGION,non_expressway
+32359.9765082677,34020.7619867647,Accident,25/1/2018,Accident on PIE (towards Tuas) after KPE Exit. Avoid lane 1.,KL,KALLANG,CR,CENTRAL REGION,expressway
+12896.8381431769,37455.2299801255,Accident,25/1/2018,Accident on PIE (towards Changi Airport) at Jalan Bahar Exit.,WC,WESTERN WATER CATCHMENT,WR,WEST REGION,expressway
+28605.1220063337,32774.3520276026,Accident,25/1/2018,Accident on Newton Circus (towards Woodlands) after Cavenagh Road.,NT,NEWTON,CR,CENTRAL REGION,non_expressway
+28878.8462774928,34595.8200294752,Accident,25/1/2018,Accident on PIE (towards Tuas) after Thomson Rd Exit with congestion till Toa Payoh Exit. Avoid lane 1.,TP,TOA PAYOH,CR,CENTRAL REGION,expressway
+30673.5754970058,42008.781013712,Accident,24/1/2018,Accident on SLE (towards BKE) after TPE Exit. Avoid lanes 1 and 2.,AM,ANG MO KIO,NER,NORTH-EAST REGION,expressway
+31569.0199448212,34596.0000099217,Accident,24/1/2018,Accident on PIE (towards Tuas) after CTE(City) Exit. Avoid lane 2.,KL,KALLANG,CR,CENTRAL REGION,expressway
+20932.5562148693,34993.738044059,Accident,24/1/2018,Accident on PIE (towards Tuas) before Clementi Ave 6 Exit. Avoid lanes 1 and 2.,BT,BUKIT TIMAH,CR,CENTRAL REGION,expressway
+38800.9911255653,32240.1699537082,Accident,24/1/2018,Accident on ECP (towards Changi Airport) after Siglap Rd Exit. Avoid lane 3.,BD,BEDOK,ER,EAST REGION,expressway
+30119.5881203161,30896.0509811071,Accident,24/1/2018,Accident on Bras Basah Road (towards Raffles Boulevard) after Victoria Street.,DT,DOWNTOWN CORE,CR,CENTRAL REGION,non_expressway
+20298.1753031052,34721.9689691465,Accident,24/1/2018,Accident on Clementi Avenue 6 (towards Clementi Loop) after PIE. Avoid left lane.,CL,CLEMENTI,WR,WEST REGION,expressway
+33878.6669046979,34843.5619791643,Accident,24/1/2018,Accident on KPE (towards ECP) after Airport Rd Entrance. Avoid lane 1.,GL,GEYLANG,CR,CENTRAL REGION,expressway
+25265.3786980255,43193.9299672232,Accident,23/1/2018,Accident on SLE (towards BKE) after Upper Thomson Rd Exit.,CC,CENTRAL WATER CATCHMENT,NR,NORTH REGION,expressway
+29159.5578080059,30613.720957821,Accident,23/1/2018,Accident on Clemenceau Avenue near Clemenceau Avenue/River Valley Road Junction.,MU,MUSEUM,CR,CENTRAL REGION,expressway
+25376.7745219839,43032.6909628305,Accident,23/1/2018,Accident on SLE (towards CTE) after Mandai Ave Exit with congestion till Woodlands Ave 12 Exit.,CC,CENTRAL WATER CATCHMENT,NR,NORTH REGION,expressway
+31235.3534553296,30547.2400253033,Accident,23/1/2018,Accident on ECP (towards City) at Rochor Rd Exit.,DT,DOWNTOWN CORE,CR,CENTRAL REGION,expressway
+20411.5053295819,32419.8910204075,Accident,23/1/2018,Accident on AYE (towards Tuas) after Clementi Ave 2 Exit with congestion till Buona Vista exit.,CL,CLEMENTI,WR,WEST REGION,expressway
+44005.8764003148,34979.6909451861,Accident,23/1/2018,Accident on ECP (towards Changi Airport) before PIE Exit. Avoid lane 3.,TM,TAMPINES,ER,EAST REGION,expressway
+27845.409547169,34231.3009797271,Accident,22/1/2018,Accident on PIE (towards Tuas) after Thomson Rd Exit. Avoid lane 3.,NV,NOVENA,CR,CENTRAL REGION,expressway
+39599.8611220954,32460.9490091252,Accident,22/1/2018,Accident on ECP (towards City) after East Coast Park Carpark F3 Exit. Avoid lane 1.,BD,BEDOK,ER,EAST REGION,expressway
+42228.962331455,38025.7889749094,Accident,22/1/2018,Accident on TPE (towards SLE) after Tampines Ave 7 Exit. Avoid lane 3.,TM,TAMPINES,ER,EAST REGION,expressway
+12411.9153146815,33883.3590240173,Accident,22/1/2018,Accident on AYE (towards Tuas) before Pioneer Rd Entrance. Avoid lane 1.,PN,PIONEER,WR,WEST REGION,expressway
+16298.1154286288,37235.6989562096,Accident,22/1/2018,Accident on PIE (towards Tuas) at Jurong East Ave 1 Entrance. Jurong East Ave 1 Entrance closed.,JE,JURONG EAST,WR,WEST REGION,expressway
+16438.2376715501,37199.6089545958,Accident,22/1/2018,Accident on PIE (towards Tuas) at Jurong East Ave 1 Exit. Jurong East Ave 1 Exit closed.,JE,JURONG EAST,WR,WEST REGION,expressway
+11518.2147184667,36014.6479689822,Accident,22/1/2018,Accident on PIE (towards Changi Airport) before Pioneer Rd Nth. Avoid lane 1.,WC,WESTERN WATER CATCHMENT,WR,WEST REGION,expressway
+33677.3590624972,34106.8589961775,Accident,22/1/2018,Accident on KPE (towards TPE) after Sims Ave Entrance with congestion till PIE Exit. Avoid lane 3.,GL,GEYLANG,CR,CENTRAL REGION,expressway
+27714.8880247807,33515.499987474,Accident,22/1/2018,Accident on Dunearn Road (towards City) after Wayang Satu Flyover. Avoid left lane.,NV,NOVENA,CR,CENTRAL REGION,non_expressway
+26375.7834765264,41820.5119576114,Accident,22/1/2018,Accident on SLE (towards CTE) at Upper Thomson Rd Exit.,YS,YISHUN,NR,NORTH REGION,expressway
+30565.5334972216,42507.9489651506,Accident,22/1/2018,Accident on SLE (towards CTE) at Seletar West Link Entrance.,SE,SENGKANG,NER,NORTH-EAST REGION,expressway
+16667.5097236117,37074.4300267262,Accident,20/1/2018,Accident on PIE (towards Tuas) after Jurong Town Hall Rd. Avoid lane 3.,JE,JURONG EAST,WR,WEST REGION,expressway
