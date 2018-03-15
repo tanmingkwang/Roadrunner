@@ -1,0 +1,22 @@
+X,Y,Type,Date,Dscrptn,PLN_AREA_C,PLN_AREA_N,REGION_C,REGION_N,RoadType
+23512.3689248516,36824.8979641636,Accident,5/2/2018,Accident on BKE (towards PIE) at PIE(Tuas) Exit.,BT,BUKIT TIMAH,CR,CENTRAL REGION,expressway
+23579.4738290679,36685.4100291208,Accident,30/1/2018,Accident on PIE (towards Tuas) at BKE(Woodlands) Exit.,BT,BUKIT TIMAH,CR,CENTRAL REGION,expressway
+21109.4165215662,43968.7620109326,Accident,30/1/2018,Accident on BKE (towards Woodlands) after Mandai Rd Entrance.,SK,SUNGEI KADUT,NR,NORTH REGION,expressway
+21081.7700235546,44683.1480396972,Accident,2/2/2018,Accident on SLE (towards BKE) at BKE(Woodlands) Exit.,SK,SUNGEI KADUT,NR,NORTH REGION,expressway
+21391.4757027708,41539.0119633955,Accident,11/2/2018,Accident on KJE (towards BKE) at BKE(Woodlands) Exit.,SK,SUNGEI KADUT,NR,NORTH REGION,expressway
+21102.6760289724,44097.2700435739,Accident,13/2/2018,Accident on BKE (towards Woodlands) after Mandai Rd Entrance. Avoid lane 3.,SK,SUNGEI KADUT,NR,NORTH REGION,expressway
+21261.4863797546,43024.1209970791,Accident,8/2/2018,Accident on BKE (towards PIE) after Mandai Rd Exit with congestion till Mandai Rd Exit.,CC,CENTRAL WATER CATCHMENT,NR,NORTH REGION,expressway
+20788.0050372438,46498.8790513181,Accident,30/1/2018,Accident on BKE (towards Woodlands) before Woodlands Checkpoint. Avoid lane 2.,SK,SUNGEI KADUT,NR,NORTH REGION,expressway
+20779.6677167009,46816.8400462898,Accident,10/2/2018,Accident on BKE (towards PIE) at Woodlands Checkpoint Entrance.,SK,SUNGEI KADUT,NR,NORTH REGION,expressway
+23592.4061155084,36717.0389994417,Accident,3/2/2018,Accident on BKE (towards PIE) at PIE(Tuas) Exit.,BT,BUKIT TIMAH,CR,CENTRAL REGION,expressway
+21870.5713922253,39377.319981383,Accident,3/2/2018,Accident on BKE (towards PIE) at Bukit Panjang Rd Entrance.,CC,CENTRAL WATER CATCHMENT,NR,NORTH REGION,expressway
+21425.8291154393,41504.6720373716,Accident,10/2/2018,Accident on BKE (towards Woodlands) after KJE Exit. Avoid lane 1.,SK,SUNGEI KADUT,NR,NORTH REGION,expressway
+23638.5153359747,36855.3979932517,Accident,3/2/2018,Accident on PIE (towards Changi Airport) after BKE. Avoid lane 1.,CC,CENTRAL WATER CATCHMENT,NR,NORTH REGION,expressway
+23150.1289610757,37119.109034906,Accident,2/2/2018,Accident on BKE (towards Woodlands) after PIE Entrance.,CC,CENTRAL WATER CATCHMENT,NR,NORTH REGION,expressway
+23068.9339883167,37189.9609472091,Accident,2/2/2018,Accident on BKE (towards Woodlands) after PIE Entrance. Avoid lane 1.,BP,BUKIT PANJANG,WR,WEST REGION,expressway
+21029.7623299953,44537.6719666258,Accident,15/2/2018,Accident on BKE (towards Woodlands) at SLE Exit.,SK,SUNGEI KADUT,NR,NORTH REGION,expressway
+21499.2532190145,40932.4610203172,Accident,2/2/2018,Accident on BKE (towards Woodlands) before KJE Exit. Avoid lane 1.,BP,BUKIT PANJANG,WR,WEST REGION,expressway
+21373.9709051193,42443.0200456297,Accident,15/2/2018,Accident on BKE (towards PIE) after Mandai Rd Exit with congestion till Mandai Rd Exit. Avoid lanes 1 and 2.,CC,CENTRAL WATER CATCHMENT,NR,NORTH REGION,expressway
+22249.3860056248,37917.640999573,Accident,15/2/2018,Accident on BKE (towards PIE) after Dairy Farm Rd Entrance. Avoid lane 1.,CC,CENTRAL WATER CATCHMENT,NR,NORTH REGION,expressway
+21129.9311166314,44559.3280454786,Accident,15/2/2018,Accident on SLE (towards BKE) at BKE(PIE) Exit with congestion till BKE Exit.,MD,MANDAI,NR,NORTH REGION,expressway
+23230.9295158501,36767.4689452787,Accident,26/1/2018,Accident on PIE (towards Tuas) after BKE.,BT,BUKIT TIMAH,CR,CENTRAL REGION,expressway
