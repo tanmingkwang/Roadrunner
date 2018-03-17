@@ -16,6 +16,18 @@ st_write(traffic_Report_svy21, "data/temp.csv", layer_options = "GEOMETRY=AS_XY"
 ```
 
 ***
+Import in SG map to act as owin
+```{r}
+library(rgdal)
+library(polyCub) #install package polyCub
+costaloutline <- readOGR("data/sg_map/CostalOutline.shp")
+costaloutline_sp <- as(costaloutline, "SpatialPolygons")
+costaloutline_owin <- as.owin.SpatialPolygons(costaloutline_sp)
+costaloutline_mask <- as.mask(costaloutline_owin)
+```
+
+
+***
 Reading the temp csv and creating the ppp
 ```{r}
 library(tidyverse)
@@ -24,9 +36,9 @@ temp <- read_csv("data/temp.csv")
 accidents <- temp %>% filter(Type == "Accident")
 roadworks <- temp %>% filter(Type == "Roadwork")
 heavytraffic <- temp %>% filter(Type == "Heavy Traffic")
-accidents_ppp <- ppp(accidents$X, accidents$Y, c(min(accidents$X), max(accidents$X)), c(min(accidents$Y), max(accidents$Y)))
-roadworks_ppp <- ppp(roadworks$X, roadworks$Y, c(min(roadworks$X), max(roadworks$X)), c(min(roadworks$Y), max(roadworks$Y)))
-heavytraffic_ppp <- ppp(heavytraffic$X, heavytraffic$Y, c(min(heavytraffic$X), max(heavytraffic$X)), c(min(heavytraffic$Y), max(heavytraffic$Y)))
+accidents_ppp <- ppp(accidents$X, accidents$Y, costaloutline_owin)
+roadworks_ppp <- ppp(roadworks$X, roadworks$Y, costaloutline_owin)
+heavytraffic_ppp <- ppp(heavytraffic$X, heavytraffic$Y, costaloutline_owin)
 plot(accidents_ppp)
 plot(roadworks_ppp)
 plot(heavytraffic_ppp)
@@ -35,7 +47,7 @@ plot(heavytraffic_ppp)
 ##Preparing the linnet
 ```{r}
 library(maptools)
-roadNetwork <- readShapeSpatial("data/RoadNetwork/roads_expressway")
+roadNetwork <- readShapeSpatial("data/RoadNetwork/roads_expressway", CRS("+init=epsg:3414"))
 roadNetwork_psp <- as.psp(roadNetwork, window=NULL, marks=NULL, check=spatstat.options("checksegments"), fatal=TRUE)
 roadNetwork_linnet <- as.linnet.psp(roadNetwork_psp, sparse=TRUE)
 plot(roadNetwork_linnet)
@@ -47,6 +59,8 @@ Generating the LPP
 ```{r}
 accidents_lpp <- lpp(accidents_ppp, roadNetwork_linnet)
 heavytraffic_lpp <- lpp(heavytraffic_ppp, roadNetwork_linnet)
+plot(accidents_lpp)
+plot(heavytraffic_lpp)
 ```
 
 ***
@@ -60,9 +74,10 @@ plot(linearK(accidents_lpp, correction="none", ratio=FALSE))
 ###Kernel Density Estimation
 Plotting the KDE
 ```{r}
+library(spatstat)
 plot(density.lpp(accidents_lpp, 1000))
-plot(density.ppp(accidents_ppp, 1000))
-plot(density.lpp(heavytraffic_lpp, 1000))
+plot(density.ppp(accidents_ppp, sigma=bw.ppl))
+plot(density.lpp(heavytraffic_lpp, 3000))
 plot(density.ppp(heavytraffic_ppp, 1000))
 ```
 
@@ -72,12 +87,61 @@ plot(density.ppp(heavytraffic_ppp, 1000))
 Plotting the knn
 ```{r}
 library(spatstat)
-plot(nndist.lpp(accidents_lpp, k=10, method="C"))
-plot(nnfun.lpp(accidents_lpp, k=100, method="C"))
-plot(Gest(accidents_ppp))
-plot(nndist.lpp(heavytraffic_lpp, k=10, method="C"))
-plot(nnfun.lpp(heavytraffic_lpp, k=100, method="C"))
-plot(Gest(heavytraffic_ppp))
+hist(nndist.lpp(accidents_lpp, k=10, method="C"))
+plot(nnfun.lpp(accidents_lpp, k=10, method="C"))
+plot(envelope(accidents_ppp, Gest, nsim = 99, rank = 1, glocal = TRUE), xlim=c(0,10000))
+hist(nndist.lpp(heavytraffic_lpp, k=10, method="C"))
+plot(nnfun.lpp(heavytraffic_lpp, k=10, method="C"))
+plot(envelope(heavytraffic_ppp, Gest, nsim = 99, rank = 1, glocal = TRUE), xlim=c(0,6000))
 ```
 
+***
+###Interactive map on accidents
+Storing the accident KDE to variable
 
+```{r}
+library(spatstat)
+accidentskde <- density.lpp(accidents_lpp, sigma=1)
+plot(accidentskde)
+```
+Convert accident kde to spatialgriddataframe and using tmap to plot
+
+```{r}
+library(tmap)
+library(tmaptools)
+library(maptools)
+
+accidentkde_sgdf <- as.SpatialGridDataFrame.im(accidentskde)
+spplot(accidentkde_sgdf)
+
+proj4string(accidentkde_sgdf) = CRS("+init=epsg:3414")
+
+tmap_mode("view")
+qtm(accidentkde_sgdf)
+```
+
+***
+###Interactive map for heavy traffic
+Storing the heavy traffic KDE to variable
+
+```{r}
+library(spatstat)
+heavytraffickde <- density.lpp(heavytraffic_lpp, sigma=1)
+plot(heavytraffickde)
+```
+
+Convert heavy traffic kde to spatialgriddataframe and using tmap to plot
+
+```{r}
+library(tmap)
+library(tmaptools)
+library(maptools)
+
+heavytraffickde_sgdf <- as.SpatialGridDataFrame.im(heavytraffickde)
+spplot(heavytraffickde_sgdf)
+
+proj4string(heavytraffickde_sgdf) = CRS("+init=epsg:3414")
+
+tmap_mode("view")
+qtm(heavytraffickde_sgdf)
+```

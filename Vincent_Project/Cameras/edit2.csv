@@ -1,0 +1,49 @@
+X,Y,ROAD_NAME,DIRECTION,DESCP,INC_CRC,CameraType,CAMID,join_name,Expressway
+22252.9733,31178.0288,Ayer Rajah Expressway,City,Static Speed Camera,3C7FDBB0AC0B8BB7,fixed-speed-cameras,,Ayer Rajah Expressway,AYE
+22257.9813,31176.0383,Ayer Rajah Expressway,Jurong,Static Speed Camera,BCFE09CB9AFD40EB,fixed-speed-cameras,,Ayer Rajah Expressway,AYE
+21563.9667,40475.9587,Bukit Timah Expressway,Pan Island Expressway,Static Speed Camera,AD87DC4C8A251AF9,fixed-speed-cameras,,Bukit Timah Expressway,BKE
+21567.9728,40465.0117,Bukit Timah Expressway,Woodlands,Static Speed Camera,480333868BC73E77,fixed-speed-cameras,,Bukit Timah Expressway,BKE
+25291.3744,35461.9854,Pan Island Expressway,Tuas,Static Speed Camera,94F5603168DE9C14,fixed-speed-cameras,,Pan-Island Expressway,PIE
+25194.9696,43348.964,Seletar Expressway,Bukit Timah Expressway,Static Speed Camera,D8191F90722494AA,fixed-speed-cameras,,Seletar Expressway,SLE
+25198.9758,43337.0219,Seletar Expressway,Central Expressway,Static Speed Camera,0617F009CF7FF6F7,fixed-speed-cameras,,Seletar Expressway,SLE
+22446.5276,37632.7249,Bukit Timah Expressway,Woodlands Checkpoint,below Eco-Link Bridge,4BD5FCCD5947C80D,police-speed-laser-cameras,,Bukit Timah Expressway,BKE
+22464.334,37648.0945,Bukit Timah Expressway,Pan Island Expressway,below Eco-Link Bridge,F62FECE5136FC238,police-speed-laser-cameras,,Bukit Timah Expressway,BKE
+37501.6186,31808.7395,East Coast Parkway,Airport Boulevard,overhead bridge,2F52CF402C7CA1D8,police-speed-laser-cameras,,East Coast Parkway,ECP
+37507.1838,31788.0621,East Coast Parkway,Marina Coastal Expressway,overhead bridge,DEC5C28A3638D8B2,police-speed-laser-cameras,,East Coast Parkway,ECP
+30819.535,38211.8738,Central Expressway,Seletar Expressway,overhead bridge,254FD105776E22E8,police-speed-laser-cameras,,Central Expressway,CTE
+30841.3476,38203.6915,Central Expressway,Ayer Rajah Expressway,overhead bridge,19E2AF1D7B250ECF,police-speed-laser-cameras,,Central Expressway,CTE
+17970.5205,41109.8869,Kranji Expressway,Bukit Timah Expressway,overhead bridge,9871A2F36807D09C,police-speed-laser-cameras,,Kranji Expressway,KJE
+17979.9794,41098.2762,Kranji Expressway,Pan Island Expressway,overhead bridge,A721BB71B9B39F6F,police-speed-laser-cameras,,Kranji Expressway,KJE
+9896.9142,33814.0042,Ayer Rajah Expressway,Tuas Checkpoint,overhead bridge,5A8E5B3E8CD2B49E,police-speed-laser-cameras,,Ayer Rajah Expressway,AYE
+9893.5767,33832.3599,Ayer Rajah Expressway,Marina Coastal Expressway,overhead bridge,7B072799B804A9D0,police-speed-laser-cameras,,Ayer Rajah Expressway,AYE
+36480.4433,41504.2534,Tampines Expressway,Pan Island Expressway,overhead bridge,F240FE1A66040183,police-speed-laser-cameras,,Tampines Expressway,TPE
+36462.8603,41491.7579,Tampines Expressway,Seletar Expressway,overhead bridge,04D9A9B6574D5D2D,police-speed-laser-cameras,,Tampines Expressway,TPE
+32345.7821,42565.7827,Tampines Expressway,Pan Island Expressway,overhead bridge,57F2B5697CAC2B32,police-speed-laser-cameras,,Tampines Expressway,TPE
+32345.6711,42548.8647,Tampines Expressway,Seletar Expressway,overhead bridge,158909DFE717A333,police-speed-laser-cameras,,Tampines Expressway,TPE
+35693.8543,34165.3677,Pan Island Expressway,Tuas Road,overhead bridge,406DE7B76310B153,police-speed-laser-cameras,,Pan-Island Expressway,PIE
+35690.07,34183.0596,Pan Island Expressway,Airport Boulevard,overhead bridge,55CA1C21F74E1656,police-speed-laser-cameras,,Pan-Island Expressway,PIE
+29241.0385,34645.0476,Pan Island Expressway,Tuas Road,overhead bridge,684783CA3B1F3201,police-speed-laser-cameras,,Pan-Island Expressway,PIE
+29241.4836,34665.1722,Pan Island Expressway,Airport Boulevard,overhead bridge,E17E6F41CB294238,police-speed-laser-cameras,,Pan-Island Expressway,PIE
+11664.4548,36108.6621,Pan Island Expressway,Tuas Road,overhead bridge,4611082C430F4929,police-speed-laser-cameras,,Pan-Island Expressway,PIE
+11649.6545,36127.903,Pan Island Expressway,Airport Boulevard,overhead bridge,142CC5C81DB99708,police-speed-laser-cameras,,Pan-Island Expressway,PIE
+22253,31178,Ayer Rajah Expressway,City,,1493E16CE66C6EC4,digital-speed-enforcement-cameras,SPF-DSECS-9108,Ayer Rajah Expressway,AYE
+22258,31176,Ayer Rajah Expressway,Jurong,,80559AC4B05B971E,digital-speed-enforcement-cameras,SPF-DSECS-9109,Ayer Rajah Expressway,AYE
+21564,40476,Bukit Timah Expressway,Pan Island Expressway,,65D68704CFBE106A,digital-speed-enforcement-cameras,SPF-DSECS-9111,Bukit Timah Expressway,BKE
+21568,40465,Bukit Timah Expressway,Woodlands,,1471C43B7635EA19,digital-speed-enforcement-cameras,SPF-DSECS-9110,Bukit Timah Expressway,BKE
+25195,43349,Seletar Expressway,Bukit Timah Expressway,,38976A25C54E2F6F,digital-speed-enforcement-cameras,SPF-DSECS-9114,Seletar Expressway,SLE
+25199,43337,Seletar Expressway,Central Expressway,,1606BD870057CFAF,digital-speed-enforcement-cameras,SPF-DSECS-9115,Seletar Expressway,SLE
+32793.8665,29422.5369,Marina Coastal Expressway,,,536B41822105C1F8,mce-kpe-speed-camera,"WB_CH4286 (Right)
+",Marina Coastal Expressway,MCE
+32815.0332,29396.2902,Marina Coastal Expressway,,,08281CF61F890E90,mce-kpe-speed-camera,"WB_CH4286 (Left)
+",Marina Coastal Expressway,MCE
+31616.9864,28570.5841,Marina Coastal Expressway,,,834504C55E0A38B6,mce-kpe-speed-camera,WB_CH2780 (Right),Marina Coastal Expressway,MCE
+31631.9089,28549.682,Marina Coastal Expressway,,,7CCCD31D10A17947,mce-kpe-speed-camera,WB_CH2780 (Left),Marina Link,MCE
+32358.1485,29062.0515,Marina Coastal Expressway,,,BA3D3FE29A21E79B,mce-kpe-speed-camera,EB_CH3642 (Right),Marina Coastal Expressway,MCE
+32632.5487,33418.3251,Kallang-Paya Lebar Expressway,,,54797434E33ED9DC,mce-kpe-speed-camera,NB_CH2250,Kallang-Paya Lebar Expressway,KPE
+32702.0587,32542.0921,Kallang-Paya Lebar Expressway,,,6E305956C95273E7,mce-kpe-speed-camera,SB_CH1350,Kallang-Paya Lebar Expressway,KPE
+33736.2159,34681.4313,Kallang-Paya Lebar Expressway,,,43F8DA17F39E748A,mce-kpe-speed-camera,NB_CH4350,Kallang-Paya Lebar Expressway,KPE
+35248.93,36497.5664,Kallang-Paya Lebar Expressway,,,2A83785D812DD616,mce-kpe-speed-camera,NB_CH7050,,KPE
+33943.789,34866.1446,Kallang-Paya Lebar Expressway,,,37CFA228DB90426A,mce-kpe-speed-camera,SB_CH4650,Kallang-Paya Lebar Expressway,KPE
+35266.4812,36759.9807,Kallang-Paya Lebar Expressway,,,026D505384D53509,mce-kpe-speed-camera,SB_CH7350,Kallang-Paya Lebar Expressway,KPE
+32337.0214,29085.6524,Marina Coastal Expressway,,,BCD21EC10041F0EF,mce-kpe-speed-camera,EB_CH3642 (Left),Marina Coastal Expressway,MCE
+32728.7259,30719.4079,Marina Coastal Expressway,,,8DE4AB5282893BE5,mce-kpe-speed-camera,WB_CH5765 (Right),Marina Coastal Expressway,MCE
