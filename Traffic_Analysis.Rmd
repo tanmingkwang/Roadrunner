@@ -101,7 +101,8 @@ Storing the accident KDE to variable
 
 ```{r}
 library(spatstat)
-accidentskde <- density.lpp(accidents_lpp, sigma=1)
+accidentskde <- density.lpp(accidents_lpp, sigma=1000)
+accidentskde_ppp <- density.ppp(accidents_ppp, sigma=1000)
 plot(accidentskde)
 ```
 Convert accident kde to spatialgriddataframe and using tmap to plot
@@ -110,14 +111,17 @@ Convert accident kde to spatialgriddataframe and using tmap to plot
 library(tmap)
 library(tmaptools)
 library(maptools)
+library(rgdal)
 
 accidentkde_sgdf <- as.SpatialGridDataFrame.im(accidentskde)
-spplot(accidentkde_sgdf)
+accidentkde_ppp_sgdf <- as.SpatialGridDataFrame.im(accidentskde_ppp)
 
 proj4string(accidentkde_sgdf) = CRS("+init=epsg:3414")
+proj4string(accidentkde_ppp_sgdf) = CRS("+init=epsg:3414")
 
 tmap_mode("view")
-qtm(accidentkde_sgdf)
+tm_shape(accidentkde_ppp_sgdf) +
+  tm_raster()
 ```
 
 ***
@@ -126,8 +130,8 @@ Storing the heavy traffic KDE to variable
 
 ```{r}
 library(spatstat)
-heavytraffickde <- density.lpp(heavytraffic_lpp, sigma=1)
-plot(heavytraffickde)
+heavytraffickde <- density.lpp(heavytraffic_lpp, sigma=3000)
+heavytraffickde_ppp <- density.ppp(heavytraffic_ppp, sigma=500)
 ```
 
 Convert heavy traffic kde to spatialgriddataframe and using tmap to plot
@@ -138,10 +142,11 @@ library(tmaptools)
 library(maptools)
 
 heavytraffickde_sgdf <- as.SpatialGridDataFrame.im(heavytraffickde)
-spplot(heavytraffickde_sgdf)
+heavytraffickde_ppp_sgdf <- as.SpatialGridDataFrame.im(heavytraffickde_ppp)
 
 proj4string(heavytraffickde_sgdf) = CRS("+init=epsg:3414")
+proj4string(heavytraffickde_ppp_sgdf) = CRS("+init=epsg:3414")
 
 tmap_mode("view")
-qtm(heavytraffickde_sgdf)
+qtm(heavytraffickde_ppp_sgdf)
 ```
