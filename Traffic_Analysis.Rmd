@@ -3,16 +3,28 @@ title: "R Notebook"
 output: html_notebook
 ---
 ***
+### Loading R Packages
+
+```{r}
+packages = c('tmap', 'sf', 'tidyverse', 'RColorBrewer', 'classInt', 'spatstat', 'rgdal', 'maptools')
+for (p in packages){
+  if(!require(p, character.only = T)){
+  install.packages(p)
+}
+library(p, character.only = T)
+}
+```
+
+***
 ###Creating PPP
 
 Import the traffic dataset and coverting the crs from WGS84 to SVY21, at the same time, fixing the x and y for ppp function later. Result is exported to a temp csv file located in /data.
 ```{r}
 library(readr)
 library(sf)
-trafficReport <- read_csv("data/LTATrafficDataClean2.csv")
-trafficReport_shp <- st_as_sf(trafficReport, coords = c("Longitude", "Latitude"), crs = "+proj=longlat +datum=WGS84 +no_defs")
-traffic_Report_svy21 <- st_transform(trafficReport_shp, crs = 3414)
-st_write(traffic_Report_svy21, "data/temp.csv", layer_options = "GEOMETRY=AS_XY") # writes X and Y as columns
+# trafficReport <- read_csv("data/LTATrafficDataClean2.csv")
+# trafficReport_shp <- st_as_sf(trafficReport, coords = c("Longitude", "Latitude"), crs = "+proj=longlat +datum=WGS84 +no_defs")
+# traffic_Report_svy21 <- st_transform(trafficReport_shp, crs = 3414)
 ```
 
 ***
@@ -32,15 +44,18 @@ Reading the temp csv and creating the ppp
 ```{r}
 library(tidyverse)
 library(spatstat)
-temp <- read_csv("data/temp.csv")
-accidents <- temp %>% filter(Type == "Accident")
-roadworks <- temp %>% filter(Type == "Roadwork")
-heavytraffic <- temp %>% filter(Type == "Heavy Traffic")
-accidents_ppp <- ppp(accidents$X, accidents$Y, costaloutline_owin)
-roadworks_ppp <- ppp(roadworks$X, roadworks$Y, costaloutline_owin)
-heavytraffic_ppp <- ppp(heavytraffic$X, heavytraffic$Y, costaloutline_owin)
+accidents <- readOGR(dsn = "final_data",  layer = "accidents")
+accidents_sp <- as(accidents, 'SpatialPoints')
+heavytraffic <- readOGR(dsn = "final_data",  layer = "heavy_traffic")
+heavytraffic_sp <- as(heavytraffic, 'SpatialPoints')
+# accidents <- traffic_Report_svy21 %>% filter(Type == "Accident")
+# accidents_sp <- as(accidents, "Spatial")
+# heavytraffic <- traffic_Report_svy21 %>% filter(Type == "Heavy Traffic")
+# heavytraffic_sp <- as(heavytraffic, "Spatial")
+accidents_ppp <- ppp(coordinates(accidents_sp)[,1], coordinates(accidents_sp)[,2], costaloutline_owin)
+heavytraffic_ppp <- ppp(coordinates(heavytraffic_sp)[,1], coordinates(heavytraffic_sp)[,2], costaloutline_owin)
+
 plot(accidents_ppp)
-plot(roadworks_ppp)
 plot(heavytraffic_ppp)
 ```
 
@@ -112,15 +127,24 @@ library(tmap)
 library(tmaptools)
 library(maptools)
 library(rgdal)
+library(raster)
 
 accidentkde_sgdf <- as.SpatialGridDataFrame.im(accidentskde)
+
+accidentkde_raster <- raster(accidentkde_sgdf)
+accidentkde_raster_scaled <- disaggregate(accidentkde_raster, fact=4 ,fun=mean)
+#accidentkde_raster_scaled <- scale(accidentkde_raster, center = FALSE, scale = TRUE)
+
 accidentkde_ppp_sgdf <- as.SpatialGridDataFrame.im(accidentskde_ppp)
 
 proj4string(accidentkde_sgdf) = CRS("+init=epsg:3414")
+proj4string(accidentkde_raster_scaled) = CRS("+init=epsg:3414")
 proj4string(accidentkde_ppp_sgdf) = CRS("+init=epsg:3414")
 
 tmap_mode("view")
-tm_shape(accidentkde_ppp_sgdf) +
+tm_shape(accidentkde_raster_scaled) +
+  tm_raster() +  #can modify to style the raster
+  tm_shape(accidentkde_ppp_sgdf) + 
   tm_raster()
 ```
 
