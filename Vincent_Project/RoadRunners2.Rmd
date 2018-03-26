@@ -1,0 +1,189 @@
+---
+title: "RoadRunners"
+output: html_notebook
+---
+
+# Loading R Packages
+
+```{r}
+packages = c('tmap', 'sf', 'tidyverse', 'RColorBrewer', 'classInt', 'spatstat', 'rgdal', 'maptools', 'rgeos')
+for (p in packages){
+  if(!require(p, character.only = T)){
+  install.packages(p)
+}
+library(p, character.only = T)
+}
+```
+
+# Load expressway
+```{r}
+expressway<- readOGR(dsn = 'RoadNetwork', layer = 'roads_expressway_simplified')
+```
+
+# Create data transformation from csv
+```{r}
+accidents_csv <- read_csv('csv/LTATrafficDataClean2.csv')
+patterns <- c('AYE',	'BKE',	'CTE'	,'ECP',	'KJE'	,'KPE',	'MCE'	,'PIE',	'SLE',	'TPE')
+accidents_filter <- accidents_csv %>% filter(grepl(paste(patterns, collapse="|"), Descriptions)) %>% filter(Type == 'Accident')
+accidents_sf <- st_as_sf(accidents_filter, coords = c("Longitude", "Latitude"), crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs")
+accidents <- st_transform(accidents_sf, crs = 3414)
+
+costaloutline <- readOGR("sg_map/CostalOutline.shp")
+costaloutline_sp <- as(costaloutline, "SpatialPolygons")
+costaloutline_owin <- as.owin.SpatialPolygons(costaloutline_sp)
+
+accidents_ppp <- ppp(st_coordinates(accidents)[,1], st_coordinates(accidents)[,2], costaloutline_owin)
+
+
+roadNetwork <- readShapeSpatial("test/RoadNetwork/roads_expressway", CRS("+init=epsg:3414"))
+
+# simplify road network
+roadNetwork_psp <- as.psp(roadNetwork, window=NULL, marks=NULL, check=spatstat.options("checksegments"), fatal=TRUE)
+roadNetwork_linnet <- as.linnet.psp(roadNetwork_psp, sparse=TRUE)
+
+# Create lpp
+accidents_lpp <- lpp(accidents_ppp, roadNetwork_linnet)
+
+plot(density.lpp(accidents_lpp, 2000))
+
+```
+
+
+# Experiment road network
+```{r}
+# Prepare accidents
+accidents <- readOGR('FinalAccidents', 'accidents_on_expressway')
+#accidents_subset <- accidents[accidents@data[['Accident_L']] == analysis_area,]
+accidents_subset <- accidents
+accidents_sp <- as(accidents_subset, 'SpatialPoints')
+accidents_ppp <- as.ppp(accidents_sp)
+
+# Create expressway linnet 
+roadNetwork <- readShapeSpatial("test/RoadNetwork/roads_expressway", CRS("+init=epsg:3414"))
+roadNetwork_psp <- as.psp(roadNetwork, window=NULL, marks=NULL, check=spatstat.options("checksegments"), fatal=TRUE)
+roadNetwork_linnet <- as.linnet.psp(roadNetwork_psp, sparse=TRUE)
+
+# Create lpp
+accidents_lpp <- lpp(accidents_ppp, roadNetwork_linnet)
+
+plot(density.lpp(accidents_lpp, 1000))
+```
+
+```{r}
+# Prepare accidents
+accidents <- readOGR('FinalAccidents', 'accidents_on_expressway')
+#accidents_subset <- accidents[accidents@data[['Accident_L']] == analysis_area,]
+accidents_subset <- accidents
+accidents_sp <- as(accidents_subset, 'SpatialPoints')
+accidents_ppp <- as.ppp(accidents_sp)
+
+
+roadNetwork <- readShapeSpatial("test/RoadNetwork/roads_expressway", CRS("+init=epsg:3414"))
+
+# simplify road network
+roadNetwork <- gSimplify(roadNetwork, tol = 100 )
+
+roadNetwork_psp <- as.psp(roadNetwork, window=NULL, marks=NULL, check=spatstat.options("checksegments"), fatal=TRUE)
+roadNetwork_linnet <- as.linnet.psp(roadNetwork_psp, sparse=TRUE)
+
+# Create lpp
+accidents_lpp <- lpp(accidents_ppp, roadNetwork_linnet)
+
+
+#system.time(envelope.lpp(accidents_lpp,linearK, nsim = 99, r = seq(0,1,by=0.20)))
+system.time(envelope.lpp(accidents_lpp,linearK, nsim = 3, r=seq(0,0.000001,0.0000002)))
+
+
+
+#system.time({s <- runiflpp(npoints(accidents_lpp), as.linnet(accidents_lpp)); linearK(s, r=seq(0,2,by=0.20))})
+```
+
+
+
+
+# K Function Analysis
+```{r}
+
+analysis_area <- 'PIE'
+
+# Prepare accidents
+accidents <- readOGR('FinalAccidents', 'accidents_on_expressway')
+accidents_subset <- accidents[accidents@data[['Accident_L']] == analysis_area,]
+accidents_sp <- as(accidents_subset, 'SpatialPoints')
+accidents_ppp <- as.ppp(accidents_sp)
+
+#Prepare expressway 
+expressway_subset <- expressway[expressway@data[['ref']] == analysis_area,]
+expressway_subset_psp <- as.psp(expressway_subset)
+expressway_subset_linnet <- as.linnet.psp(expressway_subset_psp, sparse = TRUE)
+
+#Create accidents lpp
+accidents_lpp <- lpp(accidents_ppp, expressway_subset_linnet)
+
+#system.time(envelope.lpp(accidents_lpp,linearK, nsim = 99, r = seq(0,1,by=0.20)))
+plot(density.lpp(accidents_lpp, 2000))
+plot(envelope.lpp(accidents_lpp,linearK, nsim = 10, r = seq(0,10000)))
+```
+# Multitype K function
+```{r}
+analysis_area <- 'SLE'
+
+# Prepare cameras
+cameras_accidents <- readOGR('Cameras', 'cameras_accidents')
+cameras_accidents_subset <- cameras_accidents[cameras_accidents@data[['Expressway']] == analysis_area,]
+cameras_accidents_sp <- as(cameras_accidents_subset, 'SpatialPoints')
+cameras_accidents_ppp <- as.ppp(cameras_accidents_sp)
+marks(cameras_accidents_ppp) <- cameras_accidents_subset@data['Type']
+
+#Prepare expressway 
+expressway_subset <- expressway[expressway@data[['ref']] == analysis_area,]
+expressway_subset_psp <- as.psp(expressway_subset)
+expressway_subset_linnet <- as.linnet.psp(expressway_subset_psp)
+
+#Create accidents lpp
+cameras_accidents_lpp <- lpp(cameras_accidents_ppp, expressway_subset_linnet)
+
+#Multitype K Function
+linearKcross(cameras_accidents_lpp, 'Accident' , 'Camera')
+plot(envelope.lpp(cameras_accidents_lpp,linearKcross, nsim = 10, i = 'Accident', j = 'Camera', r = seq(0,3000))) #, r = seq(0,3000)
+```
+
+```{r}
+sgmap <- st_read('data.gov.sg/planningArea', 'MP14_PLNG_AREA_WEB_PL')
+accidentskde <- density.lpp(accidents_lpp, sigma=1000)
+accidentkde_sgdf <- as.SpatialGridDataFrame.im(accidentskde)
+spplot(accidentkde_sgdf)
+
+proj4string(accidentkde_sgdf) = CRS("+init=epsg:3414")
+data(world)
+tmap_mode("view")
+
+library(tmaptools)
+tm_shape(accidentkde_sgdf) + tm_raster()
+```
+
+
+```{r}
+# 
+accidents <- readOGR('FinalAccidents', 'accidents_on_expressway')
+accidents_sp <- as(accidents, 'SpatialPoints')
+accidents_ppp <- as.ppp(accidents_sp)
+
+roadNetwork <- readShapeSpatial("RoadNetwork/roads_expressway", CRS("+init=epsg:3414"))
+roadNetwork_psp <- as.psp(roadNetwork, window=NULL, marks=NULL, check=spatstat.options("checksegments"), fatal=TRUE)
+roadNetwork_linnet <- as.linnet.psp(roadNetwork_psp, sparse=TRUE)
+
+accidents_lpp <- lpp(accidents_ppp, roadNetwork_linnet)
+
+accidentskde <- density.lpp(accidents_lpp, 1)
+
+accidentkde_sgdf <- as.SpatialGridDataFrame.im(accidentskde)
+spplot(accidentkde_sgdf)
+
+proj4string(accidentkde_sgdf) = CRS("+init=epsg:3414")
+
+library(tmaptools)
+sgmap_raster <- poly_to_raster(sgmap)
+tm_shape(accidentkde_sgdf) + tm_raster()
+
+```

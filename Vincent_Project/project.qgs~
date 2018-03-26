@@ -8,7 +8,7 @@
     <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Unchecked" id="fixed_speed_cameras_cleaned20180313111401218" source="C:/Users/vince/Google Drive/3.4 SMU/3.2 Geospatial/Project/Project/Cameras/fixed_speed_cameras_cleaned.shp" name="fixed_speed_cameras_cleaned">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Unchecked" id="SPF_FSC20180313111105418" source="C:\Users\vince\Documents\GitHub\Roadrunner\data\singapore-police-force-fixed-speed-cameras\singapore-police-force-fixed-speed-cameras-shp\SPF_FSC.shp" name="SPF_FSC">
+    <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Unchecked" id="SPF_FSC20180313111105418" source="C:/Users/vince/Documents/GitHub/Roadrunner/data/singapore-police-force-fixed-speed-cameras/singapore-police-force-fixed-speed-cameras-shp/SPF_FSC.shp" name="SPF_FSC">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Unchecked" id="accidents_sgmap20180308103100777" source="C:/Users/vince/Google Drive/3.4 SMU/3.2 Geospatial/Project/Project/csv/accidents_sgmap.shp" name="accidents_sgmap">
@@ -35,7 +35,7 @@
     <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Checked" id="edit20180313131213151" source="C:/Users/vince/Google Drive/3.4 SMU/3.2 Geospatial/Project/Project/Cameras/edit.csv" name="edit">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" providerKey="memory" checked="Qt::Unchecked" id="temp_shp_temp_Point_roads_expressway20180313130458612" source="Point?crs=EPSG:3414" name="temp.shp temp Point_roads_expressway">
+    <layer-tree-layer expanded="1" providerKey="memory" checked="Qt::Unchecked" id="temp_shp_temp_Point_roads_expressway20180313130458612" source="memory?geometry=Point&amp;crs=EPSG:3414&amp;field=ROAD_NAME:String(254,0)&amp;field=DIRECTION:String(254,0)&amp;field=DESCP:String(254,0)&amp;field=INC_CRC:String(50,0)&amp;field=X_ADDR:Real(18,11)&amp;field=Y_ADDR:Real(18,11)&amp;field=CameraType:String(33,0)&amp;field=CAMID:String(254,0)&amp;field=LOCATION:String(254,0)&amp;field=CAM_ID:String(50,0)&amp;field=join_name:(0,0)&amp;field=join_ref:(0,0)&amp;field=join_type:(0,0)" name="temp.shp temp Point_roads_expressway">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Unchecked" id="mce_kpe_cameras_cleaned20180313110434103" source="C:/Users/vince/Google Drive/3.4 SMU/3.2 Geospatial/Project/Project/Cameras/mce_kpe_cameras_cleaned.shp" name="mce_kpe_cameras_cleaned">
@@ -47,10 +47,16 @@
     <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Unchecked" id="accidents_on_expressway220180313133354017" source="C:/Users/vince/Google Drive/3.4 SMU/3.2 Geospatial/Project/Project/FinalAccidents/accidents_on_expressway2.shp" name="accidents_on_expressway2">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Unchecked" id="accidents_sgmap_expressway20180313141819972" source="C:\Users\vince\Google Drive\3.4 SMU\3.2 Geospatial\Project\Project\csv\accidents_sgmap_expressway.shp" name="accidents_sgmap_expressway">
+    <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Unchecked" id="accidents_sgmap_expressway20180313141819972" source="C:/Users/vince/Google Drive/3.4 SMU/3.2 Geospatial/Project/Project/csv/accidents_sgmap_expressway.shp" name="accidents_sgmap_expressway">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Unchecked" id="accidents_shp20180308100819535" source="C:/Users/vince/Google Drive/3.4 SMU/3.2 Geospatial/Project/Project/csv/accidents_shp.shp" name="accidents_shp">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Unchecked" id="heavy_traffic20180322085402456" source="C:/Users/vince/Google Drive/3.4 SMU/3.2 Geospatial/Project/Project/final_data/heavy_traffic.shp" name="heavy_traffic">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Unchecked" id="heavytraffic_sgmap_expressway20180322085051102" source="C:\Users\vince\Google Drive\3.4 SMU\3.2 Geospatial\Project\Project\csv\heavytraffic_sgmap_expressway.shp" name="heavytraffic_sgmap_expressway">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Unchecked" id="edit220180313141405180" source="C:/Users/vince/Google Drive/3.4 SMU/3.2 Geospatial/Project/Project/HeavyTraffic/edit2.shp" name="edit2">
@@ -59,10 +65,13 @@
     <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Unchecked" id="heavytraffic_sgmap_expressway20180308221745784" source="C:/Users/vince/Google Drive/3.4 SMU/3.2 Geospatial/Project/Project/csv/heavytraffic_sgmap_expressway.shp" name="heavytraffic_sgmap_expressway">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Unchecked" id="accidents_on_expressway20180313102726365" source="C:/Users/vince/Google Drive/3.4 SMU/3.2 Geospatial/Project/Project/FinalAccidents/accidents_on_expressway.shp" name="accidents_on_expressway">
+    <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Checked" id="accidents20180322085705421" source="C:/Users/vince/Google Drive/3.4 SMU/3.2 Geospatial/Project/Project/final_data/accidents.shp" name="accidents">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Checked" id="heavy_traffic20180308220600580" source="C:/Users/vince/Google Drive/3.4 SMU/3.2 Geospatial/Project/Project/csv/heavy_traffic.shp" name="heavy_traffic">
+    <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Checked" id="accidents_on_expressway20180313102726365" source="C:/Users/vince/Google Drive/3.4 SMU/3.2 Geospatial/Project/Project/FinalAccidents/accidents_on_expressway.shp" name="accidents_on_expressway">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Unchecked" id="heavy_traffic20180308220600580" source="C:/Users/vince/Google Drive/3.4 SMU/3.2 Geospatial/Project/Project/csv/heavy_traffic.shp" name="heavy_traffic">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer expanded="1" providerKey="delimitedtext" checked="Qt::Unchecked" id="LTATrafficDataClean220180228103817007" source="file:///C:/Users/vince/Google%20Drive/3.4%20SMU/3.2%20Geospatial/Project/Project/csv/LTATrafficDataClean2.csv?type=csv&amp;xField=Longitude&amp;yField=Latitude&amp;spatialIndex=no&amp;subsetIndex=no&amp;watchFile=no" name="LTATrafficDataClean2">
@@ -71,7 +80,7 @@
     <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Unchecked" id="WordMarking20180309161106071" source="C:/Users/vince/Documents/GitHub/Roadrunner/data/Static_ 2017_12/GEOSPATIAL/WordMarking/WordMarking_May2017/WordMarking.shp" name="WordMarking">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" providerKey="memory" checked="Qt::Unchecked" id="memory_20180313152332110" source="LineString?uuid=5cd52496-9e6c-43ad-8096-05b96ce7eb9e&amp;crs=EPSG:3414&amp;field=osm_id:integer&amp;field=name:string&amp;field=ref:string&amp;field=type:string&amp;field=oneway:integer&amp;field=bridge:integer&amp;field=maxspeed:integer" name="Dissolved">
+    <layer-tree-layer expanded="1" providerKey="memory" checked="Qt::Unchecked" id="memory_20180313152332110" source="memory?geometry=LineString&amp;crs=EPSG:3414&amp;field=osm_id:integer(-1,0)&amp;field=name:string(255,0)&amp;field=ref:string(255,0)&amp;field=type:string(255,0)&amp;field=oneway:integer(-1,0)&amp;field=bridge:integer(-1,0)&amp;field=maxspeed:integer(-1,0)" name="Dissolved">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Checked" id="roads_expressway20180313092211120" source="C:/Users/vince/Google Drive/3.4 SMU/3.2 Geospatial/Project/Project/RoadNetwork/roads_expressway.shp" name="roads_expressway">
@@ -97,10 +106,10 @@
   <mapcanvas>
     <units>meters</units>
     <extent>
-      <xmin>10066.0619854297801794</xmin>
-      <ymin>21947.26887343106500339</ymin>
-      <xmax>47440.10709875491738785</xmax>
-      <ymax>52930.21333540724299382</ymax>
+      <xmin>10198.01418698709312594</xmin>
+      <ymin>20782.40051344823586987</ymin>
+      <xmax>47572.05930031221214449</xmax>
+      <ymax>51765.34497542348253774</ymax>
     </extent>
     <rotation>0</rotation>
     <projections>1</projections>
@@ -121,12 +130,12 @@
       <layer_coordinate_transform destAuthId="EPSG:3414" srcAuthId="USER:100000" srcDatumTransform="-1" destDatumTransform="-1" layerid="SPF_MSC20180308222221221"/>
       <layer_coordinate_transform destAuthId="EPSG:3414" srcAuthId="EPSG:3414" srcDatumTransform="-1" destDatumTransform="-1" layerid="accidents_sgmap20180308103100777"/>
       <layer_coordinate_transform destAuthId="EPSG:3414" srcAuthId="EPSG:3414" srcDatumTransform="-1" destDatumTransform="-1" layerid="digital_speed_enforcement_cameras_cleaned20180313110946348"/>
+      <layer_coordinate_transform destAuthId="EPSG:3414" srcAuthId="EPSG:3414" srcDatumTransform="-1" destDatumTransform="-1" layerid="cameras_accidents20180313133540932"/>
       <layer_coordinate_transform destAuthId="EPSG:3414" srcAuthId="EPSG:3414" srcDatumTransform="-1" destDatumTransform="-1" layerid="heavy_traffic20180308220600580"/>
       <layer_coordinate_transform destAuthId="EPSG:3414" srcAuthId="USER:100000" srcDatumTransform="-1" destDatumTransform="-1" layerid="central20180228124433202"/>
       <layer_coordinate_transform destAuthId="EPSG:3414" srcAuthId="EPSG:3414" srcDatumTransform="-1" destDatumTransform="-1" layerid="memory_20180308093930698"/>
-      <layer_coordinate_transform destAuthId="EPSG:3414" srcAuthId="EPSG:3414" srcDatumTransform="-1" destDatumTransform="-1" layerid="cameras_accidents20180313133540932"/>
-      <layer_coordinate_transform destAuthId="EPSG:3414" srcAuthId="USER:100000" srcDatumTransform="-1" destDatumTransform="-1" layerid="Gantry20180309161322797"/>
       <layer_coordinate_transform destAuthId="EPSG:3414" srcAuthId="EPSG:3414" srcDatumTransform="-1" destDatumTransform="-1" layerid="cameras_combined20180313132101208"/>
+      <layer_coordinate_transform destAuthId="EPSG:3414" srcAuthId="USER:100000" srcDatumTransform="-1" destDatumTransform="-1" layerid="Gantry20180309161322797"/>
       <layer_coordinate_transform destAuthId="EPSG:3414" srcAuthId="EPSG:3414" srcDatumTransform="-1" destDatumTransform="-1" layerid="accidents_on_expressway2_roads_expressway20180313100507002"/>
       <layer_coordinate_transform destAuthId="EPSG:3414" srcAuthId="USER:100000" srcDatumTransform="-1" destDatumTransform="-1" layerid="SPF_DSECS20180313110546549"/>
       <layer_coordinate_transform destAuthId="EPSG:3414" srcAuthId="EPSG:3414" srcDatumTransform="-1" destDatumTransform="-1" layerid="memory_20180313100145661"/>
@@ -138,8 +147,11 @@
       <layer_coordinate_transform destAuthId="EPSG:3414" srcAuthId="EPSG:3414" srcDatumTransform="-1" destDatumTransform="-1" layerid="roads_with_no_line_issues_only_sg_no_ubin_tekong20180228122715551"/>
       <layer_coordinate_transform destAuthId="EPSG:3414" srcAuthId="EPSG:3414" srcDatumTransform="-1" destDatumTransform="-1" layerid="accidents_BKE20180313093423725"/>
       <layer_coordinate_transform destAuthId="EPSG:3414" srcAuthId="EPSG:3414" srcDatumTransform="-1" destDatumTransform="-1" layerid="edit2_roads_expressway20180313142205590"/>
+      <layer_coordinate_transform destAuthId="EPSG:3414" srcAuthId="EPSG:3414" srcDatumTransform="-1" destDatumTransform="-1" layerid="heavy_traffic20180322085250067"/>
       <layer_coordinate_transform destAuthId="EPSG:3414" srcAuthId="EPSG:3414" srcDatumTransform="-1" destDatumTransform="-1" layerid="roads_central20180228134354289"/>
       <layer_coordinate_transform destAuthId="EPSG:3414" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="LTAroadblocks20180228103926314"/>
+      <layer_coordinate_transform destAuthId="EPSG:3414" srcAuthId="EPSG:3414" srcDatumTransform="-1" destDatumTransform="-1" layerid="accidents20180322085705421"/>
+      <layer_coordinate_transform destAuthId="EPSG:3414" srcAuthId="EPSG:3414" srcDatumTransform="-1" destDatumTransform="-1" layerid="heavytraffic_sgmap_expressway20180322085051102"/>
       <layer_coordinate_transform destAuthId="EPSG:3414" srcAuthId="USER:100000" srcDatumTransform="-1" destDatumTransform="-1" layerid="MCE_KPE_SPEED_CAMERA20180228114822816"/>
       <layer_coordinate_transform destAuthId="EPSG:3414" srcAuthId="EPSG:3414" srcDatumTransform="-1" destDatumTransform="-1" layerid="accidents_sgmap_expressway20180308104210018"/>
       <layer_coordinate_transform destAuthId="EPSG:3414" srcAuthId="EPSG:3414" srcDatumTransform="-1" destDatumTransform="-1" layerid="SPF_DSECS_expressway20180313110752885"/>
@@ -162,8 +174,8 @@
       <layer_coordinate_transform destAuthId="EPSG:3414" srcAuthId="USER:100000" srcDatumTransform="-1" destDatumTransform="-1" layerid="SPF_FSC20180228114845485"/>
       <layer_coordinate_transform destAuthId="EPSG:3414" srcAuthId="EPSG:3414" srcDatumTransform="-1" destDatumTransform="-1" layerid="edit2_roads_expressway20180313141431193"/>
       <layer_coordinate_transform destAuthId="EPSG:3414" srcAuthId="EPSG:3414" srcDatumTransform="-1" destDatumTransform="-1" layerid="fixed_speed_cameras_cleaned20180313111401218"/>
-      <layer_coordinate_transform destAuthId="EPSG:3414" srcAuthId="EPSG:3414" srcDatumTransform="-1" destDatumTransform="-1" layerid="expressways20180228095051619"/>
       <layer_coordinate_transform destAuthId="EPSG:3414" srcAuthId="EPSG:3414" srcDatumTransform="-1" destDatumTransform="-1" layerid="temp_shp20180313130331484"/>
+      <layer_coordinate_transform destAuthId="EPSG:3414" srcAuthId="EPSG:3414" srcDatumTransform="-1" destDatumTransform="-1" layerid="expressways20180228095051619"/>
       <layer_coordinate_transform destAuthId="EPSG:3414" srcAuthId="EPSG:3414" srcDatumTransform="-1" destDatumTransform="-1" layerid="accidents_on_expressway20180313102726365"/>
       <layer_coordinate_transform destAuthId="EPSG:3414" srcAuthId="USER:100000" srcDatumTransform="-1" destDatumTransform="-1" layerid="LTA_Road_Enforcement_Camera20180308222051716"/>
       <layer_coordinate_transform destAuthId="EPSG:3414" srcAuthId="USER:100000" srcDatumTransform="-1" destDatumTransform="-1" layerid="SPF_DSECS20180228114915308"/>
@@ -201,6 +213,7 @@
       <layer_coordinate_transform destAuthId="EPSG:3414" srcAuthId="USER:100000" srcDatumTransform="-1" destDatumTransform="-1" layerid="SPF_DSECS20180308222004813"/>
       <layer_coordinate_transform destAuthId="EPSG:3414" srcAuthId="EPSG:3414" srcDatumTransform="-1" destDatumTransform="-1" layerid="mce_kpe_cameras_cleaned20180313110434103"/>
       <layer_coordinate_transform destAuthId="EPSG:3414" srcAuthId="USER:100000" srcDatumTransform="-1" destDatumTransform="-1" layerid="SPF_PSLC20180308222341131"/>
+      <layer_coordinate_transform destAuthId="EPSG:3414" srcAuthId="EPSG:3414" srcDatumTransform="-1" destDatumTransform="-1" layerid="heavy_traffic20180322085402456"/>
       <layer_coordinate_transform destAuthId="EPSG:3414" srcAuthId="EPSG:3414" srcDatumTransform="-1" destDatumTransform="-1" layerid="sgroad_joined20180308214304647"/>
       <layer_coordinate_transform destAuthId="EPSG:3414" srcAuthId="EPSG:3414" srcDatumTransform="-1" destDatumTransform="-1" layerid="roads_with_no_line_issues_only_sg_no_ubin_tekong20180228094451058"/>
       <layer_coordinate_transform destAuthId="EPSG:3414" srcAuthId="EPSG:3414" srcDatumTransform="-1" destDatumTransform="-1" layerid="expressways20180228095025356"/>
@@ -237,6 +250,9 @@
       <item>edit220180313141405180</item>
       <item>accidents_sgmap_expressway20180313141819972</item>
       <item>memory_20180313152332110</item>
+      <item>heavytraffic_sgmap_expressway20180322085051102</item>
+      <item>heavy_traffic20180322085402456</item>
+      <item>accidents20180322085705421</item>
     </custom-order>
   </layer-tree-canvas>
   <legend updateDrawingOrder="true">
@@ -320,6 +336,16 @@
         <legendlayerfile isInOverview="0" layerid="accidents_shp20180308100819535" visible="0"/>
       </filegroup>
     </legendlayer>
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="heavy_traffic" showFeatureCount="0">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile isInOverview="0" layerid="heavy_traffic20180322085402456" visible="0"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="heavytraffic_sgmap_expressway" showFeatureCount="0">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile isInOverview="0" layerid="heavytraffic_sgmap_expressway20180322085051102" visible="0"/>
+      </filegroup>
+    </legendlayer>
     <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="edit2" showFeatureCount="0">
       <filegroup open="true" hidden="false">
         <legendlayerfile isInOverview="0" layerid="edit220180313141405180" visible="0"/>
@@ -330,14 +356,19 @@
         <legendlayerfile isInOverview="0" layerid="heavytraffic_sgmap_expressway20180308221745784" visible="0"/>
       </filegroup>
     </legendlayer>
-    <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="accidents_on_expressway" showFeatureCount="0">
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="accidents" showFeatureCount="0">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="accidents_on_expressway20180313102726365" visible="0"/>
+        <legendlayerfile isInOverview="0" layerid="accidents20180322085705421" visible="1"/>
       </filegroup>
     </legendlayer>
-    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="heavy_traffic" showFeatureCount="0">
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="accidents_on_expressway" showFeatureCount="0">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="heavy_traffic20180308220600580" visible="1"/>
+        <legendlayerfile isInOverview="0" layerid="accidents_on_expressway20180313102726365" visible="1"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="heavy_traffic" showFeatureCount="0">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile isInOverview="0" layerid="heavy_traffic20180308220600580" visible="0"/>
       </filegroup>
     </legendlayer>
     <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="LTATrafficDataClean2" showFeatureCount="0">
@@ -1571,7 +1602,7 @@ def my_form_open(dialog, layer, feature):
         <multilineenabled fieldname="" on=""/>
         <selectedonly on=""/>
       </labelattributes>
-      <annotationform></annotationform>
+      <annotationform>.</annotationform>
       <aliases>
         <alias field="OBJECTID" index="0" name=""/>
         <alias field="ID" index="1" name=""/>
@@ -1589,7 +1620,7 @@ def my_form_open(dialog, layer, feature):
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions default="-1"/>
-      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="808076064">
+      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns>
           <column width="-1" hidden="0" type="field" name="OBJECTID"/>
           <column width="-1" hidden="0" type="field" name="ID"/>
@@ -1605,10 +1636,10 @@ def my_form_open(dialog, layer, feature):
           <column width="-1" hidden="1" type="actions"/>
         </columns>
       </attributetableconfig>
-      <editform></editform>
+      <editform>.</editform>
       <editforminit/>
       <editforminitcodesource>0</editforminitcodesource>
-      <editforminitfilepath></editforminitfilepath>
+      <editforminitfilepath>.</editforminitfilepath>
       <editforminitcode><![CDATA[]]></editforminitcode>
       <featformsuppress>0</featformsuppress>
       <editorlayout>generatedlayout</editorlayout>
@@ -2073,6 +2104,152 @@ def my_form_open(dialog, layer, feature):
       </defaults>
       <previewExpression></previewExpression>
     </maplayer>
+    <maplayer simplifyAlgorithm="0" minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" readOnly="0" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
+      <id>accidents20180322085705421</id>
+      <datasource>./final_data/accidents.shp</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>accidents</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=tmerc +lat_0=1.366666666666667 +lon_0=103.8333333333333 +k=1 +x_0=28001.642 +y_0=38744.572 +ellps=WGS84 +units=m +no_defs</proj4>
+          <srsid>1372</srsid>
+          <srid>3414</srid>
+          <authid>EPSG:3414</authid>
+          <description>SVY21 / Singapore TM</description>
+          <projectionacronym>tmerc</projectionacronym>
+          <ellipsoidacronym>WGS84</ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <provider encoding="System">ogr</provider>
+      <vectorjoins/>
+      <layerDependencies/>
+      <expressionfields/>
+      <map-layer-style-manager current="">
+        <map-layer-style name=""/>
+      </map-layer-style-manager>
+      <edittypes>
+        <edittype widgetv2type="TextEdit" name="X">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="Y">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="Type">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="Date">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="Dscrptn">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="Accident_L">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+      </edittypes>
+      <renderer-v2 forceraster="0" symbollevels="0" type="singleSymbol" enableorderby="0">
+        <symbols>
+          <symbol alpha="1" clip_to_extent="1" type="marker" name="0">
+            <layer pass="0" class="SimpleMarker" locked="0">
+              <prop k="angle" v="0"/>
+              <prop k="color" v="173,72,87,255"/>
+              <prop k="horizontal_anchor_point" v="1"/>
+              <prop k="joinstyle" v="bevel"/>
+              <prop k="name" v="circle"/>
+              <prop k="offset" v="0,0"/>
+              <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="0,0,0,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0"/>
+              <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="scale_method" v="diameter"/>
+              <prop k="size" v="2"/>
+              <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="size_unit" v="MM"/>
+              <prop k="vertical_anchor_point" v="1"/>
+            </layer>
+          </symbol>
+        </symbols>
+        <rotation/>
+        <sizescale scalemethod="diameter"/>
+      </renderer-v2>
+      <labeling type="simple"/>
+      <customproperties/>
+      <blendMode>0</blendMode>
+      <featureBlendMode>0</featureBlendMode>
+      <layerTransparency>0</layerTransparency>
+      <displayfield>Accident_L</displayfield>
+      <label>0</label>
+      <labelattributes>
+        <label fieldname="" text="Label"/>
+        <family fieldname="" name="MS Shell Dlg 2"/>
+        <size fieldname="" units="pt" value="12"/>
+        <bold fieldname="" on="0"/>
+        <italic fieldname="" on="0"/>
+        <underline fieldname="" on="0"/>
+        <strikeout fieldname="" on="0"/>
+        <color fieldname="" red="0" blue="0" green="0"/>
+        <x fieldname=""/>
+        <y fieldname=""/>
+        <offset x="0" y="0" units="pt" yfieldname="" xfieldname=""/>
+        <angle fieldname="" value="0" auto="0"/>
+        <alignment fieldname="" value="center"/>
+        <buffercolor fieldname="" red="255" blue="255" green="255"/>
+        <buffersize fieldname="" units="pt" value="1"/>
+        <bufferenabled fieldname="" on=""/>
+        <multilineenabled fieldname="" on=""/>
+        <selectedonly on=""/>
+      </labelattributes>
+      <annotationform></annotationform>
+      <aliases>
+        <alias field="X" index="0" name=""/>
+        <alias field="Y" index="1" name=""/>
+        <alias field="Type" index="2" name=""/>
+        <alias field="Date" index="3" name=""/>
+        <alias field="Dscrptn" index="4" name=""/>
+        <alias field="Accident_L" index="5" name=""/>
+      </aliases>
+      <excludeAttributesWMS/>
+      <excludeAttributesWFS/>
+      <attributeactions default="-1"/>
+      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="813751808">
+        <columns>
+          <column width="-1" hidden="0" type="field" name="X"/>
+          <column width="-1" hidden="0" type="field" name="Y"/>
+          <column width="-1" hidden="0" type="field" name="Type"/>
+          <column width="-1" hidden="0" type="field" name="Date"/>
+          <column width="-1" hidden="0" type="field" name="Dscrptn"/>
+          <column width="-1" hidden="0" type="field" name="Accident_L"/>
+          <column width="-1" hidden="1" type="actions"/>
+        </columns>
+      </attributetableconfig>
+      <editform></editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath></editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
+      <conditionalstyles>
+        <rowstyles/>
+        <fieldstyles/>
+      </conditionalstyles>
+      <defaults>
+        <default field="X" expression=""/>
+        <default field="Y" expression=""/>
+        <default field="Type" expression=""/>
+        <default field="Date" expression=""/>
+        <default field="Dscrptn" expression=""/>
+        <default field="Accident_L" expression=""/>
+      </defaults>
+      <previewExpression>COALESCE( "Accident_L", '&lt;NULL>' )</previewExpression>
+    </maplayer>
     <maplayer simplifyAlgorithm="0" minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" readOnly="0" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
       <extent>
         <xmin>8422.04477699999915785</xmin>
@@ -2343,6 +2520,7 @@ def my_form_open(dialog, layer, feature):
       <SingleCategoryDiagramRenderer diagramType="Histogram" sizeLegend="0" attributeLegend="1">
         <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" sizeScale="0,0,0,0,0,0" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1e+08" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" lineSizeScale="0,0,0,0,0,0" sizeType="MM" lineSizeType="MM" minScaleDenominator="inf">
           <fontProperties description="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0" style=""/>
+          <attribute field="" color="#000000" label=""/>
         </DiagramCategory>
         <symbol alpha="1" clip_to_extent="1" type="marker" name="sizeSymbol">
           <layer pass="0" class="SimpleMarker" locked="0">
@@ -2574,7 +2752,7 @@ def my_form_open(dialog, layer, feature):
         <multilineenabled fieldname="" on=""/>
         <selectedonly on=""/>
       </labelattributes>
-      <annotationform></annotationform>
+      <annotationform>.</annotationform>
       <aliases>
         <alias field="X" index="0" name=""/>
         <alias field="Y" index="1" name=""/>
@@ -2592,7 +2770,7 @@ def my_form_open(dialog, layer, feature):
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions default="-1"/>
-      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="820091768">
+      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns>
           <column width="-1" hidden="0" type="field" name="X"/>
           <column width="-1" hidden="0" type="field" name="Y"/>
@@ -2609,10 +2787,10 @@ def my_form_open(dialog, layer, feature):
           <column width="-1" hidden="1" type="actions"/>
         </columns>
       </attributetableconfig>
-      <editform></editform>
+      <editform>.</editform>
       <editforminit/>
       <editforminitcodesource>0</editforminitcodesource>
-      <editforminitfilepath></editforminitfilepath>
+      <editforminitfilepath>.</editforminitfilepath>
       <editforminitcode><![CDATA[]]></editforminitcode>
       <featformsuppress>0</featformsuppress>
       <editorlayout>generatedlayout</editorlayout>
@@ -2911,7 +3089,7 @@ def my_form_open(dialog, layer, feature):
         <multilineenabled fieldname="" on=""/>
         <selectedonly on=""/>
       </labelattributes>
-      <annotationform></annotationform>
+      <annotationform>.</annotationform>
       <aliases>
         <alias field="Type" index="0" name=""/>
         <alias field="Date" index="1" name=""/>
@@ -2938,10 +3116,10 @@ def my_form_open(dialog, layer, feature):
           <column width="-1" hidden="1" type="actions"/>
         </columns>
       </attributetableconfig>
-      <editform></editform>
+      <editform>.</editform>
       <editforminit/>
       <editforminitcodesource>0</editforminitcodesource>
-      <editforminitfilepath></editforminitfilepath>
+      <editforminitfilepath>.</editforminitfilepath>
       <editforminitcode><![CDATA[]]></editforminitcode>
       <featformsuppress>0</featformsuppress>
       <editorlayout>generatedlayout</editorlayout>
@@ -3251,7 +3429,7 @@ def my_form_open(dialog, layer, feature):
         <multilineenabled fieldname="" on=""/>
         <selectedonly on=""/>
       </labelattributes>
-      <annotationform></annotationform>
+      <annotationform>.</annotationform>
       <aliases>
         <alias field="X" index="0" name=""/>
         <alias field="Y" index="1" name=""/>
@@ -3275,7 +3453,7 @@ def my_form_open(dialog, layer, feature):
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions default="-1"/>
-      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="600057504">
+      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns>
           <column width="-1" hidden="0" type="field" name="X"/>
           <column width="-1" hidden="0" type="field" name="Y"/>
@@ -3298,10 +3476,10 @@ def my_form_open(dialog, layer, feature):
           <column width="-1" hidden="1" type="actions"/>
         </columns>
       </attributetableconfig>
-      <editform></editform>
+      <editform>.</editform>
       <editforminit/>
       <editforminitcodesource>0</editforminitcodesource>
-      <editforminitfilepath></editforminitfilepath>
+      <editforminitfilepath>.</editforminitfilepath>
       <editforminitcode><![CDATA[]]></editforminitcode>
       <featformsuppress>0</featformsuppress>
       <editorlayout>generatedlayout</editorlayout>
@@ -3389,9 +3567,6 @@ def my_form_open(dialog, layer, feature):
         <edittype widgetv2type="TextEdit" name="Expressway">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="Type">
-          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-        </edittype>
       </edittypes>
       <renderer-v2 forceraster="0" symbollevels="0" type="singleSymbol" enableorderby="0">
         <symbols>
@@ -3448,7 +3623,7 @@ def my_form_open(dialog, layer, feature):
         <multilineenabled fieldname="" on=""/>
         <selectedonly on=""/>
       </labelattributes>
-      <annotationform></annotationform>
+      <annotationform>.</annotationform>
       <aliases>
         <alias field="X" index="0" name=""/>
         <alias field="Y" index="1" name=""/>
@@ -3460,7 +3635,6 @@ def my_form_open(dialog, layer, feature):
         <alias field="CAMID" index="7" name=""/>
         <alias field="join_name" index="8" name=""/>
         <alias field="Expressway" index="9" name=""/>
-        <alias field="Type" index="10" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -3480,10 +3654,10 @@ def my_form_open(dialog, layer, feature):
           <column width="-1" hidden="1" type="actions"/>
         </columns>
       </attributetableconfig>
-      <editform></editform>
+      <editform>.</editform>
       <editforminit/>
       <editforminitcodesource>0</editforminitcodesource>
-      <editforminitfilepath></editforminitfilepath>
+      <editforminitfilepath>.</editforminitfilepath>
       <editforminitcode><![CDATA[]]></editforminitcode>
       <featformsuppress>0</featformsuppress>
       <editorlayout>generatedlayout</editorlayout>
@@ -3503,7 +3677,6 @@ def my_form_open(dialog, layer, feature):
         <default field="CAMID" expression=""/>
         <default field="join_name" expression=""/>
         <default field="Expressway" expression=""/>
-        <default field="Type" expression=""/>
       </defaults>
       <previewExpression>COALESCE( "ROAD_NAME", '&lt;NULL>' )</previewExpression>
     </maplayer>
@@ -3626,7 +3799,7 @@ def my_form_open(dialog, layer, feature):
         <multilineenabled fieldname="" on=""/>
         <selectedonly on=""/>
       </labelattributes>
-      <annotationform></annotationform>
+      <annotationform>.</annotationform>
       <aliases>
         <alias field="OBJECTID" index="0" name=""/>
         <alias field="CAMID" index="1" name=""/>
@@ -3644,13 +3817,13 @@ def my_form_open(dialog, layer, feature):
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions default="-1"/>
-      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="792805368">
+      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns/>
       </attributetableconfig>
-      <editform></editform>
+      <editform>.</editform>
       <editforminit/>
       <editforminitcodesource>0</editforminitcodesource>
-      <editforminitfilepath></editforminitfilepath>
+      <editforminitfilepath>.</editforminitfilepath>
       <editforminitcode><![CDATA[]]></editforminitcode>
       <featformsuppress>0</featformsuppress>
       <editorlayout>generatedlayout</editorlayout>
@@ -3749,7 +3922,7 @@ def my_form_open(dialog, layer, feature):
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
       </edittypes>
-      <annotationform></annotationform>
+      <annotationform>.</annotationform>
       <aliases>
         <alias field="X" index="0" name=""/>
         <alias field="Y" index="1" name=""/>
@@ -3770,13 +3943,13 @@ def my_form_open(dialog, layer, feature):
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions default="-1"/>
-      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="755928808">
+      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns/>
       </attributetableconfig>
-      <editform></editform>
+      <editform>.</editform>
       <editforminit/>
       <editforminitcodesource>0</editforminitcodesource>
-      <editforminitfilepath></editforminitfilepath>
+      <editforminitfilepath>.</editforminitfilepath>
       <editforminitcode><![CDATA[]]></editforminitcode>
       <featformsuppress>0</featformsuppress>
       <editorlayout>generatedlayout</editorlayout>
@@ -4068,6 +4241,7 @@ def my_form_open(dialog, layer, feature):
       <SingleCategoryDiagramRenderer diagramType="Histogram" sizeLegend="0" attributeLegend="1">
         <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" sizeScale="0,0,0,0,0,0" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1e+08" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" lineSizeScale="0,0,0,0,0,0" sizeType="MM" lineSizeType="MM" minScaleDenominator="inf">
           <fontProperties description="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0" style=""/>
+          <attribute field="" color="#000000" label=""/>
         </DiagramCategory>
         <symbol alpha="1" clip_to_extent="1" type="marker" name="sizeSymbol">
           <layer pass="0" class="SimpleMarker" locked="0">
@@ -4093,7 +4267,7 @@ def my_form_open(dialog, layer, feature):
         </symbol>
       </SingleCategoryDiagramRenderer>
       <DiagramLayerSettings yPosColumn="-1" showColumn="-1" linePlacementFlags="10" placement="0" dist="0" xPosColumn="-1" priority="0" obstacle="0" zIndex="0" showAll="1"/>
-      <annotationform></annotationform>
+      <annotationform>.</annotationform>
       <aliases>
         <alias field="X" index="0" name=""/>
         <alias field="Y" index="1" name=""/>
@@ -4109,7 +4283,7 @@ def my_form_open(dialog, layer, feature):
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions default="-1"/>
-      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="755942808">
+      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns>
           <column width="-1" hidden="0" type="field" name="X"/>
           <column width="-1" hidden="0" type="field" name="Y"/>
@@ -4124,10 +4298,10 @@ def my_form_open(dialog, layer, feature):
           <column width="-1" hidden="1" type="actions"/>
         </columns>
       </attributetableconfig>
-      <editform></editform>
+      <editform>.</editform>
       <editforminit/>
       <editforminitcodesource>0</editforminitcodesource>
-      <editforminitfilepath></editforminitfilepath>
+      <editforminitfilepath>.</editforminitfilepath>
       <editforminitcode><![CDATA[# -*- coding: utf-8 -*-
 """
 QGIS forms can have a Python function that is called when the form is
@@ -4282,7 +4456,7 @@ def my_form_open(dialog, layer, feature):
         <multilineenabled fieldname="" on=""/>
         <selectedonly on=""/>
       </labelattributes>
-      <annotationform></annotationform>
+      <annotationform>.</annotationform>
       <aliases>
         <alias field="Type" index="0" name=""/>
         <alias field="Latitude" index="1" name=""/>
@@ -4299,7 +4473,7 @@ def my_form_open(dialog, layer, feature):
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions default="-1"/>
-      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="755934808">
+      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns>
           <column width="-1" hidden="0" type="field" name="Type"/>
           <column width="-1" hidden="0" type="field" name="Latitude"/>
@@ -4315,10 +4489,10 @@ def my_form_open(dialog, layer, feature):
           <column width="-1" hidden="1" type="actions"/>
         </columns>
       </attributetableconfig>
-      <editform></editform>
+      <editform>.</editform>
       <editforminit/>
       <editforminitcodesource>0</editforminitcodesource>
-      <editforminitfilepath></editforminitfilepath>
+      <editforminitfilepath>.</editforminitfilepath>
       <editforminitcode><![CDATA[]]></editforminitcode>
       <featformsuppress>0</featformsuppress>
       <editorlayout>generatedlayout</editorlayout>
@@ -4461,7 +4635,7 @@ def my_form_open(dialog, layer, feature):
         <multilineenabled fieldname="" on=""/>
         <selectedonly on=""/>
       </labelattributes>
-      <annotationform></annotationform>
+      <annotationform>.</annotationform>
       <aliases>
         <alias field="OBJECTID" index="0" name=""/>
         <alias field="ID" index="1" name=""/>
@@ -4479,7 +4653,7 @@ def my_form_open(dialog, layer, feature):
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions default="-1"/>
-      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="600037584">
+      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns>
           <column width="-1" hidden="0" type="field" name="OBJECTID"/>
           <column width="-1" hidden="0" type="field" name="ID"/>
@@ -4496,10 +4670,10 @@ def my_form_open(dialog, layer, feature):
           <column width="-1" hidden="1" type="actions"/>
         </columns>
       </attributetableconfig>
-      <editform></editform>
+      <editform>.</editform>
       <editforminit/>
       <editforminitcodesource>0</editforminitcodesource>
-      <editforminitfilepath></editforminitfilepath>
+      <editforminitfilepath>.</editforminitfilepath>
       <editforminitcode><![CDATA[]]></editforminitcode>
       <featformsuppress>0</featformsuppress>
       <editorlayout>generatedlayout</editorlayout>
@@ -4683,6 +4857,152 @@ def my_form_open(dialog, layer, feature):
       <previewExpression>COALESCE( "Descriptio", '&lt;NULL>' )</previewExpression>
     </maplayer>
     <maplayer simplifyAlgorithm="0" minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" readOnly="0" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
+      <id>heavy_traffic20180322085402456</id>
+      <datasource>./final_data/heavy_traffic.shp</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>heavy_traffic</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=tmerc +lat_0=1.366666666666667 +lon_0=103.8333333333333 +k=1 +x_0=28001.642 +y_0=38744.572 +ellps=WGS84 +units=m +no_defs</proj4>
+          <srsid>1372</srsid>
+          <srid>3414</srid>
+          <authid>EPSG:3414</authid>
+          <description>SVY21 / Singapore TM</description>
+          <projectionacronym>tmerc</projectionacronym>
+          <ellipsoidacronym>WGS84</ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <provider encoding="System">ogr</provider>
+      <vectorjoins/>
+      <layerDependencies/>
+      <expressionfields/>
+      <map-layer-style-manager current="">
+        <map-layer-style name=""/>
+      </map-layer-style-manager>
+      <edittypes>
+        <edittype widgetv2type="TextEdit" name="Type">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="Latitude">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="Longitude">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="Date">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="Time">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="Descriptio">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+      </edittypes>
+      <renderer-v2 forceraster="0" symbollevels="0" type="singleSymbol" enableorderby="0">
+        <symbols>
+          <symbol alpha="1" clip_to_extent="1" type="marker" name="0">
+            <layer pass="0" class="SimpleMarker" locked="0">
+              <prop k="angle" v="0"/>
+              <prop k="color" v="15,138,19,255"/>
+              <prop k="horizontal_anchor_point" v="1"/>
+              <prop k="joinstyle" v="bevel"/>
+              <prop k="name" v="circle"/>
+              <prop k="offset" v="0,0"/>
+              <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="0,0,0,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0"/>
+              <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="scale_method" v="diameter"/>
+              <prop k="size" v="2"/>
+              <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="size_unit" v="MM"/>
+              <prop k="vertical_anchor_point" v="1"/>
+            </layer>
+          </symbol>
+        </symbols>
+        <rotation/>
+        <sizescale scalemethod="diameter"/>
+      </renderer-v2>
+      <labeling type="simple"/>
+      <customproperties/>
+      <blendMode>0</blendMode>
+      <featureBlendMode>0</featureBlendMode>
+      <layerTransparency>0</layerTransparency>
+      <displayfield>Descriptio</displayfield>
+      <label>0</label>
+      <labelattributes>
+        <label fieldname="" text="Label"/>
+        <family fieldname="" name="MS Shell Dlg 2"/>
+        <size fieldname="" units="pt" value="12"/>
+        <bold fieldname="" on="0"/>
+        <italic fieldname="" on="0"/>
+        <underline fieldname="" on="0"/>
+        <strikeout fieldname="" on="0"/>
+        <color fieldname="" red="0" blue="0" green="0"/>
+        <x fieldname=""/>
+        <y fieldname=""/>
+        <offset x="0" y="0" units="pt" yfieldname="" xfieldname=""/>
+        <angle fieldname="" value="0" auto="0"/>
+        <alignment fieldname="" value="center"/>
+        <buffercolor fieldname="" red="255" blue="255" green="255"/>
+        <buffersize fieldname="" units="pt" value="1"/>
+        <bufferenabled fieldname="" on=""/>
+        <multilineenabled fieldname="" on=""/>
+        <selectedonly on=""/>
+      </labelattributes>
+      <annotationform></annotationform>
+      <aliases>
+        <alias field="Type" index="0" name=""/>
+        <alias field="Latitude" index="1" name=""/>
+        <alias field="Longitude" index="2" name=""/>
+        <alias field="Date" index="3" name=""/>
+        <alias field="Time" index="4" name=""/>
+        <alias field="Descriptio" index="5" name=""/>
+      </aliases>
+      <excludeAttributesWMS/>
+      <excludeAttributesWFS/>
+      <attributeactions default="-1"/>
+      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="158">
+        <columns>
+          <column width="-1" hidden="0" type="field" name="Type"/>
+          <column width="-1" hidden="0" type="field" name="Latitude"/>
+          <column width="-1" hidden="0" type="field" name="Longitude"/>
+          <column width="-1" hidden="0" type="field" name="Date"/>
+          <column width="-1" hidden="0" type="field" name="Time"/>
+          <column width="-1" hidden="0" type="field" name="Descriptio"/>
+          <column width="-1" hidden="1" type="actions"/>
+        </columns>
+      </attributetableconfig>
+      <editform></editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath></editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
+      <conditionalstyles>
+        <rowstyles/>
+        <fieldstyles/>
+      </conditionalstyles>
+      <defaults>
+        <default field="Type" expression=""/>
+        <default field="Latitude" expression=""/>
+        <default field="Longitude" expression=""/>
+        <default field="Date" expression=""/>
+        <default field="Time" expression=""/>
+        <default field="Descriptio" expression=""/>
+      </defaults>
+      <previewExpression>COALESCE( "Descriptio", '&lt;NULL>' )</previewExpression>
+    </maplayer>
+    <maplayer simplifyAlgorithm="0" minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" readOnly="0" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
       <extent>
         <xmin>6181.63501576569615281</xmin>
         <ymin>27586.66995679573301459</ymin>
@@ -4841,6 +5161,188 @@ def my_form_open(dialog, layer, feature):
       <editforminit/>
       <editforminitcodesource>0</editforminitcodesource>
       <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
+      <conditionalstyles>
+        <rowstyles/>
+        <fieldstyles/>
+      </conditionalstyles>
+      <defaults>
+        <default field="Type" expression=""/>
+        <default field="Latitude" expression=""/>
+        <default field="Longitude" expression=""/>
+        <default field="Date" expression=""/>
+        <default field="Time" expression=""/>
+        <default field="Descriptio" expression=""/>
+        <default field="PLN_AREA_N" expression=""/>
+        <default field="PLN_AREA_C" expression=""/>
+        <default field="REGION_N" expression=""/>
+        <default field="REGION_C" expression=""/>
+        <default field="RoadType" expression=""/>
+      </defaults>
+      <previewExpression>COALESCE( "Descriptio", '&lt;NULL>' )</previewExpression>
+    </maplayer>
+    <maplayer simplifyAlgorithm="0" minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" readOnly="0" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
+      <extent>
+        <xmin>6181.63501576569615281</xmin>
+        <ymin>27586.66995679573301459</ymin>
+        <xmax>42551.7589850091462722</xmax>
+        <ymax>46732.60894548486248823</ymax>
+      </extent>
+      <id>heavytraffic_sgmap_expressway20180322085051102</id>
+      <datasource>./csv/heavytraffic_sgmap_expressway.shp</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>heavytraffic_sgmap_expressway</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=tmerc +lat_0=1.366666666666667 +lon_0=103.8333333333333 +k=1 +x_0=28001.642 +y_0=38744.572 +ellps=WGS84 +units=m +no_defs</proj4>
+          <srsid>1372</srsid>
+          <srid>3414</srid>
+          <authid>EPSG:3414</authid>
+          <description>SVY21 / Singapore TM</description>
+          <projectionacronym>tmerc</projectionacronym>
+          <ellipsoidacronym>WGS84</ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <provider encoding="System">ogr</provider>
+      <vectorjoins/>
+      <layerDependencies/>
+      <expressionfields/>
+      <map-layer-style-manager current="">
+        <map-layer-style name=""/>
+      </map-layer-style-manager>
+      <edittypes>
+        <edittype widgetv2type="TextEdit" name="Type">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="Latitude">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="Longitude">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="Date">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="Time">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="Descriptio">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="PLN_AREA_N">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="PLN_AREA_C">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="REGION_N">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="REGION_C">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="RoadType">
+          <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
+        </edittype>
+      </edittypes>
+      <renderer-v2 forceraster="0" symbollevels="0" type="singleSymbol" enableorderby="0">
+        <symbols>
+          <symbol alpha="1" clip_to_extent="1" type="marker" name="0">
+            <layer pass="0" class="SimpleMarker" locked="0">
+              <prop k="angle" v="0"/>
+              <prop k="color" v="125,160,19,255"/>
+              <prop k="horizontal_anchor_point" v="1"/>
+              <prop k="joinstyle" v="bevel"/>
+              <prop k="name" v="circle"/>
+              <prop k="offset" v="0,0"/>
+              <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="0,0,0,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0"/>
+              <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="scale_method" v="diameter"/>
+              <prop k="size" v="2"/>
+              <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="size_unit" v="MM"/>
+              <prop k="vertical_anchor_point" v="1"/>
+            </layer>
+          </symbol>
+        </symbols>
+        <rotation/>
+        <sizescale scalemethod="diameter"/>
+      </renderer-v2>
+      <labeling type="simple"/>
+      <customproperties/>
+      <blendMode>0</blendMode>
+      <featureBlendMode>0</featureBlendMode>
+      <layerTransparency>0</layerTransparency>
+      <displayfield>Descriptio</displayfield>
+      <label>0</label>
+      <labelattributes>
+        <label fieldname="" text="Label"/>
+        <family fieldname="" name="MS Shell Dlg 2"/>
+        <size fieldname="" units="pt" value="12"/>
+        <bold fieldname="" on="0"/>
+        <italic fieldname="" on="0"/>
+        <underline fieldname="" on="0"/>
+        <strikeout fieldname="" on="0"/>
+        <color fieldname="" red="0" blue="0" green="0"/>
+        <x fieldname=""/>
+        <y fieldname=""/>
+        <offset x="0" y="0" units="pt" yfieldname="" xfieldname=""/>
+        <angle fieldname="" value="0" auto="0"/>
+        <alignment fieldname="" value="center"/>
+        <buffercolor fieldname="" red="255" blue="255" green="255"/>
+        <buffersize fieldname="" units="pt" value="1"/>
+        <bufferenabled fieldname="" on=""/>
+        <multilineenabled fieldname="" on=""/>
+        <selectedonly on=""/>
+      </labelattributes>
+      <annotationform></annotationform>
+      <aliases>
+        <alias field="Type" index="0" name=""/>
+        <alias field="Latitude" index="1" name=""/>
+        <alias field="Longitude" index="2" name=""/>
+        <alias field="Date" index="3" name=""/>
+        <alias field="Time" index="4" name=""/>
+        <alias field="Descriptio" index="5" name=""/>
+        <alias field="PLN_AREA_N" index="6" name=""/>
+        <alias field="PLN_AREA_C" index="7" name=""/>
+        <alias field="REGION_N" index="8" name=""/>
+        <alias field="REGION_C" index="9" name=""/>
+        <alias field="RoadType" index="10" name=""/>
+      </aliases>
+      <excludeAttributesWMS/>
+      <excludeAttributesWFS/>
+      <attributeactions default="-1"/>
+      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="-7696245">
+        <columns>
+          <column width="-1" hidden="0" type="field" name="Type"/>
+          <column width="-1" hidden="0" type="field" name="Latitude"/>
+          <column width="-1" hidden="0" type="field" name="Longitude"/>
+          <column width="-1" hidden="0" type="field" name="Date"/>
+          <column width="-1" hidden="0" type="field" name="Time"/>
+          <column width="-1" hidden="0" type="field" name="Descriptio"/>
+          <column width="-1" hidden="0" type="field" name="PLN_AREA_N"/>
+          <column width="-1" hidden="0" type="field" name="PLN_AREA_C"/>
+          <column width="-1" hidden="0" type="field" name="REGION_N"/>
+          <column width="-1" hidden="0" type="field" name="REGION_C"/>
+          <column width="-1" hidden="0" type="field" name="RoadType"/>
+          <column width="-1" hidden="1" type="actions"/>
+        </columns>
+      </attributetableconfig>
+      <editform></editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath></editforminitfilepath>
       <editforminitcode><![CDATA[]]></editforminitcode>
       <featformsuppress>0</featformsuppress>
       <editorlayout>generatedlayout</editorlayout>
@@ -5119,6 +5621,7 @@ def my_form_open(dialog, layer, feature):
       <SingleCategoryDiagramRenderer diagramType="Histogram" sizeLegend="0" attributeLegend="1">
         <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" sizeScale="0,0,0,0,0,0" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1e+08" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" lineSizeScale="0,0,0,0,0,0" sizeType="MM" lineSizeType="MM" minScaleDenominator="inf">
           <fontProperties description="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0" style=""/>
+          <attribute field="" color="#000000" label=""/>
         </DiagramCategory>
         <symbol alpha="1" clip_to_extent="1" type="marker" name="sizeSymbol">
           <layer pass="0" class="SimpleMarker" locked="0">
@@ -5144,7 +5647,7 @@ def my_form_open(dialog, layer, feature):
         </symbol>
       </SingleCategoryDiagramRenderer>
       <DiagramLayerSettings yPosColumn="-1" showColumn="-1" linePlacementFlags="10" placement="0" dist="0" xPosColumn="-1" priority="0" obstacle="0" zIndex="0" showAll="1"/>
-      <annotationform></annotationform>
+      <annotationform>.</annotationform>
       <aliases>
         <alias field="OBJECTID" index="0" name=""/>
         <alias field="CAM_ID" index="1" name=""/>
@@ -5169,10 +5672,10 @@ def my_form_open(dialog, layer, feature):
           <column width="-1" hidden="1" type="actions"/>
         </columns>
       </attributetableconfig>
-      <editform></editform>
+      <editform>.</editform>
       <editforminit/>
       <editforminitcodesource>0</editforminitcodesource>
-      <editforminitfilepath></editforminitfilepath>
+      <editforminitfilepath>.</editforminitfilepath>
       <editforminitcode><![CDATA[# -*- coding: utf-8 -*-
 """
 QGIS forms can have a Python function that is called when the form is
@@ -5309,7 +5812,7 @@ def my_form_open(dialog, layer, feature):
         <multilineenabled fieldname="" on=""/>
         <selectedonly on=""/>
       </labelattributes>
-      <annotationform></annotationform>
+      <annotationform>.</annotationform>
       <aliases>
         <alias field="osm_id" index="0" name=""/>
         <alias field="name" index="1" name=""/>
@@ -5334,10 +5837,10 @@ def my_form_open(dialog, layer, feature):
           <column width="-1" hidden="1" type="actions"/>
         </columns>
       </attributetableconfig>
-      <editform></editform>
+      <editform>.</editform>
       <editforminit/>
       <editforminitcodesource>0</editforminitcodesource>
-      <editforminitfilepath></editforminitfilepath>
+      <editforminitfilepath>.</editforminitfilepath>
       <editforminitcode><![CDATA[]]></editforminitcode>
       <featformsuppress>0</featformsuppress>
       <editorlayout>generatedlayout</editorlayout>
@@ -5476,7 +5979,7 @@ def my_form_open(dialog, layer, feature):
         <multilineenabled fieldname="" on=""/>
         <selectedonly on=""/>
       </labelattributes>
-      <annotationform></annotationform>
+      <annotationform>.</annotationform>
       <aliases>
         <alias field="OBJECTID" index="0" name=""/>
         <alias field="ID" index="1" name=""/>
@@ -5494,7 +5997,7 @@ def my_form_open(dialog, layer, feature):
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions default="-1"/>
-      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="793503208">
+      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns>
           <column width="-1" hidden="0" type="field" name="OBJECTID"/>
           <column width="-1" hidden="0" type="field" name="ID"/>
@@ -5511,10 +6014,10 @@ def my_form_open(dialog, layer, feature):
           <column width="-1" hidden="1" type="actions"/>
         </columns>
       </attributetableconfig>
-      <editform></editform>
+      <editform>.</editform>
       <editforminit/>
       <editforminitcodesource>0</editforminitcodesource>
-      <editforminitfilepath></editforminitfilepath>
+      <editforminitfilepath>.</editforminitfilepath>
       <editforminitcode><![CDATA[]]></editforminitcode>
       <featformsuppress>0</featformsuppress>
       <editorlayout>generatedlayout</editorlayout>
@@ -6520,7 +7023,7 @@ def my_form_open(dialog, layer, feature):
         <multilineenabled fieldname="" on=""/>
         <selectedonly on=""/>
       </labelattributes>
-      <annotationform></annotationform>
+      <annotationform>.</annotationform>
       <aliases>
         <alias field="X" index="0" name=""/>
         <alias field="Y" index="1" name=""/>
@@ -6544,7 +7047,7 @@ def my_form_open(dialog, layer, feature):
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions default="-1"/>
-      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="820095768">
+      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns>
           <column width="-1" hidden="0" type="field" name="X"/>
           <column width="-1" hidden="0" type="field" name="Y"/>
@@ -6567,10 +7070,10 @@ def my_form_open(dialog, layer, feature):
           <column width="-1" hidden="1" type="actions"/>
         </columns>
       </attributetableconfig>
-      <editform></editform>
+      <editform>.</editform>
       <editforminit/>
       <editforminitcodesource>0</editforminitcodesource>
-      <editforminitfilepath></editforminitfilepath>
+      <editforminitfilepath>.</editforminitfilepath>
       <editforminitcode><![CDATA[]]></editforminitcode>
       <featformsuppress>0</featformsuppress>
       <editorlayout>generatedlayout</editorlayout>
@@ -6609,7 +7112,7 @@ def my_form_open(dialog, layer, feature):
         <ymax>43349.00000000001455192</ymax>
       </extent>
       <id>temp_shp_temp_Point_roads_expressway20180313130458612</id>
-      <datasource>memory?geometry=Point&amp;crs=EPSG:3414&amp;field=ROAD_NAME:String(254,0)&amp;field=DIRECTION:String(254,0)&amp;field=DESCP:String(254,0)&amp;field=INC_CRC:String(50,0)&amp;field=X_ADDR:Real(18,11)&amp;field=Y_ADDR:Real(18,11)&amp;field=CameraType:String(33,0)&amp;field=CAMID:String(254,0)&amp;field=LOCATION:String(254,0)&amp;field=CAM_ID:String(50,0)&amp;field=join_name:(0,0)&amp;field=join_ref:(0,0)&amp;field=join_type:(0,0)</datasource>
+      <datasource>memory?geometry=Point&amp;crs=EPSG:3414&amp;field=ROAD_NAME:string(254,0)&amp;field=DIRECTION:string(254,0)&amp;field=DESCP:string(254,0)&amp;field=INC_CRC:string(50,0)&amp;field=X_ADDR:double(18,11)&amp;field=Y_ADDR:double(18,11)&amp;field=CameraType:string(33,0)&amp;field=CAMID:string(254,0)&amp;field=LOCATION:string(254,0)&amp;field=CAM_ID:string(50,0)&amp;field=join_name:(0,0):string(255,0)&amp;field=join_ref:(0,0):string(255,0)&amp;field=join_type:(0,0):string(255,0)</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -6664,13 +7167,13 @@ def my_form_open(dialog, layer, feature):
         <edittype widgetv2type="TextEdit" name="CAM_ID">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="join_name">
+        <edittype widgetv2type="TextEdit" name="join_name:(0,0)">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="join_ref">
+        <edittype widgetv2type="TextEdit" name="join_ref:(0,0)">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="join_type">
+        <edittype widgetv2type="TextEdit" name="join_type:(0,0)">
           <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
         </edittype>
       </edittypes>
@@ -6707,7 +7210,7 @@ def my_form_open(dialog, layer, feature):
       <blendMode>0</blendMode>
       <featureBlendMode>0</featureBlendMode>
       <layerTransparency>0</layerTransparency>
-      <displayfield></displayfield>
+      <displayfield>ROAD_NAME</displayfield>
       <label>0</label>
       <labelattributes>
         <label fieldname="" text="Label"/>
@@ -6729,7 +7232,7 @@ def my_form_open(dialog, layer, feature):
         <multilineenabled fieldname="" on=""/>
         <selectedonly on=""/>
       </labelattributes>
-      <annotationform></annotationform>
+      <annotationform>.</annotationform>
       <aliases>
         <alias field="ROAD_NAME" index="0" name=""/>
         <alias field="DIRECTION" index="1" name=""/>
@@ -6741,9 +7244,9 @@ def my_form_open(dialog, layer, feature):
         <alias field="CAMID" index="7" name=""/>
         <alias field="LOCATION" index="8" name=""/>
         <alias field="CAM_ID" index="9" name=""/>
-        <alias field="join_name" index="10" name=""/>
-        <alias field="join_ref" index="11" name=""/>
-        <alias field="join_type" index="12" name=""/>
+        <alias field="join_name:(0,0)" index="10" name=""/>
+        <alias field="join_ref:(0,0)" index="11" name=""/>
+        <alias field="join_type:(0,0)" index="12" name=""/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
@@ -6778,10 +7281,10 @@ def my_form_open(dialog, layer, feature):
           <column width="-1" hidden="1" type="actions"/>
         </columns>
       </attributetableconfig>
-      <editform></editform>
+      <editform>.</editform>
       <editforminit/>
       <editforminitcodesource>0</editforminitcodesource>
-      <editforminitfilepath></editforminitfilepath>
+      <editforminitfilepath>.</editforminitfilepath>
       <editforminitcode><![CDATA[]]></editforminitcode>
       <featformsuppress>0</featformsuppress>
       <editorlayout>generatedlayout</editorlayout>
@@ -6801,9 +7304,9 @@ def my_form_open(dialog, layer, feature):
         <default field="CAMID" expression=""/>
         <default field="LOCATION" expression=""/>
         <default field="CAM_ID" expression=""/>
-        <default field="join_name" expression=""/>
-        <default field="join_ref" expression=""/>
-        <default field="join_type" expression=""/>
+        <default field="join_name:(0,0)" expression=""/>
+        <default field="join_ref:(0,0)" expression=""/>
+        <default field="join_type:(0,0)" expression=""/>
       </defaults>
       <previewExpression>COALESCE("OBJECTID", '&lt;NULL>')||', '||COALESCE("ID", '&lt;NULL>')||', '||COALESCE("ROAD_NAME", '&lt;NULL>')||', '||COALESCE("DIRECTION", '&lt;NULL>')||', '||COALESCE("LATITUDE", '&lt;NULL>')||', '||COALESCE("LONGITUDE", '&lt;NULL>')||', '||COALESCE("DESCP", '&lt;NULL>')||', '||COALESCE("INC_CRC", '&lt;NULL>')||', '||COALESCE("FMEL_UPD_D", '&lt;NULL>')||', '||COALESCE("X_ADDR", '&lt;NULL>')||', '||COALESCE("Y_ADDR", '&lt;NULL>')||', '||COALESCE("CameraType", '&lt;NULL>')||', '||COALESCE("CAMID", '&lt;NULL>')||', '||COALESCE("LOCATION", '&lt;NULL>')||', '||COALESCE("X", '&lt;NULL>')||', '||COALESCE("Y", '&lt;NULL>')||', '||COALESCE("CAM_ID", '&lt;NULL>')||', '||COALESCE("join_osm_id", '&lt;NULL>')||', '||COALESCE("join_name", '&lt;NULL>')||', '||COALESCE("join_ref", '&lt;NULL>')||', '||COALESCE("join_type", '&lt;NULL>')||', '||COALESCE("join_oneway", '&lt;NULL>')||', '||COALESCE("join_bridge", '&lt;NULL>')||', '||COALESCE("join_maxspeed", '&lt;NULL>')||', '||COALESCE("distance", '&lt;NULL>')</previewExpression>
     </maplayer>
@@ -6837,32 +7340,36 @@ def my_form_open(dialog, layer, feature):
         <value>LTATrafficDataClean220180228103817007</value>
         <value>LTATraffic_sgmap20180308102516137</value>
         <value>MP14_PLNG_AREA_WEB_PL20180228124207586</value>
+        <value>SPF_FSC20180313111105418</value>
         <value>SpeedRegulatingStrip20180309160706580</value>
         <value>WordMarking20180309161106071</value>
         <value>accidents_on_expressway20180313102726365</value>
+        <value>accidents_on_expressway220180313133354017</value>
         <value>accidents_sgmap20180308103100777</value>
+        <value>accidents_sgmap_expressway20180313141819972</value>
         <value>accidents_shp20180308100819535</value>
+        <value>cameras_accidents20180313133540932</value>
+        <value>cameras_combined20180313132101208</value>
+        <value>digital_speed_enforcement_cameras_cleaned20180313110946348</value>
+        <value>edit220180313131943912</value>
+        <value>edit220180313141405180</value>
+        <value>fixed_speed_cameras_cleaned20180313111401218</value>
         <value>heavy_traffic20180308220600580</value>
         <value>heavytraffic_sgmap_expressway20180308221745784</value>
+        <value>mce_kpe_cameras_cleaned20180313110434103</value>
+        <value>memory_20180313152332110</value>
+        <value>police_speed_laser_cameras_cleaned20180313112112406</value>
         <value>roads_exp_join20180308211523830</value>
         <value>roads_expressway20180313092211120</value>
         <value>roads_with_no_line_issues_only_sg_no_ubin_tekong20180228122715551</value>
         <value>sgroad_joined20180308214304647</value>
-        <value>mce_kpe_cameras_cleaned20180313110434103</value>
-        <value>digital_speed_enforcement_cameras_cleaned20180313110946348</value>
-        <value>SPF_FSC20180313111105418</value>
-        <value>fixed_speed_cameras_cleaned20180313111401218</value>
-        <value>police_speed_laser_cameras_cleaned20180313112112406</value>
-        <value>temp_shp_temp_Point_roads_expressway20180313130458612</value>
-        <value>edit220180313131943912</value>
-        <value>cameras_combined20180313132101208</value>
-        <value>accidents_on_expressway220180313133354017</value>
         <value>temp_shp20180313133447236</value>
-        <value>cameras_accidents20180313133540932</value>
-        <value>edit220180313141405180</value>
-        <value>accidents_sgmap_expressway20180313141819972</value>
+        <value>temp_shp_temp_Point_roads_expressway20180313130458612</value>
+        <value>heavytraffic_sgmap_expressway20180322085051102</value>
       </LayerSnappingList>
       <LayerSnappingEnabledList type="QStringList">
+        <value>disabled</value>
+        <value>disabled</value>
         <value>disabled</value>
         <value>disabled</value>
         <value>disabled</value>
@@ -6921,8 +7428,12 @@ def my_form_open(dialog, layer, feature):
         <value>2</value>
         <value>2</value>
         <value>2</value>
+        <value>2</value>
+        <value>2</value>
       </LayerSnappingToleranceUnitList>
       <LayerSnapToList type="QStringList">
+        <value>to_vertex_and_segment</value>
+        <value>to_vertex_and_segment</value>
         <value>to_vertex_and_segment</value>
         <value>to_vertex_and_segment</value>
         <value>to_vertex_and_segment</value>
@@ -6954,6 +7465,8 @@ def my_form_open(dialog, layer, feature):
       <DefaultSnapType type="QString">off</DefaultSnapType>
       <DefaultSnapTolerance type="double">0</DefaultSnapTolerance>
       <LayerSnappingToleranceList type="QStringList">
+        <value>0.000000</value>
+        <value>0.000000</value>
         <value>0.000000</value>
         <value>0.000000</value>
         <value>0.000000</value>
