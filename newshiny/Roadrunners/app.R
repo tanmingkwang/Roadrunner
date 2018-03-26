@@ -50,8 +50,9 @@ ui <- fluidPage(
                           
                       leafletOutput("map", width="100%", height="100%"),
                       
+                      
                       absolutePanel(id = "controls", class = "panel panel-default", fixed = TRUE,
-                                    draggable = TRUE, top = 130, left = "auto", right = 10, bottom = "auto",
+                                    draggable = TRUE, top = 180, left = "auto", right = 10, bottom = "auto",
                                     width = 330, height = "auto",
                                     
                                     h2("Choose Analysis"),
@@ -110,8 +111,13 @@ ui <- fluidPage(
                                                                     choices = c("Traffic Camera"),
                                                                     options = list(onInitialize = I('function() { this.setValue(""); }')))),
                                     
-                                    actionButton(inputId="enter",
-                                                 label = "Enter")
+                                    conditionalPanel(condition="input.analysis == 'Kernel Density Estimation (KDE)'",
+                                                     actionButton(inputId="kdeConstraint",
+                                                                  label = "With Network Constraint"),
+                                                     actionButton(inputId="kdeNoConstraint",
+                                                                  label = "Without Network Constraint")
+                                                     )
+                                    
                                     
                       )            
                                     
@@ -137,15 +143,9 @@ ui <- fluidPage(
                                 
                                fileInput(inputId="accidentsFile",
                                          label = "Upload Accidents Data", 
-                                         accept=c('.shp','.dbf','.sbn','.sbx','.shx','.prj', '.qpj'), 
-                                         multiple=TRUE, 
+                                         accept=c('.csv'), 
                                          buttonLabel=icon("upload")),
-                               fileInput(inputId="trafficFile",
-                                         label = "Upload Traffic Data", 
-                                         accept=c('.shp','.dbf','.sbn','.sbx','.shx','.prj', '.qpj'), 
-                                         multiple=TRUE,
 
-                                         buttonLabel=icon("upload")),
                                fileInput(inputId="networkFile",
                                          label = "Upload Road Network Data", 
                                          accept=c('.shp','.dbf','.sbn','.sbx','.shx','.prj', '.qpj'), 
@@ -162,15 +162,18 @@ ui <- fluidPage(
 
 
 server <- function(input, output) {
+  #at <- seq(0, 0.0030, 0.0005)
+  #cb <<- colorBin(palette = "YlGnBu", bins = at, domain = at, na.color = "#00000000")
+  
   
   output$map <- renderLeaflet({
     leaflet() %>%
-      setView(103.8198, 1.3521,zoom = 11) %>% 
+      setView(103.8198, 1.3521,zoom = 12) %>% 
       addProviderTiles("CartoDB.Positron", group = "CartoDB (default)") %>% 
+      #addLegend(pal = cb, values = at, title = "Legend", position='bottomleft') %>%
       addTiles(group = "OSM") %>% 
       addLayersControl(
         baseGroups = c( "CartoDB (default)","OSM"),
-        overlayGroups = c("With Constraint", "Without Constraint"),
         options = layersControlOptions(collapsed = TRUE)
       )
   })
@@ -180,33 +183,21 @@ server <- function(input, output) {
   observeEvent(input$accidentsFile, {
     inputAccidentsFile <-input$accidentsFile
     
-    dir<-dirname(inputAccidentsFile[1,4])
-    for ( i in 1:nrow(inputAccidentsFile)) {
-      file.rename(inputAccidentsFile[i,4], paste0(dir,"/",inputAccidentsFile[i,1]))}
+    trafficReport <- read.csv(inputAccidentsFile$datapath)
+    trafficReport_shp <- st_as_sf(trafficReport, coords = c("Longitude", "Latitude"), crs = "+proj=longlat +datum=WGS84 +no_defs")
+    traffic_Report_svy21 <- st_transform(trafficReport_shp, crs = 3414)
+
+    accidents <- traffic_Report_svy21 %>% filter(Type == "Accident")
+    accidents_sp <- as(accidents, "Spatial")
     
-    getaccidentsshp <- list.files(dir, pattern="*.shp", full.names=TRUE)
+    heavytraffic <- traffic_Report_svy21 %>% filter(Type == "Heavy Traffic")
+    heavytraffic_sp <- as(heavytraffic, "Spatial")
     
-    accidents <- readOGR(getaccidentsshp)
-    accidents_sp <- as(accidents, 'SpatialPoints')
     accidents_ppp <<- ppp(coordinates(accidents_sp)[,1], coordinates(accidents_sp)[,2], costaloutline_owin)
-    
-  })
-  
-  #if traffic file is uploaded, process traffic file first
-  observeEvent(input$trafficFile, {
-    inputTrafficFile <-input$trafficFile
-    
-    dir<-dirname(inputTrafficFile[1,4])
-    for ( i in 1:nrow(inputTrafficFile)) {
-      file.rename(inputTrafficFile[i,4], paste0(dir,"/",inputTrafficFile[i,1]))}
-    
-    gettrafficshp <- list.files(dir, pattern="*.shp", full.names=TRUE)
-    
-    heavytraffic <- readOGR(gettrafficshp)
-    heavytraffic_sp <- as(heavytraffic, 'SpatialPoints')
     heavytraffic_ppp <<- ppp(coordinates(heavytraffic_sp)[,1], coordinates(heavytraffic_sp)[,2], costaloutline_owin)
     
   })
+  
   
   #if road network file is uploaded, process road network file first
   observeEvent(input$networkFile, {
@@ -224,13 +215,17 @@ server <- function(input, output) {
     
   })
   
-  observeEvent(input$enter,
+  observeEvent(input$kdeConstraint,
                { 
                  if (input$analysis == 'Kernel Density Estimation (KDE)' && input$kdeType == 'Accidents'){
                  
                    sigma <- input$sigma
+                   at <- seq(0, 0.0020, 0.00025)
+                   cb <- colorBin(palette = "OrRd", bins = at, domain = at, na.color = "#00000000", reverse=FALSE)
                    
-                   #constraint
+
+                   
+                   #constraint accident
                    accidents_lpp <- lpp(accidents_ppp, roadNetwork_linnet)
                    accidentskde <- density.lpp(accidents_lpp, sigma)
                    accidentkde_sgdf <- as.SpatialGridDataFrame.im(accidentskde)
@@ -238,60 +233,125 @@ server <- function(input, output) {
                    accidentkde_raster_scaled <- disaggregate(accidentkde_raster, fact=4 ,fun=mean)
                    proj4string(accidentkde_sgdf) = CRS("+init=epsg:3414")
                    proj4string(accidentkde_raster_scaled) = CRS("+init=epsg:3414")
+                
                    
-                   #non-constraint
+                   leafletProxy("map") %>%
+                     removeControl("leg") %>%
+                     clearGroup("Traffic with Constraint") %>%
+                     clearGroup("Accidents without Constraint") %>%
+                     clearGroup("Traffic without Constraint") %>%
+                     clearGroup("Accidents with Constraint") %>%
+                     addRasterImage(accidentkde_raster_scaled, colors=cb, group='Accidents with Constraint', opacity=0.80) %>%
+                     addLegend(pal = cb, values = at, title = "Legend", position='bottomleft', labFormat = labelFormat(digits=6),layerId="leg") %>%
+                     addProviderTiles("CartoDB.Positron", group = "CartoDB (default)") %>% 
+                     addTiles(group = "OSM") %>% 
+                     addLayersControl(
+                       baseGroups = c( "CartoDB (default)","OSM"),
+                       overlayGroups = c('Accidents with Constraint'),
+                       options = layersControlOptions(collapsed = TRUE)
+                     )
+                   
+                 
+                 } else
+                   if (input$analysis == 'Kernel Density Estimation (KDE)' && input$kdeType == 'Heavy Traffic'){
+                     
+                       sigma <- input$sigma
+                       at <- seq(0, 0.0040, 0.0005)
+                       cb <- colorBin(palette = "OrRd", bins = at, domain = at, na.color = "#00000000", reverse=FALSE)
+                       
+                       #constraint traffic
+                       heavytraffic_lpp <- lpp(heavytraffic_ppp, roadNetwork_linnet)
+                       heavytraffickde <- density.lpp(heavytraffic_lpp, sigma)
+                       heavytraffickde_sgdf <- as.SpatialGridDataFrame.im(heavytraffickde)
+                       heavytraffickde_raster <- raster(heavytraffickde_sgdf)
+                       heavytraffickde_raster_scaled <- disaggregate(heavytraffickde_raster, fact=4 ,fun=mean)
+                       proj4string(heavytraffickde_raster_scaled) = CRS("+init=epsg:3414")
+                       
+                       leafletProxy("map") %>%
+                         removeControl("leg") %>%
+                         clearGroup("Accidents without Constraint") %>%
+                         clearGroup("Traffic without Constraint") %>%
+                         clearGroup("Accidents with Constraint") %>%
+                         clearGroup("Traffic with Constraint") %>%
+                         addRasterImage(heavytraffickde_raster_scaled, colors=cb, group="Traffic with Constraint",  opacity=0.80) %>%
+                         addLegend(pal = cb, values = at, title = "Legend", position='bottomleft', labFormat = labelFormat(digits=6),layerId="leg") %>%
+                         addProviderTiles("CartoDB.Positron", group = "CartoDB (default)") %>% 
+                         addTiles(group = "OSM") %>% 
+                         addLayersControl(
+                           baseGroups = c( "CartoDB (default)","OSM"),
+                           overlayGroups = c("Traffic with Constraint"),
+                           options = layersControlOptions(collapsed = TRUE)
+                         )
+              
+                      
+                   }
+               
+               })
+  
+  observeEvent(input$kdeNoConstraint,
+               { 
+                 if (input$analysis == 'Kernel Density Estimation (KDE)' && input$kdeType == 'Accidents'){
+                   
+                   sigma <- input$sigma
+                   at <- seq(0, 0.0000030, 0.0000005)
+                   cb <- colorBin(palette = "OrRd", bins = at, domain = at, na.color = "#00000000", reverse=FALSE)
+                   
+                   #non-constraint accident
                    accidentskde_ppp <- density.ppp(accidents_ppp, sigma)
                    accidentkde_ppp_sgdf <- as.SpatialGridDataFrame.im(accidentskde_ppp)
                    accidentkde_ppp_raster <- raster(accidentkde_ppp_sgdf)
                    proj4string(accidentkde_ppp_raster) = CRS("+init=epsg:3414")
                    
                    leafletProxy("map") %>%
-                     addRasterImage(accidentkde_raster_scaled, group="With Constraint") %>%
-                     addRasterImage(accidentkde_ppp_raster, group="Without Constraint") %>%
+                     removeControl("leg") %>%
+                     clearGroup("Accidents with Constraint") %>%
+                     clearGroup("Traffic with Constraint") %>%
+                     clearGroup("Traffic without Constraint") %>%
+                     clearGroup("Accidents without Constraint") %>%
+                     addRasterImage(accidentkde_ppp_raster, group="Accidents without Constraint", colors=cb, opacity=0.50) %>%
+                     addLegend(pal = cb, values = at, title = "Legend", position='bottomleft', labFormat = labelFormat(digits=8),layerId="leg") %>%
+                     
                      addProviderTiles("CartoDB.Positron", group = "CartoDB (default)") %>% 
                      addTiles(group = "OSM") %>% 
                      addLayersControl(
                        baseGroups = c( "CartoDB (default)","OSM"),
-                       overlayGroups = c("With Constraint", "Without Constraint"),
+                       overlayGroups = c("Accidents without Constraint"),
                        options = layersControlOptions(collapsed = TRUE)
                      )
-
-                     
                    
-                   
-                   # working_map <- tm_shape(accidentkde_raster_scaled, name = "With Constraint", group="With Constraint") + tm_raster(title="With Constraint",  group="With Constraint") + tm_shape(accidentkde_ppp_sgdf, name = "Without Constraint", group="Without Constraint") + tm_raster(title="Without Constraint", group="Without Constraint") + tm_add_legend()
-                   # tmap_leaflet(working_map) %>% 
-                   #   addProviderTiles("CartoDB.Positron", group = "CartoDB (default)") %>% 
-                   #   addTiles(group = "OSM") %>% 
-                   #   addLayersControl(
-                   #     baseGroups = c( "CartoDB (default)","OSM"),
-                   #    overlayGroups = c("With Constraint", "Without Constraint"),
-                   #     options = layersControlOptions(collapsed = TRUE)
-                   #   ) 
-                 
                  } else
                    if (input$analysis == 'Kernel Density Estimation (KDE)' && input$kdeType == 'Heavy Traffic'){
-                     output$plotLeafletH <- renderLeaflet({
-                       sigma <- input$sigma
-                       heavytraffic_lpp <- lpp(heavytraffic_ppp, roadNetwork_linnet)
-                       heavytraffickde <- density.lpp(heavytraffic_lpp, sigma=3000)
-                       heavytraffickde_ppp <- density.ppp(heavytraffic_ppp, sigma=500)
-                       heavytraffickde_sgdf <- as.SpatialGridDataFrame.im(heavytraffickde)
-                       heavytraffickde_ppp_sgdf <- as.SpatialGridDataFrame.im(heavytraffickde_ppp)
-                       proj4string(heavytraffickde_ppp_sgdf) = CRS("+init=epsg:3414")
+                     
+                     sigma <- input$sigma
+                     at <- seq(0, 0.000030, 0.000005)
+                     cb <- colorBin(palette = "OrRd", bins = at, domain = at, na.color = "#00000000", reverse=FALSE)
+                     
+                     
+                     #non-constraint traffic
+                     heavytraffickde_ppp <- density.ppp(heavytraffic_ppp, sigma)
+                     heavytraffickde_ppp_sgdf <- as.SpatialGridDataFrame.im(heavytraffickde_ppp)
+                     heavytraffickde_ppp_raster <- raster(heavytraffickde_ppp_sgdf)
+                     proj4string(heavytraffickde_ppp_raster) = CRS("+init=epsg:3414")
+                     
+                     leafletProxy("map") %>%
+                       removeControl("leg") %>%
+                       clearGroup("Accidents with Constraint") %>%
+                       clearGroup("Traffic with Constraint") %>%
+                       clearGroup("Accidents without Constraint") %>%
+                       clearGroup("Traffic without Constraint") %>%
+                       addRasterImage(heavytraffickde_ppp_raster, group="Traffic without Constraint",colors=cb, opacity=0.50) %>%
+                       addLegend(pal = cb, values = at, title = "Legend", position='bottomleft', labFormat = labelFormat(digits=8),layerId="leg") %>%
+                       addProviderTiles("CartoDB.Positron", group = "CartoDB (default)") %>% 
+                       addTiles(group = "OSM") %>% 
+                       addLayersControl(
+                         baseGroups = c( "CartoDB (default)","OSM"),
+                         overlayGroups = c("Traffic without Constraint"),
+                         options = layersControlOptions(collapsed = TRUE)
+                       )
 
-                       
-                       working_map <- tm_shape(heavytraffickde_ppp_sgdf) + tm_raster()
-                       tmap_leaflet(working_map) %>% 
-                         addProviderTiles("CartoDB.Positron", group = "CartoDB (default)") %>% 
-                         addTiles(group = "OSM") %>% 
-                         addLayersControl(
-                           baseGroups = c( "CartoDB (default)","OSM"),
-                           options = layersControlOptions(collapsed = TRUE)
-                         )
-                     }) 
+                     
                    }
-               
+                 
                })
    
 }
