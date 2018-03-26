@@ -12,6 +12,17 @@ div.outer {
   padding: 0;
 }
 
+.container-fluid {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.navbar {
+    margin-bottom: 0px;
+}
+
 /* Customize fonts */
 body, label, input, button, select { 
   font-family: 'Helvetica Bold', Helvetica;

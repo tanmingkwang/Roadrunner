@@ -35,14 +35,18 @@ costaloutline_mask <- as.mask(costaloutline_owin)
 ui <- fluidPage(
   
   tags$head(
+    tags$style(
     # Include our custom CSS
     includeCSS("styles.css")
+    )
   ),
   
   #Navbar
-  navbarPage("Singapore Traffic Accidents Analysis",
+  navbarPage(" Singapore Traffic Accidents Analysis",
              
              tabPanel("Map",
+                      
+                      leafletOutput("map"),
                       
                       absolutePanel(id = "controls", class = "panel panel-default", fixed = TRUE,
                                     draggable = TRUE, top = 60, left = "auto", right = 20, bottom = "auto",
@@ -117,12 +121,8 @@ ui <- fluidPage(
                                     
                                     
                                     
-                      ), #end of absolutePanel
-                      
-                      fluidRow(
-                        column(width=6, leafletOutput("plotLeaflet", height = "580px", width= "700px")),
-                        column(width=6, leafletOutput("plotLeafletH", height = "580px", width= "700px"))
-                         )
+                      ) #end of absolutePanel
+
                       
                       ), #end of map tabPanel
              tabPanel("Upload Data",
@@ -161,6 +161,19 @@ ui <- fluidPage(
 
 server <- function(input, output) {
   
+  output$map <- renderLeaflet({
+    leaflet() %>%
+      setView(103.8198, 1.3521,zoom = 11) %>% 
+      addProviderTiles("CartoDB.Positron", group = "CartoDB (default)") %>% 
+      addTiles(group = "OSM") %>% 
+      addLayersControl(
+        baseGroups = c( "CartoDB (default)","OSM"),
+        overlayGroups = c("With Constraint", "Without Constraint"),
+        options = layersControlOptions(collapsed = TRUE)
+      )
+  })
+  
+
   #if accident file is uploaded, process accident file first
   observeEvent(input$accidentsFile, {
     inputAccidentsFile <-input$accidentsFile
@@ -212,7 +225,7 @@ server <- function(input, output) {
   observeEvent(input$enter,
                { 
                  if (input$analysis == 'Kernel Density Estimation (KDE)' && input$kdeType == 'Accidents'){
-                 output$plotLeaflet <- renderLeaflet({
+                 
                    sigma <- input$sigma
                    
                    #constraint
@@ -227,18 +240,32 @@ server <- function(input, output) {
                    #non-constraint
                    accidentskde_ppp <- density.ppp(accidents_ppp, sigma)
                    accidentkde_ppp_sgdf <- as.SpatialGridDataFrame.im(accidentskde_ppp)
-                   proj4string(accidentkde_ppp_sgdf) = CRS("+init=epsg:3414")
+                   accidentkde_ppp_raster <- raster(accidentkde_ppp_sgdf)
+                   proj4string(accidentkde_ppp_raster) = CRS("+init=epsg:3414")
                    
-                   working_map <- tm_shape(accidentkde_raster_scaled, name = "With Constraint", group="With Constraint") + tm_raster() + tm_shape(accidentkde_ppp_sgdf, name = "Without Constraint", group="Without Constraint") + tm_raster()
-                   tmap_leaflet(working_map) %>% 
+                   leafletProxy("map") %>%
+                     addRasterImage(accidentkde_raster_scaled, group="With Constraint") %>%
                      addProviderTiles("CartoDB.Positron", group = "CartoDB (default)") %>% 
                      addTiles(group = "OSM") %>% 
                      addLayersControl(
                        baseGroups = c( "CartoDB (default)","OSM"),
-                      overlayGroups = c("With Constraint", "Without Constraint"),
+                       overlayGroups = c("With Constraint", "Without Constraint"),
                        options = layersControlOptions(collapsed = TRUE)
-                     ) 
-                 })
+                     )
+
+                     
+                   
+                   
+                   # working_map <- tm_shape(accidentkde_raster_scaled, name = "With Constraint", group="With Constraint") + tm_raster(title="With Constraint",  group="With Constraint") + tm_shape(accidentkde_ppp_sgdf, name = "Without Constraint", group="Without Constraint") + tm_raster(title="Without Constraint", group="Without Constraint") + tm_add_legend()
+                   # tmap_leaflet(working_map) %>% 
+                   #   addProviderTiles("CartoDB.Positron", group = "CartoDB (default)") %>% 
+                   #   addTiles(group = "OSM") %>% 
+                   #   addLayersControl(
+                   #     baseGroups = c( "CartoDB (default)","OSM"),
+                   #    overlayGroups = c("With Constraint", "Without Constraint"),
+                   #     options = layersControlOptions(collapsed = TRUE)
+                   #   ) 
+                 
                  } else
                    if (input$analysis == 'Kernel Density Estimation (KDE)' && input$kdeType == 'Heavy Traffic'){
                      output$plotLeafletH <- renderLeaflet({
