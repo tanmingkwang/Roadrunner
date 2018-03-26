@@ -37,19 +37,21 @@ ui <- fluidPage(
   tags$head(
     tags$style(
     # Include our custom CSS
-    includeCSS("styles.css")
+      includeCSS("styles.css")
     )
   ),
   
   #Navbar
-  navbarPage(" Singapore Traffic Accidents Analysis",
+
+  navbarPage(strong("Singapore Traffic Accidents Analysis"),
              
              tabPanel("Map",
-                      
-                      leafletOutput("map"),
+                      div(class="outer",
+                          
+                      leafletOutput("map", width="100%", height="100%"),
                       
                       absolutePanel(id = "controls", class = "panel panel-default", fixed = TRUE,
-                                    draggable = TRUE, top = 60, left = "auto", right = 20, bottom = "auto",
+                                    draggable = TRUE, top = 130, left = "auto", right = 10, bottom = "auto",
                                     width = 330, height = "auto",
                                     
                                     h2("Choose Analysis"),
@@ -111,7 +113,7 @@ ui <- fluidPage(
                                     actionButton(inputId="enter",
                                                  label = "Enter")
                                     
-                                    
+                      )            
                                     
                                     
                                     
@@ -126,8 +128,8 @@ ui <- fluidPage(
                       
                       ), #end of map tabPanel
              tabPanel("Upload Data",
-                      absolutePanel(id = "controls", class = "panel panel-default", fixed = TRUE,
-                                    draggable = TRUE, top = 60, left = 20, right = 20, bottom = "auto",
+                      absolutePanel(id = "uploadControls", class = "panel panel-default", fixed = TRUE,
+                                    top = 60, left = 20, right = 20, bottom = "auto",
                                     width = 330, height = "auto",
                                     
                                     h2("Upload Data Files"),
@@ -245,6 +247,7 @@ server <- function(input, output) {
                    
                    leafletProxy("map") %>%
                      addRasterImage(accidentkde_raster_scaled, group="With Constraint") %>%
+                     addRasterImage(accidentkde_ppp_raster, group="Without Constraint") %>%
                      addProviderTiles("CartoDB.Positron", group = "CartoDB (default)") %>% 
                      addTiles(group = "OSM") %>% 
                      addLayersControl(
