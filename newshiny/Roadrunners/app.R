@@ -31,6 +31,10 @@ costaloutline_sp <- as(costaloutline, "SpatialPolygons")
 costaloutline_owin <<- as.owin.SpatialPolygons(costaloutline_sp)
 costaloutline_mask <- as.mask(costaloutline_owin)
 
+speedcameras <- readOGR("Camera/cameras_combined.shp")
+speedcameras_svy21 <<- spTransform(speedcameras, CRS("+init=epsg:3414"))
+speedcameras_sp <<- as(speedcameras_svy21, "SpatialPoints")
+
 # Define UI for application that draws a histogram
 ui <- fluidPage(
   
@@ -54,6 +58,8 @@ ui <- fluidPage(
                       absolutePanel(id = "controls", class = "panel panel-default", fixed = TRUE,
                                     draggable = TRUE, top = 180, left = "auto", right = 10, bottom = "auto",
                                     width = 330, height = "auto",
+                                    
+                                    uiOutput(outputId = "bounds"),
                                     
                                     h2("Choose Analysis"),
                                     
@@ -165,12 +171,17 @@ server <- function(input, output) {
   #at <- seq(0, 0.0030, 0.0005)
   #cb <<- colorBin(palette = "YlGnBu", bins = at, domain = at, na.color = "#00000000")
   
+  output$bounds <- renderUI({
+    bounds <- input$map_bounds
+    bounds
+  })
   
   output$map <- renderLeaflet({
     leaflet() %>%
       setView(103.8198, 1.3521,zoom = 12) %>% 
+      #addTiles() %>%
+      #addMarkers(speedcameras_svy21, lng = ~speedcameras_svy21$X, lat = ~speedcameras_svy21$Y, label = ~as.character(speedcameras_svy21$ROAD_NAME), popup = ~as.character(speedcameras_svy21$ROAD_NAME)) %>%
       addProviderTiles("CartoDB.Positron", group = "CartoDB (default)") %>% 
-      #addLegend(pal = cb, values = at, title = "Legend", position='bottomleft') %>%
       addTiles(group = "OSM") %>% 
       addLayersControl(
         baseGroups = c( "CartoDB (default)","OSM"),
