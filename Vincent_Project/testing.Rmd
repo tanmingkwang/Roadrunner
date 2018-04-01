@@ -1,0 +1,51 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+# Loading R Packages
+
+```{r}
+packages = c('tmap', 'sf', 'tidyverse', 'RColorBrewer', 'classInt', 'spatstat', 'rgdal', 'maptools', 'rgeos')
+for (p in packages){
+  if(!require(p, character.only = T)){
+  install.packages(p)
+}
+library(p, character.only = T)
+}
+```
+
+# Load expressway
+```{r}
+expressway<- readOGR(dsn = 'RoadNetwork', layer = 'roads_expressway_simplified')
+```
+
+
+#try to run k function on entire expressway
+```{r}
+# Create accidents ppp
+accidents <- read.csv('test/accidents.csv')
+accidents_sp <- SpatialPoints(cbind(accidents$X, accidents$Y))
+proj4string(accidents_sp) <- '+proj=tmerc +lat_0=1.366666666666667 +lon_0=103.8333333333333 +k=1 +x_0=28001.642 +y_0=38744.572 +ellps=WGS84 +units=m +no_defs '
+#accidents_sp <- as(accidents, 'SpatialPoints')
+accidents_ppp <- as.ppp(accidents_sp)
+
+accidents_ppp <- ppp(accidents[,1], accidents[,2], c(min(accidents[,1]), max(accidents[,1])), c(min(accidents[,2]), max(accidents[,2])))
+
+# Create expressway linnet 
+expressway_psp <- as.psp(expressway)
+expressway_linnet <- as.linnet.psp(expressway_psp, sparse = TRUE)
+
+# Create lpp
+accidents_lpp <- lpp(accidents_ppp, expressway_linnet)
+
+plot(density.lpp(accidents_lpp, 20))
+
+#system.time(envelope.lpp(accidents_lpp,linearK, nsim = 99, r = seq(0,1,by=0.20)))
+envelope.lpp(accidents_lpp,linearK, nsim = 3, r=seq(0,1,0.2))
+
+
+
+system.time({s <- runiflpp(npoints(accidents_lpp), as.linnet(accidents_lpp)); linearK(s, r=seq(0,2,by=0.20))})
+```

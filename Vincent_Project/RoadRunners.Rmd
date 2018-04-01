@@ -1,0 +1,314 @@
+---
+title: "RoadRunners"
+output: html_notebook
+---
+
+# Loading R Packages
+
+```{r}
+packages = c('tmap', 'sf', 'tidyverse', 'RColorBrewer', 'classInt', 'spatstat', 'rgdal', 'maptools', 'rgeos')
+for (p in packages){
+  if(!require(p, character.only = T)){
+  install.packages(p)
+}
+library(p, character.only = T)
+}
+```
+
+# Load expressway
+```{r}
+expressway<- readOGR(dsn = 'RoadNetwork', layer = 'roads_expressway_small')
+```
+# Attempt to reduce size of expressway
+```{r}
+new <- gSimplify(expressway, tol = 100000,  topologyPreserve= TRUE)
+object.size(expressway)
+object.size(new)
+plot(expressway)
+plot(new)
+```
+
+#try to run k function on entire expressway
+```{r}
+# Create accidents ppp
+accidents <- readOGR('FinalAccidents', 'accidents_on_expressway')
+accidents_sp <- as(accidents, 'SpatialPoints')
+accidents_ppp <- as.ppp(accidents_sp)
+
+# Create expressway linnet 
+expressway_psp <- as.psp(new)
+expressway_linnet <- as.linnet.psp(expressway_psp, sparse = TRUE)
+
+# Create lpp
+accidents_lpp <- lpp(accidents_ppp, expressway_linnet)
+
+#system.time(envelope.lpp(accidents_lpp,linearK, nsim = 99, r = seq(0,1,by=0.20)))
+plot(envelope.lpp(accidents_lpp,linearK, nsim = 3, r = seq(0,10000)))
+```
+
+# K Function Analysis
+```{r}
+
+analysis_area <- 'BKE'
+
+# Prepare accidents
+accidents <- readOGR('FinalAccidents', 'accidents_on_expressway')
+accidents_subset <- accidents[accidents@data$Accident_L == analysis_area,]
+accidents_sp <- as(accidents_subset, 'SpatialPoints')
+accidents_ppp <- as.ppp(accidents_sp)
+
+#Prepare expressway 
+expressway_subset <- expressway[expressway@data$ref == analysis_area,]
+expressway_subset_psp <- as.psp(expressway_subset)
+expressway_subset_linnet <- as.linnet.psp(expressway_subset_psp)
+
+#Create accidents lpp
+accidents_lpp <- lpp(accidents_ppp, expressway_subset_linnet)
+
+#system.time(envelope.lpp(accidents_lpp,linearK, nsim = 99, r = seq(0,1,by=0.20)))
+plot(density.lpp(accidents_lpp, 2000))
+plot(envelope.lpp(accidents_lpp,linearK, nsim = 10, r = seq(0,10000)))
+```
+# Multitype K function
+```{r}
+analysis_area <- 'SLE'
+
+# Prepare cameras
+cameras_accidents <- readOGR('Cameras', 'cameras_accidents')
+cameras_accidents_subset <- cameras_accidents[cameras_accidents@data$Expressway == analysis_area,]
+cameras_accidents_sp <- as(cameras_accidents_subset, 'SpatialPoints')
+cameras_accidents_ppp <- as.ppp(cameras_accidents_sp)
+marks(cameras_accidents_ppp) <- cameras_accidents_subset@data$Type
+
+#Prepare expressway 
+expressway_subset <- expressway[expressway@data$ref == analysis_area,]
+expressway_subset_psp <- as.psp(expressway_subset)
+expressway_subset_linnet <- as.linnet.psp(expressway_subset_psp)
+
+#Create accidents lpp
+cameras_accidents_lpp <- lpp(cameras_accidents_ppp, expressway_subset_linnet)
+
+#Multitype K Function
+linearKcross(cameras_accidents_lpp, 'Accident' , 'Camera')
+plot(envelope.lpp(cameras_accidents_lpp,linearKcross, nsim = 10, i = 'Accident', j = 'Camera', r = seq(0,3000))) #, r = seq(0,3000)
+```
+
+```{r}
+sgmap <- st_read('data.gov.sg/planningArea', 'MP14_PLNG_AREA_WEB_PL')
+accidentskde <- density.lpp(accidents_lpp, sigma=1000)
+accidentkde_sgdf <- as.SpatialGridDataFrame.im(accidentskde)
+spplot(accidentkde_sgdf)
+
+proj4string(accidentkde_sgdf) = CRS("+init=epsg:3414")
+data(world)
+tmap_mode("view")
+
+library(tmaptools)
+tm_shape(accidentkde_sgdf) + tm_raster()
+```
+
+
+```{r}
+# 
+accidents <- readOGR('FinalAccidents', 'accidents_on_expressway')
+accidents_sp <- as(accidents, 'SpatialPoints')
+accidents_ppp <- as.ppp(accidents_sp)
+
+roadNetwork <- readShapeSpatial("RoadNetwork/roads_expressway", CRS("+init=epsg:3414"))
+roadNetwork_psp <- as.psp(roadNetwork, window=NULL, marks=NULL, check=spatstat.options("checksegments"), fatal=TRUE)
+roadNetwork_linnet <- as.linnet.psp(roadNetwork_psp, sparse=TRUE)
+
+accidents_lpp <- lpp(accidents_ppp, roadNetwork_linnet)
+
+accidentskde <- density.lpp(accidents_lpp, 1)
+
+accidentkde_sgdf <- as.SpatialGridDataFrame.im(accidentskde)
+spplot(accidentkde_sgdf)
+
+proj4string(accidentkde_sgdf) = CRS("+init=epsg:3414")
+
+library(tmaptools)
+sgmap_raster <- poly_to_raster(sgmap)
+tm_shape(accidentkde_sgdf) + tm_raster()
+
+```
+
+
+
+#Loading data
+
+```{r}
+data <- read_csv('csv/LTATrafficDataClean2.csv')
+dataSF <- st_as_sf(data, coords =c( 'Longitude', 'Latitude') , crs = '+proj=longlat +datum=WGS84 +no_defs')
+
+sgmap <- st_read('data.gov.sg/planningArea', 'MP14_PLNG_AREA_WEB_PL')
+dataSF_svy21 <- st_transform(dataSF, 3414)
+
+```
+
+#Filtering Data
+```{r}
+accidents <- dataSF_svy21 %>% filter(Type == 'Accident')
+
+```
+
+#Visualising
+```{r}
+tm_shape(sgmap) + tm_borders()  + tm_shape(accidents) + tm_symbols(size = 0.5)
+```
+
+
+{r}
+st_write(accidents, "csv/accidents.csv", layer_options = "GEOMETRY=AS_XY")
+
+
+
+```{r}
+accidents_xy <- read.csv('csv/accidents.csv')
+accidents_ppp <- ppp(accidents_xy[,1], accidents_xy[,2], c(min(accidents_xy[,1]), max(accidents_xy[,1])), c(min(accidents_xy[,2]), max(accidents_xy[,2])))
+```
+
+```{r}
+plot(accidents_ppp)
+summary(accidents_ppp)
+plot(Kest(accidents_ppp))
+plot(envelope(accidents_ppp,Kest))
+plot(density(accidents_ppp))
+```
+
+##Took 10s
+```{r}
+expressway_psp <- as.psp(expressway)
+```
+
+
+##Took 10s
+```{r}
+expressway_linnet <- as.linnet.psp(expressway_psp, sparse = TRUE)
+```
+
+```{r}
+accidents_lpp <- lpp(accidents_ppp, expressway_linnet)
+
+```
+
+```{r}
+plot(density.lpp(accidents_lpp, 1000))
+```
+
+# 8.31
+```{r}
+x <- envelope.lpp(accidents_lpp,linearK)
+```
+
+#Try with BKE only
+
+```{r}
+
+expressway_BKE <- expressway[expressway@data$ref == 'BKE',]
+expressway_BKE_psp <- as.psp(expressway_BKE)
+expressway_BKE_linnet <- as.linnet.psp(expressway_BKE_psp)
+accidents_lpp_BKE <- lpp(accidents_ppp, expressway_BKE_linnet)
+plot(density.lpp(accidents_lpp_BKE, 2000))
+```
+#Loading of subset expressway k function 
+## BKE - 22 s
+##PIE more than 3 mins
+```{r}
+x <- envelope.lpp(accidents_lpp_BKE,linearK, nsim = 3)
+plot(x)
+system.time(envelope.lpp(accidents_lpp_BKE,linearK, nsim = 3, r = seq(0,1,by=0.20)))
+```
+
+#Try to filter the number of accidents also, see if it helps
+
+```{r}
+accidents_xy_bke <- readOGR('test', 'accidents_BKE')
+accidents_xy_bke_sp <- as(accidents_xy_bke, 'SpatialPoints')
+accidents_ppp_bke <- as.ppp(accidents_xy_bke_sp)
+accidents_lpp_BKE_test <- lpp(accidents_ppp_bke, expressway_BKE_linnet)
+plot(density.lpp(accidents_lpp_BKE_test, 2000))
+system.time(envelope.lpp(accidents_lpp_BKE_test,linearK, nsim = 99, r = seq(0,1,by=0.20)))
+```
+
+
+
+# Loading of MCE KPE camera file
+```{r}
+mce_kpe_camera <- st_read('data.gov.sg/mce-kpe-speed-camera-shp', 'MCE_KPE_SPEED_CAMERA')
+
+
+```
+
+```{r}
+mce_kpe_camera$Type <- 'MCE_KPE_Camera'
+
+```
+
+#converting mce kpe to x y
+```{r}
+st_write(mce_kpe_camera, "csv/mce_kpe_camera.csv", layer_options = "GEOMETRY=AS_XY")
+
+
+
+```
+
+# Combining mce kpe with camera
+```{r}
+mce_kpe_camera_xy <- read.csv('csv/mce_kpe_camera.csv')
+mce_kpe_camera_join <- select(mce_kpe_camera_xy, X, Y, Type )
+accidents_join <- select(accidents_xy, X, Y, Type)
+accidents_mce_kpe_cameras <- rbind(accidents_join, mce_kpe_camera_join)
+```
+
+# Convert to ppp
+```{r}
+accidents_mce_ppp <- ppp(accidents_mce_kpe_cameras[,1], accidents_mce_kpe_cameras[,2], c(min(accidents_mce_kpe_cameras[,1]), max(accidents_mce_kpe_cameras[,1])), c(min(accidents_mce_kpe_cameras[,2]), max(accidents_mce_kpe_cameras[,2])), marks = accidents_mce_kpe_cameras$Type)
+```
+
+#Accidents_mce lpp
+```{r}
+accidents_mce_lpp <- lpp(accidents_mce_ppp, expressway_linnet)
+```
+
+#Multitype K Function - more than 1hr
+```{r}
+linearKcross(accidents_mce_lpp, 'Accident' , 'MCE_KPE_Camera')
+```
+
+# K nearest neighbour
+```{r}
+accidents_nn <- nndist.lpp(accidents_lpp)
+hist(accidents_nn)
+plot(nnfun.lpp(accidents_lpp))
+plot(Gest(as.ppp(accidents_lpp)))
+```
+
+
+#Cleaning Data to join accidents with planning area and add in expressway 
+```{r}
+data <- read_csv('csv/LTATrafficDataClean2.csv')
+dataSF <- st_as_sf(data, coords =c( 'Longitude', 'Latitude') , crs = '+proj=longlat +datum=WGS84 +no_defs')
+sgmap <- st_read('data.gov.sg/planningArea', 'MP14_PLNG_AREA_WEB_PL')
+sgmap_4326 <- st_transform(sgmap, 4326)
+LTATraffic_sgmap <- st_join(dataSF, sgmap_4326)
+LTATraffic_sgmap  <- LTATraffic_sgmap %>% select(Type, Date, Time, Descriptions, PLN_AREA_C, PLN_AREA_N, REGION_C, REGION_N, geometry )
+LTATraffic_sgmap_3414 <- st_transform(LTATraffic_sgmap, 3414)
+st_write(LTATraffic_sgmap_3414, 'csv/LTATraffic_sgmap.shp')
+accidents_sgmap_shp <- LTATraffic_sgmap_3414 %>% filter(Type == 'Accident')
+st_write(accidents_sgmap_shp, 'csv/accidents_sgmap.shp')
+accidents_sgmap_expressway <- st_read('csv', 'accidents_sgmap_expressway')
+accidents_time <- st_join(accidents_sgmap_expressway, accidents_sgmap_shp)
+accidents_final <- accidents_time %>% select(Type.x, Date.x, Time, Descriptions, PLN_AREA_C.x, PLN_AREA_N.x, REGION_C.x, REGION_N.x, RoadType, geometry)
+names(accidents_final) <- c('Type', 'Date', 'Time', 'Descriptions', 'PLN_AREA_C', 'PLN_AREA_N', 'REGION_C', 'REGION_N', 'RoadType', 'geometry')
+st_write(accidents_final, "csv/accidents_sgmap_expressway.csv", layer_options = "GEOMETRY=AS_XY")
+```
+
+```{r}
+sgroad <- st_read('RoadNetwork', 'roads_exp_join')
+st_crs(sgroad) <- 3414
+st_crs(sgmap) <- 3414
+sgroad_pln <- st_join(sgroad, sgmap)
+sgroad_pln_short <- sgroad_pln %>% select(osm_id, name, ref, type, oneway, bridge, maxspeed, RoadType, PLN_AREA_C, PLN_AREA_N, REGION_C, REGION_N)
+st_write(sgroad_pln_short, 'sgroad_joined.shp')
+```

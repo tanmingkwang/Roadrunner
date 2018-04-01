@@ -15,39 +15,88 @@ library(p, character.only = T)
 }
 ```
 
-# Load expressway
-```{r}
-expressway<- readOGR(dsn = 'RoadNetwork', layer = 'roads_expressway_simplified')
-```
 
-# Create data transformation from csv
+
+# Loading data from files 
 ```{r}
+# road network
+roadNetwork <- readShapeSpatial("test/RoadNetwork/roads_expressway", CRS("+init=epsg:3414"))
+
+# accidents ( filtering only accidents that occured on expressways)
 accidents_csv <- read_csv('csv/LTATrafficDataClean2.csv')
 patterns <- c('AYE',	'BKE',	'CTE'	,'ECP',	'KJE'	,'KPE',	'MCE'	,'PIE',	'SLE',	'TPE')
 accidents_filter <- accidents_csv %>% filter(grepl(paste(patterns, collapse="|"), Descriptions)) %>% filter(Type == 'Accident')
 accidents_sf <- st_as_sf(accidents_filter, coords = c("Longitude", "Latitude"), crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs")
 accidents <- st_transform(accidents_sf, crs = 3414)
 
+# coastal outline
 costaloutline <- readOGR("sg_map/CostalOutline.shp")
-costaloutline_sp <- as(costaloutline, "SpatialPolygons")
+
+```
+
+
+# Creating bbox and finding intersection
+```{r}
+
+# hard coding the boundary
+long_max <- 103.777327537537
+long_min <- 103.736128807068
+lat_max <- 1.35968795882909
+lat_min <- 1.32167537337797
+
+# creating bbox
+bbox <- rbind(c(long_max, lat_max ), c(long_max, lat_min), c(long_min, lat_min ), c(long_min, lat_max), c(long_max, lat_max ))	
+colnames(bbox) <- c('long','lat')
+bbox <- as.data.frame(bbox)
+bbox <- Polygon(bbox)
+bbox <- Polygons(list(bbox), 'bbox')
+bbox <- SpatialPolygons(list(bbox))
+proj4string(bbox) <- CRS('+proj=longlat +datum=WGS84 +no_defs')
+bbox <- spTransform(bbox , CRS('+proj=tmerc +lat_0=1.366666666666667 +lon_0=103.8333333333333 +k=1 +x_0=28001.642 +y_0=38744.572 +ellps=WGS84 +units=m +no_defs'))
+
+# finding accidents inside the bbox 
+accidents_sp <- as(accidents, "Spatial") 
+accidents_intersect <- gIntersection(accidents_sp, bbox)
+
+#finding intersection between road network and bbox
+roadNetwork <- spTransform(roadNetwork, CRS('+proj=tmerc +lat_0=1.366666666666667 +lon_0=103.8333333333333 +k=1 +x_0=28001.642 +y_0=38744.572 +ellps=WGS84 +units=m +no_defs'))
+roadNetwork_intersect <- gIntersection(roadNetwork, bbox) 
+
+
+#finding intersection between coastal outline and bbox
+costaloutline <- spTransform(costaloutline, CRS('+proj=tmerc +lat_0=1.366666666666667 +lon_0=103.8333333333333 +k=1 +x_0=28001.642 +y_0=38744.572 +ellps=WGS84 +units=m +no_defs'))
+costaloutline_intersect <- gIntersection(costaloutline, bbox) 
+
+```
+
+# final preparation then run k function
+```{r}
+# prepare window for ppp
+costaloutline_sp <- as(costaloutline_intersect, "SpatialPolygons")
 costaloutline_owin <- as.owin.SpatialPolygons(costaloutline_sp)
 
-accidents_ppp <- ppp(st_coordinates(accidents)[,1], st_coordinates(accidents)[,2], costaloutline_owin)
-
-
-roadNetwork <- readShapeSpatial("test/RoadNetwork/roads_expressway", CRS("+init=epsg:3414"))
+# create ppp
+accidents_ppp <- ppp(accidents_intersect@coords[,1], accidents_intersect@coords[,2], costaloutline_owin)
 
 # simplify road network
-roadNetwork_psp <- as.psp(roadNetwork, window=NULL, marks=NULL, check=spatstat.options("checksegments"), fatal=TRUE)
+roadNetwork_psp <- as.psp(roadNetwork_intersect, window=NULL, marks=NULL, check=spatstat.options("checksegments"), fatal=TRUE)
 roadNetwork_linnet <- as.linnet.psp(roadNetwork_psp, sparse=TRUE)
 
 # Create lpp
 accidents_lpp <- lpp(accidents_ppp, roadNetwork_linnet)
 
-plot(density.lpp(accidents_lpp, 2000))
+# Run linearK function
+plot(envelope.lpp(accidents_lpp,linearK, nsim = 3, r=seq(0,10000)))
 
 ```
 
+
+# OLD CODES 
+
+# Load expressway
+```{r}
+expressway<- readOGR(dsn = 'RoadNetwork', layer = 'roads_expressway_simplified')
+```
 
 # Experiment road network
 ```{r}
