@@ -30,6 +30,7 @@ costaloutline <<- readOGR("CostalOutline/CostalOutline.shp")
 costaloutline_sp <- as(costaloutline, "SpatialPolygons")
 costaloutline_owin <<- as.owin.SpatialPolygons(costaloutline_sp)
 costaloutline_mask <- as.mask(costaloutline_owin)
+costaloutline_kf <<- spTransform(costaloutline, CRS('+proj=tmerc +lat_0=1.366666666666667 +lon_0=103.8333333333333 +k=1 +x_0=28001.642 +y_0=38744.572 +ellps=WGS84 +units=m +no_defs'))
 
 speedcameras <- readOGR("Camera/cameras_combined.shp")
 speedcameras_svy21 <<- spTransform(speedcameras, CRS("+init=epsg:3414"))
@@ -50,17 +51,17 @@ ui <- fluidPage(
   navbarPage(strong("Singapore Traffic Accidents Analysis"),
              
              tabPanel("Map",
-                      div(class="outer",
-                          
-                      leafletOutput("map", width="100%", height="100%"),
                       
+                      fluidRow(    
+                        column(3,
                       
+      
                       absolutePanel(id = "controls", class = "panel panel-default", fixed = TRUE,
-                                    draggable = TRUE, top = 180, left = "auto", right = 10, bottom = "auto",
-                                    width = 330, height = "auto",
+                                    draggable = FALSE, top = 50, left = 15, right = 10, bottom = "auto",
+                                    width = 315, height = "auto",
                                   
-                                    uiOutput("bounds"), 
-                                    
+                                    #uiOutput("bounds"), 
+                                    br(), 
                                     conditionalPanel(condition = "input.accidentsFile == null",
                                                      selectizeInput(inputId="analysis",
                                                                     label="Choose Analysis:",
@@ -75,7 +76,7 @@ ui <- fluidPage(
                                     
                                     conditionalPanel(condition = "input.analysis == 'Kernel Density Estimation (KDE)'",
                                                      sliderInput(inputId = "sigma",
-                                                                 label = "Choose Sigma:",
+                                                                 label = "Kernel distance (m):",
                                                                  min = 1000, max = 6000, value = 3000
                                                      )),
                                     
@@ -115,34 +116,30 @@ ui <- fluidPage(
                                                                     choices = c("Traffic Camera"),
                                                                     options = list(onInitialize = I('function() { this.setValue(""); }')))),
                                     
-                                    conditionalPanel(condition="input.analysis == 'Kernel Density Estimation (KDE)'",
-                                                     actionButton(inputId="kdeConstraint",
-                                                                  label = "With Network Constraint"),
+                                    conditionalPanel(condition="input.analysis == 'Kernel Density Estimation (KDE)'", align = "center",
+                                                     div(class="center",
+                                                      actionButton(inputId="kdeConstraint",
+                                                                  label = "With Network Constraint")),
+                                                     br(),
                                                      actionButton(inputId="kdeNoConstraint",
                                                                   label = "Without Network Constraint")
                                                      ),
                                     
-                                    conditionalPanel(condition="input.analysis == 'K-Function'",
+                                    conditionalPanel(condition="input.analysis == 'K-Function'", align = "center", 
                                                      actionButton(inputId="kfunctionEnter",
                                                                   label = "Enter")
                                     ),
+                                  
                                     
                                     plotOutput(outputId = "plot")
                                     
-                                    
-                      )            
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                      ) #end of absolutePanel
-
-                      
+                      )
+                      ),
+                      column(9, div(class="outer",
+                             leafletOutput("map", width="100%", height="100%")
+                             ))          
+                      ) #fluidRow
+                      #div class 
                       ), #end of map tabPanel
              tabPanel("Upload Data",
                       absolutePanel(id = "uploadControls", class = "panel panel-default", fixed = TRUE,
@@ -220,7 +217,7 @@ server <- function(input, output) {
     heavytraffic_filter <- trafficReport %>% filter(grepl(paste(patterns, collapse="|"), Descriptions)) %>% filter(Type == 'Heavy Traffic')
     heavytraffic_sf <- st_as_sf(heavytraffic_filter, coords = c("Longitude", "Latitude"), crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs")
     heavytraffic <- st_transform(heavytraffic_sf, crs = 3414)
-    heavytraffic_sp <- as(heavytraffic, "Spatial")
+    heavytraffic_sp <<- as(heavytraffic, "Spatial")
     
     accidents_ppp <<- ppp(coordinates(accidents_sp)[,1], coordinates(accidents_sp)[,2], costaloutline_owin)
     heavytraffic_ppp <<- ppp(coordinates(heavytraffic_sp)[,1], coordinates(heavytraffic_sp)[,2], costaloutline_owin)
@@ -241,7 +238,7 @@ server <- function(input, output) {
     roadNetwork <<- readShapeSpatial(getnetworkshp, CRS("+init=epsg:3414"))
     roadNetwork_psp <- as.psp(roadNetwork, window=NULL, marks=NULL, check=spatstat.options("checksegments"), fatal=TRUE)
     roadNetwork_linnet <<- as.linnet.psp(roadNetwork_psp, sparse=TRUE)
-    
+    roadNetwork_sp <<- spTransform(roadNetwork, CRS('+proj=tmerc +lat_0=1.366666666666667 +lon_0=103.8333333333333 +k=1 +x_0=28001.642 +y_0=38744.572 +ellps=WGS84 +units=m +no_defs'))
   })
   
   observeEvent(input$kdeConstraint,
@@ -384,31 +381,29 @@ server <- function(input, output) {
                })
   
   observeEvent(input$kfunctionEnter, {
-    if (input$kfType == 'Accidents'){
-      output$plot <- renderPlot({
-      # creating bbox
-      north <- as.numeric(input$map_bounds["north"]) #long_max
-      south <- as.numeric(input$map_bounds["south"]) #long_min 
-      east <- as.numeric(input$map_bounds["east"]) #lat_max
-      west <- as.numeric(input$map_bounds["west"]) #lat_min
-      
-      bbox <- rbind(c(north, east), c(north, west), c(south, west), c(south, east), c(north, east))	
-      colnames(bbox) <- c('long','lat')
-      bbox <- as.data.frame(bbox)
-      bbox <- Polygon(bbox)
-      bbox <- Polygons(list(bbox), 'bbox')
-      bbox <- SpatialPolygons(list(bbox))
-      proj4string(bbox) <- CRS('+proj=longlat +datum=WGS84 +no_defs')
-      bbox <- spTransform(bbox , CRS('+proj=tmerc +lat_0=1.366666666666667 +lon_0=103.8333333333333 +k=1 +x_0=28001.642 +y_0=38744.572 +ellps=WGS84 +units=m +no_defs'))
+    north <- as.numeric(input$map_bounds["north"]) #long_max
+    south <- as.numeric(input$map_bounds["south"]) #long_min 
+    east <- as.numeric(input$map_bounds["east"]) #lat_max
+    west <- as.numeric(input$map_bounds["west"]) #lat_min
     
+    bbox <- rbind(c(east, north), c(west, north), c(west, south), c(east, south), c(east, north))	
+    colnames(bbox) <- c('long','lat')
+    bbox <- as.data.frame(bbox)
+    bbox <- Polygon(bbox)
+    bbox <- Polygons(list(bbox), 'bbox')
+    bbox <- SpatialPolygons(list(bbox))
+    proj4string(bbox) <- CRS('+proj=longlat +datum=WGS84 +no_defs')
+    bbox <- spTransform(bbox , CRS('+proj=tmerc +lat_0=1.366666666666667 +lon_0=103.8333333333333 +k=1 +x_0=28001.642 +y_0=38744.572 +ellps=WGS84 +units=m +no_defs'))
+    
+    if (input$kfType == 'Accidents'){
+      
+      output$plot <- renderPlot({
       accidents_intersect <- gIntersection(accidents_sp, bbox)
       #finding intersection between road network and bbox
-      roadNetwork <- spTransform(roadNetwork, CRS('+proj=tmerc +lat_0=1.366666666666667 +lon_0=103.8333333333333 +k=1 +x_0=28001.642 +y_0=38744.572 +ellps=WGS84 +units=m +no_defs'))
-      roadNetwork_intersect <- gIntersection(roadNetwork, bbox) 
+      roadNetwork_intersect <- gIntersection(roadNetwork_sp, bbox) 
       
       #finding intersection between coastal outline and bbox
-      costaloutline <- spTransform(costaloutline, CRS('+proj=tmerc +lat_0=1.366666666666667 +lon_0=103.8333333333333 +k=1 +x_0=28001.642 +y_0=38744.572 +ellps=WGS84 +units=m +no_defs'))
-      costaloutline_intersect <- gIntersection(costaloutline, bbox) 
+      costaloutline_intersect <- gIntersection(costaloutline_kf, bbox) 
       costaloutline_sp_k <- as(costaloutline_intersect, "SpatialPolygons")
       costaloutline_owin_k <- as.owin.SpatialPolygons(costaloutline_sp_k)
       
@@ -421,12 +416,38 @@ server <- function(input, output) {
       
       # Create lpp
       accidents_lpp <- lpp(accidents_ppp, roadNetwork_linnet)
+      simulation <- input$noOfSimulation
       
-      
-      plot(envelope.lpp(accidents_lpp,linearK, nsim = 3, r=seq(0,10000)))
+      plot(envelope.lpp(accidents_lpp,linearK, simulation, r=seq(0,10000)))
       })
       
-      }
+      } else
+        if (input$kfType == 'Heavy Traffic'){
+          output$plot <- renderPlot({
+            heavytraffic_intersect <- gIntersection(heavytraffic_sp, bbox)
+            #finding intersection between road network and bbox
+            roadNetwork_intersect <- gIntersection(roadNetwork_sp, bbox) 
+            
+            #finding intersection between coastal outline and bbox
+            costaloutline_intersect <- gIntersection(costaloutline_kf, bbox) 
+            costaloutline_sp_k <- as(costaloutline_intersect, "SpatialPolygons")
+            costaloutline_owin_k <- as.owin.SpatialPolygons(costaloutline_sp_k)
+            
+            # create ppp
+            heavytraffic_ppp <- ppp(heavytraffic_intersect@coords[,1], heavytraffic_intersect@coords[,2], costaloutline_owin_k)
+            
+            # simplify road network
+            roadNetwork_psp <- as.psp(roadNetwork_intersect, window=NULL, marks=NULL, check=spatstat.options("checksegments"), fatal=TRUE)
+            roadNetwork_linnet <- as.linnet.psp(roadNetwork_psp, sparse=TRUE)
+            
+            # Create lpp
+            heavytraffic_lpp <- lpp(heavytraffic_ppp, roadNetwork_linnet)
+            simulation <- input$noOfSimulation
+            
+            plot(envelope.lpp(heavytraffic_lpp,linearK, simulation, r=seq(0,10000)))
+          })
+          
+        }
     
   })
    

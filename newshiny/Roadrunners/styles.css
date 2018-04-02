@@ -9,14 +9,17 @@ html, body {
 
 div.outer {
   position: fixed;
-  top: 52px;
-  left: 0;
+  top: 50px;
+  left: 345px;
   right: 0;
   bottom: 0;
   overflow: hidden;
   padding: 0;
 }
 
+div.center{
+  align-content: center;
+}
 
 .container-fluid {
     padding-right: 0px;
@@ -89,12 +92,6 @@ h1, h2, h3, h4 { font-weight: 400; }
   /* Appearance */
   background-color: white;
   padding: 0 20px 20px 20px;
-  cursor: move;
-  /* Fade out while not hovering */
-  opacity: 0.45;
-  zoom: 0.9;
-  transition: opacity 200ms 1s;
-  z-index: 1000;
 }
 #controls:hover {
   /* Fade in while hovering */
