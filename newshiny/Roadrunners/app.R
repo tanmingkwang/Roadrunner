@@ -24,9 +24,9 @@ library(RColorBrewer)
 library(classInt)
 library(polyCub)
 library(raster)
+library(rgeos)
 
-
-costaloutline <- readOGR("CostalOutline/CostalOutline.shp")
+costaloutline <<- readOGR("CostalOutline/CostalOutline.shp")
 costaloutline_sp <- as(costaloutline, "SpatialPolygons")
 costaloutline_owin <<- as.owin.SpatialPolygons(costaloutline_sp)
 costaloutline_mask <- as.mask(costaloutline_owin)
@@ -58,10 +58,8 @@ ui <- fluidPage(
                       absolutePanel(id = "controls", class = "panel panel-default", fixed = TRUE,
                                     draggable = TRUE, top = 180, left = "auto", right = 10, bottom = "auto",
                                     width = 330, height = "auto",
-                                    
-                                    uiOutput(outputId = "bounds"),
-                                    
-                                    h2("Choose Analysis"),
+                                  
+                                    uiOutput("bounds"), 
                                     
                                     conditionalPanel(condition = "input.accidentsFile == null",
                                                      selectizeInput(inputId="analysis",
@@ -122,7 +120,14 @@ ui <- fluidPage(
                                                                   label = "With Network Constraint"),
                                                      actionButton(inputId="kdeNoConstraint",
                                                                   label = "Without Network Constraint")
-                                                     )
+                                                     ),
+                                    
+                                    conditionalPanel(condition="input.analysis == 'K-Function'",
+                                                     actionButton(inputId="kfunctionEnter",
+                                                                  label = "Enter")
+                                    ),
+                                    
+                                    plotOutput(outputId = "plot")
                                     
                                     
                       )            
@@ -172,8 +177,12 @@ server <- function(input, output) {
   #cb <<- colorBin(palette = "YlGnBu", bins = at, domain = at, na.color = "#00000000")
   
   output$bounds <- renderUI({
-    bounds <- input$map_bounds
-    bounds
+    north <- input$map_bounds["north"] #long_max
+    south <- input$map_bounds["south"] #long_min 
+    east <- input$map_bounds["east"] #lat_max
+    west <- input$map_bounds["west"] #lat_min
+    
+    north
   })
   
   output$map <- renderLeaflet({
@@ -195,13 +204,22 @@ server <- function(input, output) {
     inputAccidentsFile <-input$accidentsFile
     
     trafficReport <- read.csv(inputAccidentsFile$datapath)
-    trafficReport_shp <- st_as_sf(trafficReport, coords = c("Longitude", "Latitude"), crs = "+proj=longlat +datum=WGS84 +no_defs")
-    traffic_Report_svy21 <- st_transform(trafficReport_shp, crs = 3414)
-
-    accidents <- traffic_Report_svy21 %>% filter(Type == "Accident")
-    accidents_sp <- as(accidents, "Spatial")
+    patterns <- c('AYE',	'BKE',	'CTE'	,'ECP',	'KJE'	,'KPE',	'MCE'	,'PIE',	'SLE',	'TPE')
+    accidents_filter <- trafficReport %>% filter(grepl(paste(patterns, collapse="|"), Descriptions)) %>% filter(Type == 'Accident')
+    accidents_sf <- st_as_sf(accidents_filter, coords = c("Longitude", "Latitude"), crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs")
+    accidents <- st_transform(accidents_sf, crs = 3414)
+    accidents_sp <<- as(accidents, "Spatial")
     
-    heavytraffic <- traffic_Report_svy21 %>% filter(Type == "Heavy Traffic")
+    #trafficReport_shp <- st_as_sf(trafficReport, coords = c("Longitude", "Latitude"), crs = "+proj=longlat +datum=WGS84 +no_defs")
+    #traffic_Report_svy21 <- st_transform(trafficReport_shp, crs = 3414)
+    #accidents <- traffic_Report_svy21 %>% filter(Type == "Accident")
+    
+    #heavytraffic <- traffic_Report_svy21 %>% filter(Type == "Heavy Traffic")
+    #heavytraffic_sp <- as(heavytraffic, "Spatial")
+    
+    heavytraffic_filter <- trafficReport %>% filter(grepl(paste(patterns, collapse="|"), Descriptions)) %>% filter(Type == 'Heavy Traffic')
+    heavytraffic_sf <- st_as_sf(heavytraffic_filter, coords = c("Longitude", "Latitude"), crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs")
+    heavytraffic <- st_transform(heavytraffic_sf, crs = 3414)
     heavytraffic_sp <- as(heavytraffic, "Spatial")
     
     accidents_ppp <<- ppp(coordinates(accidents_sp)[,1], coordinates(accidents_sp)[,2], costaloutline_owin)
@@ -220,7 +238,7 @@ server <- function(input, output) {
     
     getnetworkshp <- list.files(dir, pattern="*.shp", full.names=TRUE)
     
-    roadNetwork <- readShapeSpatial(getnetworkshp, CRS("+init=epsg:3414"))
+    roadNetwork <<- readShapeSpatial(getnetworkshp, CRS("+init=epsg:3414"))
     roadNetwork_psp <- as.psp(roadNetwork, window=NULL, marks=NULL, check=spatstat.options("checksegments"), fatal=TRUE)
     roadNetwork_linnet <<- as.linnet.psp(roadNetwork_psp, sparse=TRUE)
     
@@ -364,6 +382,53 @@ server <- function(input, output) {
                    }
                  
                })
+  
+  observeEvent(input$kfunctionEnter, {
+    if (input$kfType == 'Accidents'){
+      output$plot <- renderPlot({
+      # creating bbox
+      north <- as.numeric(input$map_bounds["north"]) #long_max
+      south <- as.numeric(input$map_bounds["south"]) #long_min 
+      east <- as.numeric(input$map_bounds["east"]) #lat_max
+      west <- as.numeric(input$map_bounds["west"]) #lat_min
+      
+      bbox <- rbind(c(north, east), c(north, west), c(south, west), c(south, east), c(north, east))	
+      colnames(bbox) <- c('long','lat')
+      bbox <- as.data.frame(bbox)
+      bbox <- Polygon(bbox)
+      bbox <- Polygons(list(bbox), 'bbox')
+      bbox <- SpatialPolygons(list(bbox))
+      proj4string(bbox) <- CRS('+proj=longlat +datum=WGS84 +no_defs')
+      bbox <- spTransform(bbox , CRS('+proj=tmerc +lat_0=1.366666666666667 +lon_0=103.8333333333333 +k=1 +x_0=28001.642 +y_0=38744.572 +ellps=WGS84 +units=m +no_defs'))
+    
+      accidents_intersect <- gIntersection(accidents_sp, bbox)
+      #finding intersection between road network and bbox
+      roadNetwork <- spTransform(roadNetwork, CRS('+proj=tmerc +lat_0=1.366666666666667 +lon_0=103.8333333333333 +k=1 +x_0=28001.642 +y_0=38744.572 +ellps=WGS84 +units=m +no_defs'))
+      roadNetwork_intersect <- gIntersection(roadNetwork, bbox) 
+      
+      #finding intersection between coastal outline and bbox
+      costaloutline <- spTransform(costaloutline, CRS('+proj=tmerc +lat_0=1.366666666666667 +lon_0=103.8333333333333 +k=1 +x_0=28001.642 +y_0=38744.572 +ellps=WGS84 +units=m +no_defs'))
+      costaloutline_intersect <- gIntersection(costaloutline, bbox) 
+      costaloutline_sp_k <- as(costaloutline_intersect, "SpatialPolygons")
+      costaloutline_owin_k <- as.owin.SpatialPolygons(costaloutline_sp_k)
+      
+      # create ppp
+      accidents_ppp <- ppp(accidents_intersect@coords[,1], accidents_intersect@coords[,2], costaloutline_owin_k)
+      
+      # simplify road network
+      roadNetwork_psp <- as.psp(roadNetwork_intersect, window=NULL, marks=NULL, check=spatstat.options("checksegments"), fatal=TRUE)
+      roadNetwork_linnet <- as.linnet.psp(roadNetwork_psp, sparse=TRUE)
+      
+      # Create lpp
+      accidents_lpp <- lpp(accidents_ppp, roadNetwork_linnet)
+      
+      
+      plot(envelope.lpp(accidents_lpp,linearK, nsim = 3, r=seq(0,10000)))
+      })
+      
+      }
+    
+  })
    
 }
 
