@@ -29,6 +29,26 @@ accidents_filter <- accidents_csv %>% filter(grepl(paste(patterns, collapse="|")
 accidents_sf <- st_as_sf(accidents_filter, coords = c("Longitude", "Latitude"), crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs")
 accidents <- st_transform(accidents_sf, crs = 3414)
 
+# accidents ( filtering only accidents that occured on expressways)
+heavytraffic_csv <- read_csv('csv/LTATrafficDataClean2.csv')
+patterns <- c('AYE',	'BKE',	'CTE'	,'ECP',	'KJE'	,'KPE',	'MCE'	,'PIE',	'SLE',	'TPE')
+heavytraffic_filter <- heavytraffic_csv %>% filter(grepl(paste(patterns, collapse="|"), Descriptions)) %>% filter(Type == 'Heavy Traffic')
+heavytraffic_sf <- st_as_sf(heavytraffic_filter, coords = c("Longitude", "Latitude"), crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs")
+heavytraffic <- st_transform(heavytraffic_sf, crs = 3414)
+
+## *********** NEW********
+# cameras  
+cameras <- readOGR('Cameras', 'cameras_combined')
+
+## *********** NEW********
+# combining cameras with heavy traffic  
+cameras@data <- cameras@data[ , -(1:ncol(cameras@data))]
+cameras@data[['Type']] <- 'camera'
+heavytraffic_sp <- as(heavytraffic, 'Spatial')
+heavytraffic_sp@data <- heavytraffic_sp@data[ , -(1:ncol(heavytraffic_sp@data))]
+heavytraffic_sp@data[['Type']] <- 'heavytraffic'
+heavytraffic_cameras_sp <- spRbind(cameras, heavytraffic_sp)
+
 # coastal outline
 costaloutline <- readOGR("sg_map/CostalOutline.shp")
 
@@ -39,10 +59,10 @@ costaloutline <- readOGR("sg_map/CostalOutline.shp")
 ```{r}
 
 # hard coding the boundary
-long_max <- 103.777327537537
-long_min <- 103.736128807068
-lat_max <- 1.35968795882909
-lat_min <- 1.32167537337797
+long_max <- 103.689
+long_min <- 103.647
+lat_max <- 1.3336
+lat_min <- 1.3144
 
 # creating bbox
 bbox <- rbind(c(long_max, lat_max ), c(long_max, lat_min), c(long_min, lat_min ), c(long_min, lat_max), c(long_max, lat_max ))	
@@ -57,6 +77,10 @@ bbox <- spTransform(bbox , CRS('+proj=tmerc +lat_0=1.366666666666667 +lon_0=103.
 # finding accidents inside the bbox 
 accidents_sp <- as(accidents, "Spatial") 
 accidents_intersect <- gIntersection(accidents_sp, bbox)
+
+# finding heavy traffic inside the bbox 
+heavytraffic_sp <- as(heavytraffic, "Spatial") 
+heavytraffic_intersect <- gIntersection(heavytraffic_sp, bbox)
 
 #finding intersection between road network and bbox
 roadNetwork <- spTransform(roadNetwork, CRS('+proj=tmerc +lat_0=1.366666666666667 +lon_0=103.8333333333333 +k=1 +x_0=28001.642 +y_0=38744.572 +ellps=WGS84 +units=m +no_defs'))
@@ -75,21 +99,47 @@ costaloutline_intersect <- gIntersection(costaloutline, bbox)
 costaloutline_sp <- as(costaloutline_intersect, "SpatialPolygons")
 costaloutline_owin <- as.owin.SpatialPolygons(costaloutline_sp)
 
-# create ppp
+# create accidents ppp
 accidents_ppp <- ppp(accidents_intersect@coords[,1], accidents_intersect@coords[,2], costaloutline_owin)
 
-# simplify road network
+
+# create heavy traffic ppp
+heavytraffic_ppp <- ppp(heavytraffic_intersect@coords[,1], heavytraffic_intersect@coords[,2], costaloutline_owin)
+
+# prepare road network
 roadNetwork_psp <- as.psp(roadNetwork_intersect, window=NULL, marks=NULL, check=spatstat.options("checksegments"), fatal=TRUE)
 roadNetwork_linnet <- as.linnet.psp(roadNetwork_psp, sparse=TRUE)
 
-# Create lpp
+# Create accidents lpp
 accidents_lpp <- lpp(accidents_ppp, roadNetwork_linnet)
+
+# Create heavy traffic lpp
+heavytraffic_lpp <- lpp(heavytraffic_ppp, roadNetwork_linnet)
 
 # Run linearK function
 plot(envelope.lpp(accidents_lpp,linearK, nsim = 3, r=seq(0,10000)))
 
 ```
 
+# Multitype K Function **********(ALL NEW)***********
+```{r}
+## *********** NEW********
+
+# Create heavytraffic_cameras ppp
+heavytraffic_cameras_ppp <- as.ppp(heavytraffic_cameras_sp)
+marks(heavytraffic_cameras_ppp) <- heavytraffic_cameras_sp@data['Type']
+
+# Extract heavytraffic_cameras in bbox
+bbox_owin <- as(bbox, 'owin')
+Window(heavytraffic_cameras_ppp) <- bbox_owin
+
+# Create heavytraffic_cameras_lpp
+heavytraffic_cameras_lpp <- lpp(heavytraffic_cameras_ppp, roadNetwork_linnet)
+
+#Multitype K Function
+plot(envelope.lpp(heavytraffic_cameras_lpp,linearKcross, nsim = 3, i = 'camera', j = 'heavytraffic')) 
+
+```
 
 # OLD CODES 
 
