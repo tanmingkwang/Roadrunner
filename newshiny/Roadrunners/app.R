@@ -33,8 +33,15 @@ costaloutline_mask <- as.mask(costaloutline_owin)
 costaloutline_kf <<- spTransform(costaloutline, CRS('+proj=tmerc +lat_0=1.366666666666667 +lon_0=103.8333333333333 +k=1 +x_0=28001.642 +y_0=38744.572 +ellps=WGS84 +units=m +no_defs'))
 
 speedcameras <- readOGR("Camera/cameras_combined.shp")
-speedcameras_svy21 <<- spTransform(speedcameras, CRS("+init=epsg:3414"))
-speedcameras_sp <<- as(speedcameras_svy21, "SpatialPoints")
+speedcameras_wgs84 <- spTransform(speedcameras, CRS("+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0"))
+speedCameraIcon <- makeIcon(
+  iconUrl = "https://lh3.googleusercontent.com/sLX-R-LLdMwtsFJXlYgW9g8CiGv4ogDm7fjmv_aK4818Mc1vxJVOPDJbagWt1zBxNQ=w300",
+  iconWidth = 38, iconHeight = 38
+)
+
+roadNetwork_ogr <- readOGR("Network/roads_expressway.shp")
+roadNetwork_wgs84 <- spTransform(roadNetwork_ogr, CRS("+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0"))
+linecolor <- colorFactor(rainbow(9), roadNetwork_wgs84@data$ref)
 
 #preloading of accidents data 
 trafficReport <- read.csv("Main/LTATrafficDataClean2.csv")
@@ -213,8 +220,10 @@ server <- function(input, output) {
   output$map <- renderLeaflet({
     leaflet() %>%
       setView(103.8198, 1.3521,zoom = 12) %>% 
-      #addTiles() %>%
-      #addMarkers(speedcameras_svy21, lng = ~speedcameras_svy21$X, lat = ~speedcameras_svy21$Y, label = ~as.character(speedcameras_svy21$ROAD_NAME), popup = ~as.character(speedcameras_svy21$ROAD_NAME)) %>%
+      addTiles() %>%
+      addMarkers(data = speedcameras_wgs84, lat = speedcameras_wgs84@coords[,2], lng = speedcameras_wgs84@coords[,1], label = speedcameras_wgs84$ROAD_NAME, popup = speedcameras_wgs84$CameraType, icon = speedCameraIcon) %>%
+      addTiles() %>%
+      addPolylines(data = roadNetwork_wgs84, color = linecolor(roadNetwork_wgs84@data$ref), popup = roadNetwork_wgs84@data$name, label = roadNetwork_wgs84@data$ref) %>%
       addProviderTiles("CartoDB.Positron", group = "CartoDB (default)") %>% 
       addTiles(group = "OSM") %>% 
       addLayersControl(
