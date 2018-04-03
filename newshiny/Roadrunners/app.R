@@ -43,7 +43,7 @@ roadNetwork_ogr <- readOGR("Network/roads_expressway.shp")
 roadNetwork_wgs84 <- spTransform(roadNetwork_ogr, CRS("+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0"))
 linecolor <- colorFactor(rainbow(9), roadNetwork_wgs84@data$ref)
 
-#preloading of accidents data 
+#preloading of accidents data
 trafficReport <- read.csv("Main/LTATrafficDataClean2.csv")
 patterns <- c('AYE',	'BKE',	'CTE'	,'ECP',	'KJE'	,'KPE',	'MCE'	,'PIE',	'SLE',	'TPE')
 accidents_filter <- trafficReport %>% filter(grepl(paste(patterns, collapse="|"), Descriptions)) %>% filter(Type == 'Accident')
@@ -58,6 +58,13 @@ heavytraffic_sp <<- as(heavytraffic, "Spatial")
 
 accidents_ppp <<- ppp(coordinates(accidents_sp)[,1], coordinates(accidents_sp)[,2], costaloutline_owin)
 heavytraffic_ppp <<- ppp(coordinates(heavytraffic_sp)[,1], coordinates(heavytraffic_sp)[,2], costaloutline_owin)
+
+speedcameras@data <- speedcameras@data[ , -(1:ncol(speedcameras@data))]
+speedcameras@data[['Type']] <- 'camera'
+heavytraffic_sp <- as(heavytraffic, 'Spatial')
+heavytraffic_sp@data <- heavytraffic_sp@data[ , -(1:ncol(heavytraffic_sp@data))]
+heavytraffic_sp@data[['Type']] <- 'heavytraffic'
+heavytraffic_cameras_sp <<- spRbind(speedcameras, heavytraffic_sp)
 
 #preloading of network data
 roadNetwork <<- readShapeSpatial("Network/roads_expressway.shp", CRS("+init=epsg:3414"))
@@ -77,16 +84,21 @@ ui <- fluidPage(
   
   #Navbar
 
-  navbarPage(strong("Singapore Traffic Accidents Analysis"),
+  navbarPage(strong("Singapore Traffic Analysis"),
              
              tabPanel("Map",
                       
                       fluidRow(    
                         column(3,
-                      
+                               absolutePanel(id = "controls", class = "panel panel-default", fixed = TRUE,
+                                             draggable = FALSE, top = 50, left = 15, right = 10, bottom = "auto",
+                                             width = 315, height = 70,
+                                             checkboxInput(inputId="expresswayCheck", label="Expressway", value = FALSE, width = 2),
+                                             checkboxInput(inputId="camerasCheck", label="Cameras", value = FALSE, width = 2)
+                               ),
       
                       absolutePanel(id = "controls", class = "panel panel-default", fixed = TRUE,
-                                    draggable = FALSE, top = 50, left = 15, right = 10, bottom = "auto",
+                                    draggable = FALSE, top = 150, left = 15, right = 10, bottom = "auto",
                                     width = 315, height = "auto",
                                   
                                     #uiOutput("bounds"), 
@@ -136,15 +148,19 @@ ui <- fluidPage(
                                     conditionalPanel(condition = "input.analysis == 'Multitype K-Function' && input.mkfType == 'Accidents'",
                                                      selectizeInput(inputId = "accidentsMKFunction",
                                                                     label = "Choose 2nd Variable:",
-                                                                    choices = c("Traffic Camera"),
+                                                                    choices = c("Traffic Cameras"),
                                                                     options = list(onInitialize = I('function() { this.setValue(""); }')))),
                                     
                                     conditionalPanel(condition = "input.analysis == 'Multitype K-Function' && input.mkfType == 'Heavy Traffic'",
                                                      selectizeInput(inputId = "trafficMKFunction",
                                                                     label = "Choose 2nd Variable:",
-                                                                    choices = c("Traffic Camera"),
+                                                                    choices = c("Traffic Cameras"),
                                                                     options = list(onInitialize = I('function() { this.setValue(""); }')))),
                                     
+                                    conditionalPanel(condition="input.analysis == 'Multitype K-Function'", align = "center", 
+                                                     actionButton(inputId="multiKEnter",
+                                                                  label = "Enter")),
+                                                     
                                     conditionalPanel(condition="input.analysis == 'Kernel Density Estimation (KDE)'", align = "center",
                                                      div(class="center",
                                                       actionButton(inputId="kdeConstraint",
@@ -163,6 +179,7 @@ ui <- fluidPage(
                                     plotOutput(outputId = "plot")
                                     
                       )
+
                       ),
                       column(9, div(class="outer",
                              leafletOutput("map", width="100%", height="100%")
@@ -182,7 +199,7 @@ ui <- fluidPage(
                                     
                                 
                                fileInput(inputId="accidentsFile",
-                                         label = "Upload Accidents Data", 
+                                         label = "Upload Traffic Data", 
                                          accept=c('.csv'), 
                                          buttonLabel=icon("upload")),
 
@@ -208,22 +225,37 @@ server <- function(input, output) {
   #at <- seq(0, 0.0030, 0.0005)
   #cb <<- colorBin(palette = "YlGnBu", bins = at, domain = at, na.color = "#00000000")
   
-  output$bounds <- renderUI({
-    north <- input$map_bounds["north"] #long_max
-    south <- input$map_bounds["south"] #long_min 
-    east <- input$map_bounds["east"] #lat_max
-    west <- input$map_bounds["west"] #lat_min
-    
-    north
-  })
+  observeEvent(input$camerasCheck,
+               if (input$camerasCheck){
+                 leafletProxy("map") %>%
+                   addTiles() %>%
+                   addMarkers(data = speedcameras_wgs84, lat = speedcameras_wgs84@coords[,2], lng = speedcameras_wgs84@coords[,1], label = speedcameras_wgs84$ROAD_NAME, popup = speedcameras_wgs84$CameraType, icon = speedCameraIcon, group = "camera")
+               }else
+               {
+                 leafletProxy("map") %>%
+                   clearGroup("camera")
+               }
+  )
+  
+  observeEvent(input$expresswayCheck,
+               if (input$expresswayCheck){
+                 leafletProxy("map") %>%
+                   addTiles() %>%
+                   addPolylines(data = roadNetwork_wgs84, color = linecolor(roadNetwork_wgs84@data$ref), popup = roadNetwork_wgs84@data$name, label = roadNetwork_wgs84@data$ref, opacity = 0.3, group = "network")
+               }else
+               {
+                 leafletProxy("map") %>%
+                   clearGroup("network")
+               }
+  )
   
   output$map <- renderLeaflet({
     leaflet() %>%
       setView(103.8198, 1.3521,zoom = 12) %>% 
-      addTiles() %>%
-      addMarkers(data = speedcameras_wgs84, lat = speedcameras_wgs84@coords[,2], lng = speedcameras_wgs84@coords[,1], label = speedcameras_wgs84$ROAD_NAME, popup = speedcameras_wgs84$CameraType, icon = speedCameraIcon) %>%
-      addTiles() %>%
-      addPolylines(data = roadNetwork_wgs84, color = linecolor(roadNetwork_wgs84@data$ref), popup = roadNetwork_wgs84@data$name, label = roadNetwork_wgs84@data$ref, opacity = 0.3) %>%
+      #addTiles() %>%
+      #addMarkers(data = speedcameras_wgs84, lat = speedcameras_wgs84@coords[,2], lng = speedcameras_wgs84@coords[,1], label = speedcameras_wgs84$ROAD_NAME, popup = speedcameras_wgs84$CameraType, icon = speedCameraIcon) %>%
+      #addTiles() %>%
+      #addPolylines(data = roadNetwork_wgs84, color = linecolor(roadNetwork_wgs84@data$ref), popup = roadNetwork_wgs84@data$name, label = roadNetwork_wgs84@data$ref, opacity = 0.3) %>%
       addProviderTiles("CartoDB.Positron", group = "CartoDB (default)") %>% 
       addTiles(group = "OSM") %>% 
       addLayersControl(
@@ -312,7 +344,7 @@ server <- function(input, output) {
                      clearGroup("Traffic without Constraint") %>%
                      clearGroup("Accidents with Constraint") %>%
                      addRasterImage(accidentkde_raster_scaled, colors=cb, group='Accidents with Constraint', opacity=0.80) %>%
-                     addLegend(pal = cb, values = at, title = "Legend", position='bottomleft', labFormat = labelFormat(digits=6),layerId="leg") %>%
+                     addLegend(pal = cb, values = at, title = "Density Function", position='bottomleft', labFormat = labelFormat(digits=6),layerId="leg") %>%
                      addProviderTiles("CartoDB.Positron", group = "CartoDB (default)") %>% 
                      addTiles(group = "OSM") %>% 
                      addLayersControl(
@@ -344,7 +376,7 @@ server <- function(input, output) {
                          clearGroup("Accidents with Constraint") %>%
                          clearGroup("Traffic with Constraint") %>%
                          addRasterImage(heavytraffickde_raster_scaled, colors=cb, group="Traffic with Constraint",  opacity=0.80) %>%
-                         addLegend(pal = cb, values = at, title = "Legend", position='bottomleft', labFormat = labelFormat(digits=6),layerId="leg") %>%
+                         addLegend(pal = cb, values = at, title = "Density Function", position='bottomleft', labFormat = labelFormat(digits=6),layerId="leg") %>%
                          addProviderTiles("CartoDB.Positron", group = "CartoDB (default)") %>% 
                          addTiles(group = "OSM") %>% 
                          addLayersControl(
@@ -379,7 +411,7 @@ server <- function(input, output) {
                      clearGroup("Traffic without Constraint") %>%
                      clearGroup("Accidents without Constraint") %>%
                      addRasterImage(accidentkde_ppp_raster, group="Accidents without Constraint", colors=cb, opacity=0.50) %>%
-                     addLegend(pal = cb, values = at, title = "Legend", position='bottomleft', labFormat = labelFormat(digits=8),layerId="leg") %>%
+                     addLegend(pal = cb, values = at, title = "Density Function", position='bottomleft', labFormat = labelFormat(digits=8),layerId="leg") %>%
                      
                      addProviderTiles("CartoDB.Positron", group = "CartoDB (default)") %>% 
                      addTiles(group = "OSM") %>% 
@@ -410,7 +442,7 @@ server <- function(input, output) {
                        clearGroup("Accidents without Constraint") %>%
                        clearGroup("Traffic without Constraint") %>%
                        addRasterImage(heavytraffickde_ppp_raster, group="Traffic without Constraint",colors=cb, opacity=0.50) %>%
-                       addLegend(pal = cb, values = at, title = "Legend", position='bottomleft', labFormat = labelFormat(digits=8),layerId="leg") %>%
+                       addLegend(pal = cb, values = at, title = "Density Function", position='bottomleft', labFormat = labelFormat(digits=8),layerId="leg") %>%
                        addProviderTiles("CartoDB.Positron", group = "CartoDB (default)") %>% 
                        addTiles(group = "OSM") %>% 
                        addLayersControl(
@@ -493,6 +525,24 @@ server <- function(input, output) {
           
         }
     
+  })
+  
+  observeEvent(input$multiKEnter, {
+    output$plot <- renderPlot({
+      # Create heavytraffic_cameras ppp
+      heavytraffic_cameras_ppp <- as.ppp(heavytraffic_cameras_sp)
+      marks(heavytraffic_cameras_ppp) <- heavytraffic_cameras_sp@data['Type']
+      
+      # Extract heavytraffic_cameras in bbox
+      bbox_owin <- as(bbox, 'owin')
+      Window(heavytraffic_cameras_ppp) <- bbox_owin
+      
+      # Create heavytraffic_cameras_lpp
+      heavytraffic_cameras_lpp <- lpp(heavytraffic_cameras_ppp, roadNetwork_linnet)
+      
+      #Multitype K Function
+      plot(envelope.lpp(heavytraffic_cameras_lpp,linearKcross, nsim = 3, i = 'camera', j = 'heavytraffic')) 
+    })
   })
    
 }
