@@ -223,7 +223,7 @@ server <- function(input, output) {
       addTiles() %>%
       addMarkers(data = speedcameras_wgs84, lat = speedcameras_wgs84@coords[,2], lng = speedcameras_wgs84@coords[,1], label = speedcameras_wgs84$ROAD_NAME, popup = speedcameras_wgs84$CameraType, icon = speedCameraIcon) %>%
       addTiles() %>%
-      addPolylines(data = roadNetwork_wgs84, color = linecolor(roadNetwork_wgs84@data$ref), popup = roadNetwork_wgs84@data$name, label = roadNetwork_wgs84@data$ref) %>%
+      addPolylines(data = roadNetwork_wgs84, color = linecolor(roadNetwork_wgs84@data$ref), popup = roadNetwork_wgs84@data$name, label = roadNetwork_wgs84@data$ref, opacity = 0.3) %>%
       addProviderTiles("CartoDB.Positron", group = "CartoDB (default)") %>% 
       addTiles(group = "OSM") %>% 
       addLayersControl(
