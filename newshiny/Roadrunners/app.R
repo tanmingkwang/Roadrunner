@@ -36,6 +36,28 @@ speedcameras <- readOGR("Camera/cameras_combined.shp")
 speedcameras_svy21 <<- spTransform(speedcameras, CRS("+init=epsg:3414"))
 speedcameras_sp <<- as(speedcameras_svy21, "SpatialPoints")
 
+#preloading of accidents data 
+trafficReport <- read.csv("Main/LTATrafficDataClean2.csv")
+patterns <- c('AYE',	'BKE',	'CTE'	,'ECP',	'KJE'	,'KPE',	'MCE'	,'PIE',	'SLE',	'TPE')
+accidents_filter <- trafficReport %>% filter(grepl(paste(patterns, collapse="|"), Descriptions)) %>% filter(Type == 'Accident')
+accidents_sf <- st_as_sf(accidents_filter, coords = c("Longitude", "Latitude"), crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs")
+accidents <- st_transform(accidents_sf, crs = 3414)
+accidents_sp <<- as(accidents, "Spatial")
+
+heavytraffic_filter <- trafficReport %>% filter(grepl(paste(patterns, collapse="|"), Descriptions)) %>% filter(Type == 'Heavy Traffic')
+heavytraffic_sf <- st_as_sf(heavytraffic_filter, coords = c("Longitude", "Latitude"), crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs")
+heavytraffic <- st_transform(heavytraffic_sf, crs = 3414)
+heavytraffic_sp <<- as(heavytraffic, "Spatial")
+
+accidents_ppp <<- ppp(coordinates(accidents_sp)[,1], coordinates(accidents_sp)[,2], costaloutline_owin)
+heavytraffic_ppp <<- ppp(coordinates(heavytraffic_sp)[,1], coordinates(heavytraffic_sp)[,2], costaloutline_owin)
+
+#preloading of network data
+roadNetwork <<- readShapeSpatial("Network/roads_expressway.shp", CRS("+init=epsg:3414"))
+roadNetwork_psp <- as.psp(roadNetwork, window=NULL, marks=NULL, check=spatstat.options("checksegments"), fatal=TRUE)
+roadNetwork_linnet <<- as.linnet.psp(roadNetwork_psp, sparse=TRUE)
+roadNetwork_sp <<- spTransform(roadNetwork, CRS('+proj=tmerc +lat_0=1.366666666666667 +lon_0=103.8333333333333 +k=1 +x_0=28001.642 +y_0=38744.572 +ellps=WGS84 +units=m +no_defs'))
+
 # Define UI for application that draws a histogram
 ui <- fluidPage(
   
@@ -142,9 +164,12 @@ ui <- fluidPage(
                       #div class 
                       ), #end of map tabPanel
              tabPanel("Upload Data",
-                      absolutePanel(id = "uploadControls", class = "panel panel-default", fixed = TRUE,
-                                    top = 60, left = 20, right = 20, bottom = "auto",
-                                    width = 330, height = "auto",
+                      fluidRow(    
+                        column(3,
+  
+                               absolutePanel(id = "controls", class = "panel panel-default", fixed = TRUE,
+                                             draggable = FALSE, top = 50, left = 15, right = 10, bottom = "auto",
+                                             width = 315, height = "auto",
                                     
                                     h2("Upload Data Files"),
                                     
@@ -162,11 +187,14 @@ ui <- fluidPage(
                                          buttonLabel=icon("upload"))
 
                         
+                      )),
+                      
+                      column(9, div(class="outer",tableOutput("dataTable"))
                       )
                       ) #end of upload data tabPanel
              )
   
-)
+))
 
 
 server <- function(input, output) {
@@ -198,7 +226,12 @@ server <- function(input, output) {
 
   #if accident file is uploaded, process accident file first
   observeEvent(input$accidentsFile, {
+    output$dataTable <- renderTable({
+      
+    req(input$accidentsFile)
+      
     inputAccidentsFile <-input$accidentsFile
+    trafficReport <- read.csv(inputAccidentsFile$datapath)
     
     trafficReport <- read.csv(inputAccidentsFile$datapath)
     patterns <- c('AYE',	'BKE',	'CTE'	,'ECP',	'KJE'	,'KPE',	'MCE'	,'PIE',	'SLE',	'TPE')
@@ -222,6 +255,8 @@ server <- function(input, output) {
     accidents_ppp <<- ppp(coordinates(accidents_sp)[,1], coordinates(accidents_sp)[,2], costaloutline_owin)
     heavytraffic_ppp <<- ppp(coordinates(heavytraffic_sp)[,1], coordinates(heavytraffic_sp)[,2], costaloutline_owin)
     
+    return (trafficReport)
+    })
   })
   
   
@@ -416,9 +451,9 @@ server <- function(input, output) {
       
       # Create lpp
       accidents_lpp <- lpp(accidents_ppp, roadNetwork_linnet)
-      simulation <- input$noOfSimulation
-      
+      simulation <- isolate({input$noOfSimulation})
       plot(envelope.lpp(accidents_lpp,linearK, simulation, r=seq(0,10000)))
+      
       })
       
       } else
@@ -442,7 +477,7 @@ server <- function(input, output) {
             
             # Create lpp
             heavytraffic_lpp <- lpp(heavytraffic_ppp, roadNetwork_linnet)
-            simulation <- input$noOfSimulation
+            simulation <- isolate({input$noOfSimulation})
             
             plot(envelope.lpp(heavytraffic_lpp,linearK, simulation, r=seq(0,10000)))
           })
