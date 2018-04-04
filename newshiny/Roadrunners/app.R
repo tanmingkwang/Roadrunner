@@ -36,7 +36,7 @@ speedcameras <- readOGR("Camera/cameras_combined.shp")
 speedcameras_wgs84 <- spTransform(speedcameras, CRS("+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0"))
 speedCameraIcon <- makeIcon(
   iconUrl = "https://lh3.googleusercontent.com/sLX-R-LLdMwtsFJXlYgW9g8CiGv4ogDm7fjmv_aK4818Mc1vxJVOPDJbagWt1zBxNQ=w300",
-  iconWidth = 38, iconHeight = 38
+  iconWidth = 25, iconHeight = 25
 )
 
 roadNetwork_ogr <- readOGR("Network/roads_expressway.shp")
@@ -50,11 +50,21 @@ accidents_filter <- trafficReport %>% filter(grepl(paste(patterns, collapse="|")
 accidents_sf <- st_as_sf(accidents_filter, coords = c("Longitude", "Latitude"), crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs")
 accidents <- st_transform(accidents_sf, crs = 3414)
 accidents_sp <<- as(accidents, "Spatial")
+accidents_sp_wgs84 <- spTransform(accidents_sp, CRS("+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0"))
+accidentsIcon <- makeIcon(
+  iconUrl = "https://www.freeiconspng.com/uploads/car-icon-png-28.png",
+  iconWidth = 20, iconHeight = 20
+)
 
 heavytraffic_filter <- trafficReport %>% filter(grepl(paste(patterns, collapse="|"), Descriptions)) %>% filter(Type == 'Heavy Traffic')
 heavytraffic_sf <- st_as_sf(heavytraffic_filter, coords = c("Longitude", "Latitude"), crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs")
 heavytraffic <- st_transform(heavytraffic_sf, crs = 3414)
 heavytraffic_sp <<- as(heavytraffic, "Spatial")
+heavytraffic_sp_wgs84 <- spTransform(heavytraffic_sp, CRS("+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0"))
+heavytrafficIcon <- makeIcon(
+  iconUrl = "https://png.icons8.com/android/1600/traffic-jam.png",
+  iconWidth = 20, iconHeight = 20
+)
 
 accidents_ppp <<- ppp(coordinates(accidents_sp)[,1], coordinates(accidents_sp)[,2], costaloutline_owin)
 heavytraffic_ppp <<- ppp(coordinates(heavytraffic_sp)[,1], coordinates(heavytraffic_sp)[,2], costaloutline_owin)
@@ -101,13 +111,15 @@ ui <- fluidPage(
                         column(3,
                                absolutePanel(id = "controls", class = "panel panel-default", fixed = TRUE,
                                              draggable = FALSE, top = 50, left = 15, right = 10, bottom = "auto",
-                                             width = 315, height = 70,
+                                             width = 315, height = 140,
                                              checkboxInput(inputId="expresswayCheck", label="Expressway", value = FALSE, width = 2),
-                                             checkboxInput(inputId="camerasCheck", label="Cameras", value = FALSE, width = 2)
+                                             checkboxInput(inputId="camerasCheck", label="Cameras", value = FALSE, width = 2),
+                                             checkboxInput(inputId="accidentsCheck", label="Accidents", value = FALSE, width = 2),
+                                             checkboxInput(inputId="heavytrafficCheck", label="Heavy Traffic", value = FALSE, width = 4)
                                ),
       
                       absolutePanel(id = "controls", class = "panel panel-default", fixed = TRUE,
-                                    draggable = FALSE, top = 150, left = 15, right = 10, bottom = "auto",
+                                    draggable = FALSE, top = 250, left = 15, right = 10, bottom = "auto",
                                     width = 315, height = "auto",
                                   
                                     #uiOutput("bounds"), 
@@ -256,11 +268,40 @@ server <- function(input, output) {
                if (input$expresswayCheck){
                  leafletProxy("map") %>%
                    addTiles() %>%
-                   addPolylines(data = roadNetwork_wgs84, color = linecolor(roadNetwork_wgs84@data$ref), popup = roadNetwork_wgs84@data$name, label = roadNetwork_wgs84@data$ref, opacity = 0.3, group = "network")
+                   addPolylines(data = roadNetwork_wgs84, color = "Grey", popup = roadNetwork_wgs84@data$name, label = roadNetwork_wgs84@data$ref, opacity = 0.1, group = "network")
+                   # addPolylines(data = roadNetwork_wgs84, color = linecolor(roadNetwork_wgs84@data$ref), popup = roadNetwork_wgs84@data$name, label = roadNetwork_wgs84@data$ref, opacity = 0.1, group = "network")
                }else
                {
                  leafletProxy("map") %>%
                    clearGroup("network")
+               }
+  )
+  
+  observeEvent(input$accidentsCheck,
+               if (input$accidentsCheck){
+                 leafletProxy("map") %>%
+                   addTiles() %>%
+                   # Idk if icon or circle nicer
+                   #addMarkers(data = accidents_sp_wgs84, lat = accidents_sp_wgs84@coords[,2], lng = accidents_sp_wgs84@coords[,1], label = accidents_sp_wgs84$Type, popup = accidents_sp_wgs84$Descriptions, icon = accidentsIcon,  group = "accidents")
+                   addCircleMarkers(data = accidents_sp_wgs84, lat = accidents_sp_wgs84@coords[,2], lng = accidents_sp_wgs84@coords[,1], label = accidents_sp_wgs84$Type, popup = accidents_sp_wgs84$Descriptions, radius = 6, color = "Red", stroke = FALSE, fillOpacity = 0.3, group = "accidents")
+               }else
+               {
+                 leafletProxy("map") %>%
+                   clearGroup("accidents")
+               }
+  )
+  
+  observeEvent(input$heavytrafficCheck,
+               if (input$heavytrafficCheck){
+                 leafletProxy("map") %>%
+                   addTiles() %>%
+                   # Idk if icon or circle nicer
+                   # addMarkers(data = heavytraffic_sp_wgs84, lat = heavytraffic_sp_wgs84@coords[,2], lng = heavytraffic_sp_wgs84@coords[,1], label = heavytraffic_sp_wgs84$Type, popup = heavytraffic_sp_wgs84$Descriptions, icon = heavytrafficIcon, group = "heavytraffic")
+                   addCircleMarkers(data = heavytraffic_sp_wgs84, lat = heavytraffic_sp_wgs84@coords[,2], lng = heavytraffic_sp_wgs84@coords[,1], label = heavytraffic_sp_wgs84$Type, popup = heavytraffic_sp_wgs84$Descriptions, radius = 6, color = "Green", stroke = FALSE, fillOpacity = 0.3, group = "heavytraffic")
+               }else
+               {
+                 leafletProxy("map") %>%
+                   clearGroup("heavytraffic")
                }
   )
   
@@ -358,7 +399,7 @@ server <- function(input, output) {
                      clearGroup("Accidents without Constraint") %>%
                      clearGroup("Traffic without Constraint") %>%
                      clearGroup("Accidents with Constraint") %>%
-                     addRasterImage(accidentkde_raster_scaled, colors=cb, group='Accidents with Constraint', opacity=0.80) %>%
+                     addRasterImage(accidentkde_raster_scaled, colors=cb, group='Accidents with Constraint', opacity=1.0) %>%
                      addLegend(pal = cb, values = at, title = "Density Function", position='bottomleft', labFormat = labelFormat(digits=6),layerId="leg") %>%
                      addProviderTiles("CartoDB.Positron", group = "CartoDB (default)") %>% 
                      addTiles(group = "OSM") %>% 
@@ -390,7 +431,7 @@ server <- function(input, output) {
                          clearGroup("Traffic without Constraint") %>%
                          clearGroup("Accidents with Constraint") %>%
                          clearGroup("Traffic with Constraint") %>%
-                         addRasterImage(heavytraffickde_raster_scaled, colors=cb, group="Traffic with Constraint",  opacity=0.80) %>%
+                         addRasterImage(heavytraffickde_raster_scaled, colors=cb, group="Traffic with Constraint",  opacity=1.0) %>%
                          addLegend(pal = cb, values = at, title = "Density Function", position='bottomleft', labFormat = labelFormat(digits=6),layerId="leg") %>%
                          addProviderTiles("CartoDB.Positron", group = "CartoDB (default)") %>% 
                          addTiles(group = "OSM") %>% 
@@ -425,7 +466,7 @@ server <- function(input, output) {
                      clearGroup("Traffic with Constraint") %>%
                      clearGroup("Traffic without Constraint") %>%
                      clearGroup("Accidents without Constraint") %>%
-                     addRasterImage(accidentkde_ppp_raster, group="Accidents without Constraint", colors=cb, opacity=0.50) %>%
+                     addRasterImage(accidentkde_ppp_raster, group="Accidents without Constraint", colors=cb, opacity=1.0) %>%
                      addLegend(pal = cb, values = at, title = "Density Function", position='bottomleft', labFormat = labelFormat(digits=8),layerId="leg") %>%
                      
                      addProviderTiles("CartoDB.Positron", group = "CartoDB (default)") %>% 
@@ -456,7 +497,7 @@ server <- function(input, output) {
                        clearGroup("Traffic with Constraint") %>%
                        clearGroup("Accidents without Constraint") %>%
                        clearGroup("Traffic without Constraint") %>%
-                       addRasterImage(heavytraffickde_ppp_raster, group="Traffic without Constraint",colors=cb, opacity=0.50) %>%
+                       addRasterImage(heavytraffickde_ppp_raster, group="Traffic without Constraint",colors=cb, opacity=1.0) %>%
                        addLegend(pal = cb, values = at, title = "Density Function", position='bottomleft', labFormat = labelFormat(digits=8),layerId="leg") %>%
                        addProviderTiles("CartoDB.Positron", group = "CartoDB (default)") %>% 
                        addTiles(group = "OSM") %>% 
