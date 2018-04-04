@@ -59,18 +59,18 @@ heavytraffic_sp <<- as(heavytraffic, "Spatial")
 accidents_ppp <<- ppp(coordinates(accidents_sp)[,1], coordinates(accidents_sp)[,2], costaloutline_owin)
 heavytraffic_ppp <<- ppp(coordinates(heavytraffic_sp)[,1], coordinates(heavytraffic_sp)[,2], costaloutline_owin)
 
-## ********** When multi k --> speed cameras vs heavy traffic
+
 speedcameras@data <- speedcameras@data[ , -(1:ncol(speedcameras@data))]
 speedcameras@data[['Type']] <- 'camera'
-heavytraffic_sp <- as(heavytraffic, 'Spatial')
+
+## ********** When multi k --> speed cameras vs heavy traffic
 heavytraffic_sp@data <- heavytraffic_sp@data[ , -(1:ncol(heavytraffic_sp@data))]
 heavytraffic_sp@data[['Type']] <- 'heavytraffic'
 heavytraffic_cameras_sp <<- spRbind(speedcameras, heavytraffic_sp)
 
-## ********** When multi k --> accidents vs heavy traffic
-speedcameras@data <- speedcameras@data[ , -(1:ncol(speedcameras@data))]
-speedcameras@data[['Type']] <- 'camera'
-accidents_sp <- as(accidents, 'Spatial')
+
+
+## ********** When multi k --> accidents vs camera
 accidents_sp@data <- accidents_sp@data[ , -(1:ncol(accidents_sp@data))]
 accidents_sp@data[['Type']] <- 'accident'
 accidents_cameras_sp <<- spRbind(speedcameras, accidents_sp)
@@ -165,6 +165,12 @@ ui <- fluidPage(
                                                                     label = "Choose 2nd Variable:",
                                                                     choices = c("Traffic Cameras"),
                                                                     options = list(onInitialize = I('function() { this.setValue(""); }')))),
+                                    
+                                    conditionalPanel(condition = "input.analysis == 'Multitype K-Function'",
+                                                     sliderInput(inputId = "noOfSimulationMK",
+                                                                 label = "No. Of Simulation to Perform",
+                                                                 min = 3, max = 99, value = 3
+                                                     )),
                                     
                                     conditionalPanel(condition="input.analysis == 'Multitype K-Function'", align = "center", 
                                                      actionButton(inputId="multiKEnter",
@@ -562,6 +568,7 @@ server <- function(input, output) {
       roadNetwork_linnet <- as.linnet.psp(roadNetwork_psp, sparse=TRUE)
       
       
+      if (input$mkfType == 'Heavy Traffic'){
       # Create heavytraffic_cameras ppp
       heavytraffic_cameras_ppp <- as.ppp(heavytraffic_cameras_sp)
       marks(heavytraffic_cameras_ppp) <- heavytraffic_cameras_sp@data['Type']
@@ -573,8 +580,29 @@ server <- function(input, output) {
       # Create heavytraffic_cameras_lpp
       heavytraffic_cameras_lpp <- lpp(heavytraffic_cameras_ppp, roadNetwork_linnet)
       
+      simulation <- isolate({input$noOfSimulationMK})
+      
       #Multitype K Function
-      plot(envelope.lpp(heavytraffic_cameras_lpp,linearKcross, nsim = 3, i = 'camera', j = 'heavytraffic')) 
+      plot(envelope.lpp(heavytraffic_cameras_lpp,linearKcross, simulation, i = 'camera', j = 'heavytraffic'))
+      } else 
+        if (input$mkfType == 'Accidents'){
+          # Create heavytraffic_cameras ppp
+          accidents_cameras_ppp <- as.ppp(accidents_cameras_sp)
+          marks(accidents_cameras_ppp) <- accidents_cameras_sp@data['Type']
+          
+          # Extract heavytraffic_cameras in bbox
+          bbox_owin <- as(bbox, 'owin')
+          Window(accidents_cameras_ppp) <- bbox_owin
+          
+          # Create heavytraffic_cameras_lpp
+          accidents_cameras_lpp <- lpp(accidents_cameras_ppp, roadNetwork_linnet)
+          
+          simulation <- isolate({input$noOfSimulationMK})
+          
+          #Multitype K Function
+          plot(envelope.lpp(accidents_cameras_lpp,linearKcross, simulation, i = 'camera', j = 'accident'))
+          
+        }
     })
   })
    
