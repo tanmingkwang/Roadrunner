@@ -59,12 +59,21 @@ heavytraffic_sp <<- as(heavytraffic, "Spatial")
 accidents_ppp <<- ppp(coordinates(accidents_sp)[,1], coordinates(accidents_sp)[,2], costaloutline_owin)
 heavytraffic_ppp <<- ppp(coordinates(heavytraffic_sp)[,1], coordinates(heavytraffic_sp)[,2], costaloutline_owin)
 
+## ********** When multi k --> speed cameras vs heavy traffic
 speedcameras@data <- speedcameras@data[ , -(1:ncol(speedcameras@data))]
 speedcameras@data[['Type']] <- 'camera'
 heavytraffic_sp <- as(heavytraffic, 'Spatial')
 heavytraffic_sp@data <- heavytraffic_sp@data[ , -(1:ncol(heavytraffic_sp@data))]
 heavytraffic_sp@data[['Type']] <- 'heavytraffic'
 heavytraffic_cameras_sp <<- spRbind(speedcameras, heavytraffic_sp)
+
+## ********** When multi k --> accidents vs heavy traffic
+speedcameras@data <- speedcameras@data[ , -(1:ncol(speedcameras@data))]
+speedcameras@data[['Type']] <- 'camera'
+accidents_sp <- as(accidents, 'Spatial')
+accidents_sp@data <- accidents_sp@data[ , -(1:ncol(accidents_sp@data))]
+accidents_sp@data[['Type']] <- 'accident'
+accidents_cameras_sp <<- spRbind(speedcameras, accidents_sp)
 
 #preloading of network data
 roadNetwork <<- readShapeSpatial("Network/roads_expressway.shp", CRS("+init=epsg:3414"))
