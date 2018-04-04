@@ -543,7 +543,7 @@ server <- function(input, output) {
   })
   
   observeEvent(input$multiKEnter, {
-    output$plot <- renderPlot({
+
       north <- as.numeric(input$map_bounds["north"]) #long_max
       south <- as.numeric(input$map_bounds["south"]) #long_min 
       east <- as.numeric(input$map_bounds["east"]) #lat_max
@@ -569,6 +569,7 @@ server <- function(input, output) {
       
       
       if (input$mkfType == 'Heavy Traffic'){
+      output$plot <-renderPlot({
       # Create heavytraffic_cameras ppp
       heavytraffic_cameras_ppp <- as.ppp(heavytraffic_cameras_sp)
       marks(heavytraffic_cameras_ppp) <- heavytraffic_cameras_sp@data['Type']
@@ -584,8 +585,10 @@ server <- function(input, output) {
       
       #Multitype K Function
       plot(envelope.lpp(heavytraffic_cameras_lpp,linearKcross, simulation, i = 'camera', j = 'heavytraffic'))
+      })
       } else 
         if (input$mkfType == 'Accidents'){
+          output$plot <-renderPlot({  
           # Create heavytraffic_cameras ppp
           accidents_cameras_ppp <- as.ppp(accidents_cameras_sp)
           marks(accidents_cameras_ppp) <- accidents_cameras_sp@data['Type']
@@ -601,9 +604,8 @@ server <- function(input, output) {
           
           #Multitype K Function
           plot(envelope.lpp(accidents_cameras_lpp,linearKcross, simulation, i = 'camera', j = 'accident'))
-          
+          })
         }
-    })
   })
    
 }
