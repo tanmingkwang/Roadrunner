@@ -529,6 +529,30 @@ server <- function(input, output) {
   
   observeEvent(input$multiKEnter, {
     output$plot <- renderPlot({
+      north <- as.numeric(input$map_bounds["north"]) #long_max
+      south <- as.numeric(input$map_bounds["south"]) #long_min 
+      east <- as.numeric(input$map_bounds["east"]) #lat_max
+      west <- as.numeric(input$map_bounds["west"]) #lat_min
+      
+      bbox <- rbind(c(east, north), c(west, north), c(west, south), c(east, south), c(east, north))	
+      colnames(bbox) <- c('long','lat')
+      bbox <- as.data.frame(bbox)
+      bbox <- Polygon(bbox)
+      bbox <- Polygons(list(bbox), 'bbox')
+      bbox <- SpatialPolygons(list(bbox))
+      proj4string(bbox) <- CRS('+proj=longlat +datum=WGS84 +no_defs')
+      bbox <- spTransform(bbox , CRS('+proj=tmerc +lat_0=1.366666666666667 +lon_0=103.8333333333333 +k=1 +x_0=28001.642 +y_0=38744.572 +ellps=WGS84 +units=m +no_defs'))
+      
+      
+      #finding intersection between road network and bbox
+      roadNetwork_intersect <- gIntersection(roadNetwork_sp, bbox) 
+      
+      
+      # simplify road network
+      roadNetwork_psp <- as.psp(roadNetwork_intersect, window=NULL, marks=NULL, check=spatstat.options("checksegments"), fatal=TRUE)
+      roadNetwork_linnet <- as.linnet.psp(roadNetwork_psp, sparse=TRUE)
+      
+      
       # Create heavytraffic_cameras ppp
       heavytraffic_cameras_ppp <- as.ppp(heavytraffic_cameras_sp)
       marks(heavytraffic_cameras_ppp) <- heavytraffic_cameras_sp@data['Type']
