@@ -5,6 +5,7 @@ input[type="number"] {
 html, body {
    height: 100%;
    width: 100%;
+   background: #000000 !important;
 }
 
 div.outer {
@@ -21,6 +22,10 @@ div.center{
   align-content: center;
 }
 
+.leaflet-control-layers-expanded { 
+  background: #000000 !important; 
+}
+
 .container-fluid {
     padding-right: 0px;
     padding-left: 0px;
@@ -30,13 +35,14 @@ div.center{
 }
 
 .navbar-default .navbar-brand {
-    background: #FFFFFF !important;
-    color: #000000 !important;
+    background: #000000 !important;
+    color: #FFFFFF !important;
 }
 
 .navbar {
     margin-bottom: 10px;
-    background: #FFFFFF !important;
+    color: #FFFFFF !important;
+    background: #000000 !important;
 }
 
 
@@ -45,8 +51,8 @@ div.center{
   margin-right: 15px;
   padding-left: 25px;
   padding-right: 15px;
-  background: #FFFFFF !important;
-  color: #000000 !important;
+  background: #000000 !important;
+  color: #FFFFFF !important;
 
 
 }
@@ -54,16 +60,13 @@ div.center{
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
-    color: #1ACBBD !important;
-    background: white !important;
-    border-bottom-width: 2px;
-    border-bottom-style: solid;
-    border-bottom-color: #1ACBBD;
+    color: #f9d12f !important;
+    background: black !important;
 }
 
 ul {
-  background-color: white !important;
-  color: black !important;
+  background-color: black !important;
+  color: white !important;
 }
 
 
@@ -72,6 +75,7 @@ ul {
 body, label, input, button, select { 
   font-family: 'Avenir';
   font-weight: 400;
+  color: white;
 }
 h1, h2, h3, h4 { font-weight: 400; }
 
@@ -83,15 +87,16 @@ h1, h2, h3, h4 { font-weight: 400; }
 
 #uploadControls {
   /* Appearance */
-  background-color: white;
+  background-color: black;
   padding: 0 20px 20px 20px;
 }
 
 
 #controls {
   /* Appearance */
-  background-color: white;
+  background-color: black;
   padding: 0 20px 20px 20px;
+  border-color: #3c3d3f;
 }
 #controls:hover {
   /* Fade in while hovering */
@@ -109,5 +114,5 @@ h1, h2, h3, h4 { font-weight: 400; }
 
 /* If not using map tiles, show a white background */
 .leaflet-container {
-  background-color: white !important;
+  background-color: black !important;
 }

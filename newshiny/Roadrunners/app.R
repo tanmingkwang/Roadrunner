@@ -26,6 +26,9 @@ library(polyCub)
 library(raster)
 library(rgeos)
 
+dark <<- "https://api.mapbox.com/styles/v1/mapbox/dark-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoid2xnd2VlIiwiYSI6ImNqZm02dWh0bTAzbWMyd25xY3ZrdWNrb3oifQ.uLcmOKcCxHqpj6rTIbCPKw"
+map_attr <<- "<a href='https://www.mapbox.com/map-feedback/'>Mapbox</a>"
+
 costaloutline <<- readOGR("CostalOutline/CostalOutline.shp")
 costaloutline_sp <- as(costaloutline, "SpatialPolygons")
 costaloutline_owin <<- as.owin.SpatialPolygons(costaloutline_sp)
@@ -35,7 +38,7 @@ costaloutline_kf <<- spTransform(costaloutline, CRS('+proj=tmerc +lat_0=1.366666
 speedcameras <- readOGR("Camera/cameras_combined.shp")
 speedcameras_wgs84 <- spTransform(speedcameras, CRS("+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0"))
 speedCameraIcon <- makeIcon(
-  iconUrl = "https://lh3.googleusercontent.com/sLX-R-LLdMwtsFJXlYgW9g8CiGv4ogDm7fjmv_aK4818Mc1vxJVOPDJbagWt1zBxNQ=w300",
+  iconUrl = "https://image.flaticon.com/icons/svg/139/139737.svg",
   iconWidth = 25, iconHeight = 25
 )
 
@@ -104,7 +107,7 @@ ui <- fluidPage(
   
   #Navbar
 
-  navbarPage(strong("Singapore Traffic Analysis"),
+  navbarPage(strong("Singapore Expressway Traffic Analysis"),
              
              tabPanel("Map",
                       
@@ -116,7 +119,7 @@ ui <- fluidPage(
                                              checkboxInput(inputId="expresswayCheck", label="Expressway", value = FALSE, width = 2),
                                              checkboxInput(inputId="camerasCheck", label="Cameras", value = FALSE, width = 2),
                                              checkboxInput(inputId="accidentsCheck", label="Accidents", value = FALSE, width = 2),
-                                             checkboxInput(inputId="heavytrafficCheck", label="Heavy Traffic", value = FALSE, width = 4)
+                                             checkboxInput(inputId="heavytrafficCheck", label="Heavy Traffic", value = FALSE, width = "100%")
                                ),
       
                       absolutePanel(id = "controls", class = "panel panel-default", fixed = TRUE,
@@ -203,6 +206,7 @@ ui <- fluidPage(
                                                                   label = "Enter")
                                     ),
                                   
+                                    br(),
                                     
                                     plotOutput(outputId = "plot")
                                     
@@ -269,7 +273,7 @@ server <- function(input, output) {
                if (input$expresswayCheck){
                  leafletProxy("map") %>%
                    addTiles() %>%
-                   addPolylines(data = roadNetwork_wgs84, color = "Grey", popup = roadNetwork_wgs84@data$name, label = roadNetwork_wgs84@data$ref, opacity = 0.1, group = "network")
+                   addPolylines(data = roadNetwork_wgs84, color = "Orange", popup = roadNetwork_wgs84@data$name, label = roadNetwork_wgs84@data$ref, opacity = 0.1, group = "network")
                    # addPolylines(data = roadNetwork_wgs84, color = linecolor(roadNetwork_wgs84@data$ref), popup = roadNetwork_wgs84@data$name, label = roadNetwork_wgs84@data$ref, opacity = 0.1, group = "network")
                }else
                {
@@ -298,7 +302,7 @@ server <- function(input, output) {
                    addTiles() %>%
                    # Idk if icon or circle nicer
                    # addMarkers(data = heavytraffic_sp_wgs84, lat = heavytraffic_sp_wgs84@coords[,2], lng = heavytraffic_sp_wgs84@coords[,1], label = heavytraffic_sp_wgs84$Type, popup = heavytraffic_sp_wgs84$Descriptions, icon = heavytrafficIcon, group = "heavytraffic")
-                   addCircleMarkers(data = heavytraffic_sp_wgs84, lat = heavytraffic_sp_wgs84@coords[,2], lng = heavytraffic_sp_wgs84@coords[,1], label = heavytraffic_sp_wgs84$Type, popup = heavytraffic_sp_wgs84$Descriptions, radius = 6, color = "Green", stroke = FALSE, fillOpacity = 0.3, group = "heavytraffic")
+                   addCircleMarkers(data = heavytraffic_sp_wgs84, lat = heavytraffic_sp_wgs84@coords[,2], lng = heavytraffic_sp_wgs84@coords[,1], label = heavytraffic_sp_wgs84$Type, popup = heavytraffic_sp_wgs84$Descriptions, radius = 6, color = "Yellow", stroke = FALSE, fillOpacity = 0.3, group = "heavytraffic")
                }else
                {
                  leafletProxy("map") %>%
@@ -308,15 +312,12 @@ server <- function(input, output) {
   
   output$map <- renderLeaflet({
     leaflet() %>%
-      setView(103.8198, 1.3521,zoom = 12) %>% 
-      #addTiles() %>%
-      #addMarkers(data = speedcameras_wgs84, lat = speedcameras_wgs84@coords[,2], lng = speedcameras_wgs84@coords[,1], label = speedcameras_wgs84$ROAD_NAME, popup = speedcameras_wgs84$CameraType, icon = speedCameraIcon) %>%
-      #addTiles() %>%
-      #addPolylines(data = roadNetwork_wgs84, color = linecolor(roadNetwork_wgs84@data$ref), popup = roadNetwork_wgs84@data$name, label = roadNetwork_wgs84@data$ref, opacity = 0.3) %>%
-      addProviderTiles("CartoDB.Positron", group = "CartoDB (default)") %>% 
+      setView(103.8198, 1.3521,zoom = 12) %>%
+      addTiles(urlTemplate = dark, group = "Dark", attribution = map_attr) %>%
+      addProviderTiles("CartoDB.Positron", group = "CartoDB") %>% 
       addTiles(group = "OSM") %>% 
       addLayersControl(
-        baseGroups = c( "CartoDB (default)","OSM"),
+        baseGroups = c("Dark","CartoDB", "OSM"),
         options = layersControlOptions(collapsed = TRUE)
       )
   })
@@ -380,7 +381,7 @@ server <- function(input, output) {
                  
                    sigma <- input$sigma
                    at <- seq(0, 0.0020, 0.00025)
-                   cb <- colorBin(palette = "OrRd", bins = at, domain = at, na.color = "#00000000", reverse=FALSE)
+                   cb <- colorBin(palette = "YlGnBu", bins = at, domain = at, na.color = "#00000000", reverse=FALSE)
                    
 
                    
@@ -402,10 +403,8 @@ server <- function(input, output) {
                      clearGroup("Accidents with Constraint") %>%
                      addRasterImage(accidentkde_raster_scaled, colors=cb, group='Accidents with Constraint', opacity=1.0) %>%
                      addLegend(pal = cb, values = at, title = "Density Function", position='bottomleft', labFormat = labelFormat(digits=6),layerId="leg") %>%
-                     addProviderTiles("CartoDB.Positron", group = "CartoDB (default)") %>% 
-                     addTiles(group = "OSM") %>% 
                      addLayersControl(
-                       baseGroups = c( "CartoDB (default)","OSM"),
+                       baseGroups = c("Dark","CartoDB", "OSM"),
                        overlayGroups = c('Accidents with Constraint'),
                        options = layersControlOptions(collapsed = TRUE)
                      )
@@ -415,8 +414,8 @@ server <- function(input, output) {
                    if (input$analysis == 'Kernel Density Estimation (KDE)' && input$kdeType == 'Heavy Traffic'){
                      
                        sigma <- input$sigma
-                       at <- seq(0, 0.0040, 0.0005)
-                       cb <- colorBin(palette = "OrRd", bins = at, domain = at, na.color = "#00000000", reverse=FALSE)
+                       at <- seq(0, 0.0060, 0.0010)
+                       cb <- colorBin(palette = "YlGnBu", bins = at, domain = at, na.color = "#00000000", reverse=FALSE)
                        
                        #constraint traffic
                        heavytraffic_lpp <- lpp(heavytraffic_ppp, roadNetwork_linnet)
@@ -434,10 +433,8 @@ server <- function(input, output) {
                          clearGroup("Traffic with Constraint") %>%
                          addRasterImage(heavytraffickde_raster_scaled, colors=cb, group="Traffic with Constraint",  opacity=1.0) %>%
                          addLegend(pal = cb, values = at, title = "Density Function", position='bottomleft', labFormat = labelFormat(digits=6),layerId="leg") %>%
-                         addProviderTiles("CartoDB.Positron", group = "CartoDB (default)") %>% 
-                         addTiles(group = "OSM") %>% 
                          addLayersControl(
-                           baseGroups = c( "CartoDB (default)","OSM"),
+                           baseGroups = c("Dark","CartoDB", "OSM"),
                            overlayGroups = c("Traffic with Constraint"),
                            options = layersControlOptions(collapsed = TRUE)
                          )
@@ -453,7 +450,7 @@ server <- function(input, output) {
                    
                    sigma <- input$sigma
                    at <- seq(0, 0.0000030, 0.0000005)
-                   cb <- colorBin(palette = "OrRd", bins = at, domain = at, na.color = "#00000000", reverse=FALSE)
+                   cb <- colorBin(palette = "YlGnBu", bins = at, domain = at, na.color = "#00000000", reverse=FALSE)
                    
                    #non-constraint accident
                    accidentskde_ppp <- density.ppp(accidents_ppp, sigma)
@@ -469,11 +466,8 @@ server <- function(input, output) {
                      clearGroup("Accidents without Constraint") %>%
                      addRasterImage(accidentkde_ppp_raster, group="Accidents without Constraint", colors=cb, opacity=1.0) %>%
                      addLegend(pal = cb, values = at, title = "Density Function", position='bottomleft', labFormat = labelFormat(digits=8),layerId="leg") %>%
-                     
-                     addProviderTiles("CartoDB.Positron", group = "CartoDB (default)") %>% 
-                     addTiles(group = "OSM") %>% 
                      addLayersControl(
-                       baseGroups = c( "CartoDB (default)","OSM"),
+                       baseGroups = c("Dark","CartoDB", "OSM"),
                        overlayGroups = c("Accidents without Constraint"),
                        options = layersControlOptions(collapsed = TRUE)
                      )
@@ -483,7 +477,7 @@ server <- function(input, output) {
                      
                      sigma <- input$sigma
                      at <- seq(0, 0.000030, 0.000005)
-                     cb <- colorBin(palette = "OrRd", bins = at, domain = at, na.color = "#00000000", reverse=FALSE)
+                     cb <- colorBin(palette = "YlGnBu", bins = at, domain = at, na.color = "#00000000", reverse=FALSE)
                      
                      
                      #non-constraint traffic
@@ -500,10 +494,8 @@ server <- function(input, output) {
                        clearGroup("Traffic without Constraint") %>%
                        addRasterImage(heavytraffickde_ppp_raster, group="Traffic without Constraint",colors=cb, opacity=1.0) %>%
                        addLegend(pal = cb, values = at, title = "Density Function", position='bottomleft', labFormat = labelFormat(digits=8),layerId="leg") %>%
-                       addProviderTiles("CartoDB.Positron", group = "CartoDB (default)") %>% 
-                       addTiles(group = "OSM") %>% 
                        addLayersControl(
-                         baseGroups = c( "CartoDB (default)","OSM"),
+                         baseGroups = c("Dark","CartoDB", "OSM"),
                          overlayGroups = c("Traffic without Constraint"),
                          options = layersControlOptions(collapsed = TRUE)
                        )
