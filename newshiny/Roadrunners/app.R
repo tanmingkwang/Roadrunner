@@ -45,7 +45,7 @@ linecolor <- colorFactor(rainbow(9), roadNetwork_wgs84@data$ref)
 
 #preloading of accidents data
 trafficReport <- read.csv("Main/LTATrafficDataClean2.csv")
-patterns <- c('AYE',	'BKE',	'CTE'	,'ECP',	'KJE'	,'KPE',	'MCE'	,'PIE',	'SLE',	'TPE')
+patterns <- c('on AYE',	'on BKE',	'on CTE'	,'on ECP',	'on KJE'	,'on KPE',	'on MCE'	,'on PIE',	'on SLE',	'on TPE')
 accidents_filter <- trafficReport %>% filter(grepl(paste(patterns, collapse="|"), Descriptions)) %>% filter(Type == 'Accident')
 accidents_sf <- st_as_sf(accidents_filter, coords = c("Longitude", "Latitude"), crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs")
 accidents <- st_transform(accidents_sf, crs = 3414)
@@ -56,6 +56,7 @@ accidentsIcon <- makeIcon(
   iconWidth = 20, iconHeight = 20
 )
 
+# preloading of heavytraffic data
 heavytraffic_filter <- trafficReport %>% filter(grepl(paste(patterns, collapse="|"), Descriptions)) %>% filter(Type == 'Heavy Traffic')
 heavytraffic_sf <- st_as_sf(heavytraffic_filter, coords = c("Longitude", "Latitude"), crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs")
 heavytraffic <- st_transform(heavytraffic_sf, crs = 3414)
@@ -73,14 +74,14 @@ heavytraffic_ppp <<- ppp(coordinates(heavytraffic_sp)[,1], coordinates(heavytraf
 speedcameras@data <- speedcameras@data[ , -(1:ncol(speedcameras@data))]
 speedcameras@data[['Type']] <- 'camera'
 
-## ********** When multi k --> speed cameras vs heavy traffic
+## Multitype K Function - speed cameras vs heavy traffic
 heavytraffic_sp@data <- heavytraffic_sp@data[ , -(1:ncol(heavytraffic_sp@data))]
 heavytraffic_sp@data[['Type']] <- 'heavytraffic'
 heavytraffic_cameras_sp <<- spRbind(speedcameras, heavytraffic_sp)
 
 
 
-## ********** When multi k --> accidents vs camera
+## Multitype K Function - accidents vs camera
 accidents_sp@data <- accidents_sp@data[ , -(1:ncol(accidents_sp@data))]
 accidents_sp@data[['Type']] <- 'accident'
 accidents_cameras_sp <<- spRbind(speedcameras, accidents_sp)
@@ -331,7 +332,7 @@ server <- function(input, output) {
     trafficReport <- read.csv(inputAccidentsFile$datapath)
     
     trafficReport <- read.csv(inputAccidentsFile$datapath)
-    patterns <- c('AYE',	'BKE',	'CTE'	,'ECP',	'KJE'	,'KPE',	'MCE'	,'PIE',	'SLE',	'TPE')
+    patterns <- c('on AYE',	'on BKE',	'on CTE'	,'on ECP',	'on KJE'	,'on KPE',	'on MCE'	,'on PIE',	'on SLE',	'on TPE')
     accidents_filter <- trafficReport %>% filter(grepl(paste(patterns, collapse="|"), Descriptions)) %>% filter(Type == 'Accident')
     accidents_sf <- st_as_sf(accidents_filter, coords = c("Longitude", "Latitude"), crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs")
     accidents <- st_transform(accidents_sf, crs = 3414)
@@ -548,8 +549,11 @@ server <- function(input, output) {
       
       # Create lpp
       accidents_lpp <- lpp(accidents_ppp, roadNetwork_linnet)
+      
+      # Run K function
       simulation <- isolate({input$noOfSimulation})
-      plot(envelope.lpp(accidents_lpp,linearK, simulation, r=seq(0,10000)))
+      lnrk <- envelope.lpp(accidents_lpp,linearK, simulation)
+      plot(lnrk, . - r ~ r, xlab="d", ylab="K(d)-r",main = 'K Function with Linear Constraints')
       
       })
       
@@ -574,9 +578,11 @@ server <- function(input, output) {
             
             # Create lpp
             heavytraffic_lpp <- lpp(heavytraffic_ppp, roadNetwork_linnet)
-            simulation <- isolate({input$noOfSimulation})
             
-            plot(envelope.lpp(heavytraffic_lpp,linearK, simulation, r=seq(0,10000)))
+            # Run Linear K
+            simulation <- isolate({input$noOfSimulation})
+            lnrk <- envelope.lpp(heavytraffic_lpp,linearK, simulation)
+            plot(lnrk, . - r ~ r, xlab="d", ylab="K(d)-r",main = 'K Function with Linear Constraints')
           })
           
         }
@@ -622,10 +628,12 @@ server <- function(input, output) {
       # Create heavytraffic_cameras_lpp
       heavytraffic_cameras_lpp <- lpp(heavytraffic_cameras_ppp, roadNetwork_linnet)
       
-      simulation <- isolate({input$noOfSimulationMK})
+      
       
       #Multitype K Function
-      plot(envelope.lpp(heavytraffic_cameras_lpp,linearKcross, simulation, i = 'camera', j = 'heavytraffic'))
+      simulation <- isolate({input$noOfSimulationMK})
+      lnrkcross <- envelope.lpp(heavytraffic_cameras_lpp,linearKcross, simulation, i = 'camera', j = 'heavytraffic')
+      plot(lnrkcross, . - r ~ r, xlab="d", ylab="K(d)-r",main = 'Multitype K Function with Linear Constraints')
       })
       } else 
         if (input$mkfType == 'Accidents'){
@@ -640,11 +648,11 @@ server <- function(input, output) {
           
           # Create heavytraffic_cameras_lpp
           accidents_cameras_lpp <- lpp(accidents_cameras_ppp, roadNetwork_linnet)
-          
-          simulation <- isolate({input$noOfSimulationMK})
-          
+        
           #Multitype K Function
-          plot(envelope.lpp(accidents_cameras_lpp,linearKcross, simulation, i = 'camera', j = 'accident'))
+          simulation <- isolate({input$noOfSimulationMK})
+          lnrkcross <- envelope.lpp(accidents_cameras_lpp,linearKcross, simulation, i = 'camera', j = 'accident')
+          plot(lnrkcross, . - r ~ r, xlab="d", ylab="K(d)-r",main = 'Multitype K Function with Linear Constraints')
           })
         }
   })
