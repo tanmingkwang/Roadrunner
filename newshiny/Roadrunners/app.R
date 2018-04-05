@@ -38,7 +38,7 @@ costaloutline_kf <<- spTransform(costaloutline, CRS('+proj=tmerc +lat_0=1.366666
 speedcameras <- readOGR("Camera/cameras_combined.shp")
 speedcameras_wgs84 <- spTransform(speedcameras, CRS("+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0"))
 speedCameraIcon <- makeIcon(
-  iconUrl = "https://image.flaticon.com/icons/svg/139/139737.svg",
+  iconUrl = "http://flaticons.net/gd/makefg.php?i=icons/Science%20and%20Technology/CCTV-Camera.png&r=255&g=255&b=255",
   iconWidth = 25, iconHeight = 25
 )
 
