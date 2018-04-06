@@ -26,6 +26,16 @@ div.center{
   background: #000000 !important; 
 }
 
+.leaflet-popup-content-wrapper{
+    background-color: #000000 !important; 
+    opacity: 0.8;
+}
+
+.leaflet-popup-tip {
+    background-color: #000000 !important; 
+    opacity: 0.8;
+}
+
 .container-fluid {
     padding-right: 0px;
     padding-left: 0px;
