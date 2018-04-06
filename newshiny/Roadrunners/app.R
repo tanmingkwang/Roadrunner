@@ -42,7 +42,7 @@ speedCameraIcon <- makeIcon(
   iconWidth = 25, iconHeight = 25
 )
 
-roadNetwork_ogr <- readOGR("Network/roads_expressway.shp")
+roadNetwork_ogr <- readOGR("Network/roads_expressway_no_motorwaylink.shp")
 roadNetwork_wgs84 <- spTransform(roadNetwork_ogr, CRS("+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0"))
 linecolor <- colorFactor(rainbow(9), roadNetwork_wgs84@data$ref)
 
@@ -90,7 +90,7 @@ accidents_sp@data[['Type']] <- 'accident'
 accidents_cameras_sp <<- spRbind(speedcameras, accidents_sp)
 
 #preloading of network data
-roadNetwork <<- readShapeSpatial("Network/roads_expressway.shp", CRS("+init=epsg:3414"))
+roadNetwork <<- readShapeSpatial("Network/roads_expressway_no_motorwaylink.shp", CRS("+init=epsg:3414"))
 roadNetwork_psp <- as.psp(roadNetwork, window=NULL, marks=NULL, check=spatstat.options("checksegments"), fatal=TRUE)
 roadNetwork_linnet <<- as.linnet.psp(roadNetwork_psp, sparse=TRUE)
 roadNetwork_sp <<- spTransform(roadNetwork, CRS('+proj=tmerc +lat_0=1.366666666666667 +lon_0=103.8333333333333 +k=1 +x_0=28001.642 +y_0=38744.572 +ellps=WGS84 +units=m +no_defs'))
@@ -123,7 +123,7 @@ ui <- fluidPage(
                                ),
       
                       absolutePanel(id = "controls", class = "panel panel-default", fixed = TRUE,
-                                    draggable = FALSE, top = 250, left = 15, right = 10, bottom = "auto",
+                                    draggable = FALSE, top = 210, left = 15, right = 10, bottom = "auto",
                                     width = 315, height = "auto",
                                   
                                     #uiOutput("bounds"), 
@@ -167,20 +167,20 @@ ui <- fluidPage(
                                     conditionalPanel(condition = "input.analysis == 'Multitype K-Function'",
                                                      selectizeInput(inputId = "mkfType",
                                                                     label = "Choose Variable:",
-                                                                    choices = c("Accidents", "Heavy Traffic"),
+                                                                    choices = c("Accidents - Traffic Camera", "Heavy Traffic - Traffic Camera"),
                                                                     options = list(onInitialize = I('function() { this.setValue(""); }')))),
                                     
-                                    conditionalPanel(condition = "input.analysis == 'Multitype K-Function' && input.mkfType == 'Accidents'",
-                                                     selectizeInput(inputId = "accidentsMKFunction",
-                                                                    label = "Choose 2nd Variable:",
-                                                                    choices = c("Traffic Cameras"),
-                                                                    options = list(onInitialize = I('function() { this.setValue(""); }')))),
-                                    
-                                    conditionalPanel(condition = "input.analysis == 'Multitype K-Function' && input.mkfType == 'Heavy Traffic'",
-                                                     selectizeInput(inputId = "trafficMKFunction",
-                                                                    label = "Choose 2nd Variable:",
-                                                                    choices = c("Traffic Cameras"),
-                                                                    options = list(onInitialize = I('function() { this.setValue(""); }')))),
+                                    # conditionalPanel(condition = "input.analysis == 'Multitype K-Function' && input.mkfType == 'Accidents'",
+                                    #                  selectizeInput(inputId = "accidentsMKFunction",
+                                    #                                 label = "Choose 2nd Variable:",
+                                    #                                 choices = c("Traffic Cameras"),
+                                    #                                 options = list(onInitialize = I('function() { this.setValue(""); }')))),
+                                    # 
+                                    # conditionalPanel(condition = "input.analysis == 'Multitype K-Function' && input.mkfType == 'Heavy Traffic'",
+                                    #                  selectizeInput(inputId = "trafficMKFunction",
+                                    #                                 label = "Choose 2nd Variable:",
+                                    #                                 choices = c("Traffic Cameras"),
+                                    #                                 options = list(onInitialize = I('function() { this.setValue(""); }')))),
                                     
                                     conditionalPanel(condition = "input.analysis == 'Multitype K-Function'",
                                                      sliderInput(inputId = "noOfSimulationMK",
@@ -255,7 +255,7 @@ ui <- fluidPage(
 
 server <- function(input, output) {
   #at <- seq(0, 0.0030, 0.0005)
-  #cb <<- colorBin(palette = "YlGnBu", bins = at, domain = at, na.color = "#00000000")
+  #cb <<- colorBin(palette = "YlOrRd", bins = at, domain = at, na.color = "#00000000")
   
   observeEvent(input$camerasCheck,
                if (input$camerasCheck){
@@ -273,7 +273,7 @@ server <- function(input, output) {
                if (input$expresswayCheck){
                  leafletProxy("map") %>%
                    addTiles() %>%
-                   addPolylines(data = roadNetwork_wgs84, color = "Orange", popup = roadNetwork_wgs84@data$name, label = roadNetwork_wgs84@data$ref, opacity = 0.1, group = "network")
+                   addPolylines(data = roadNetwork_wgs84, color = "Azure", popup = roadNetwork_wgs84@data$name, label = roadNetwork_wgs84@data$ref, opacity = 0.1, group = "network")
                    # addPolylines(data = roadNetwork_wgs84, color = linecolor(roadNetwork_wgs84@data$ref), popup = roadNetwork_wgs84@data$name, label = roadNetwork_wgs84@data$ref, opacity = 0.1, group = "network")
                }else
                {
@@ -288,7 +288,7 @@ server <- function(input, output) {
                    addTiles() %>%
                    # Idk if icon or circle nicer
                    #addMarkers(data = accidents_sp_wgs84, lat = accidents_sp_wgs84@coords[,2], lng = accidents_sp_wgs84@coords[,1], label = accidents_sp_wgs84$Type, popup = accidents_sp_wgs84$Descriptions, icon = accidentsIcon,  group = "accidents")
-                   addCircleMarkers(data = accidents_sp_wgs84, lat = accidents_sp_wgs84@coords[,2], lng = accidents_sp_wgs84@coords[,1], label = accidents_sp_wgs84$Type, popup = accidents_sp_wgs84$Descriptions, radius = 6, color = "Red", stroke = FALSE, fillOpacity = 0.3, group = "accidents")
+                   addCircleMarkers(data = accidents_sp_wgs84, lat = accidents_sp_wgs84@coords[,2], lng = accidents_sp_wgs84@coords[,1], label = accidents_sp_wgs84$Type, popup = accidents_sp_wgs84$Descriptions, radius = 6, color = "springgreen", stroke = FALSE, fillOpacity = 0.7, group = "accidents")
                }else
                {
                  leafletProxy("map") %>%
@@ -302,7 +302,7 @@ server <- function(input, output) {
                    addTiles() %>%
                    # Idk if icon or circle nicer
                    # addMarkers(data = heavytraffic_sp_wgs84, lat = heavytraffic_sp_wgs84@coords[,2], lng = heavytraffic_sp_wgs84@coords[,1], label = heavytraffic_sp_wgs84$Type, popup = heavytraffic_sp_wgs84$Descriptions, icon = heavytrafficIcon, group = "heavytraffic")
-                   addCircleMarkers(data = heavytraffic_sp_wgs84, lat = heavytraffic_sp_wgs84@coords[,2], lng = heavytraffic_sp_wgs84@coords[,1], label = heavytraffic_sp_wgs84$Type, popup = heavytraffic_sp_wgs84$Descriptions, radius = 6, color = "Yellow", stroke = FALSE, fillOpacity = 0.3, group = "heavytraffic")
+                   addCircleMarkers(data = heavytraffic_sp_wgs84, lat = heavytraffic_sp_wgs84@coords[,2], lng = heavytraffic_sp_wgs84@coords[,1], label = heavytraffic_sp_wgs84$Type, popup = heavytraffic_sp_wgs84$Descriptions, radius = 6, color = "turquoise", stroke = FALSE, fillOpacity = 0.7, group = "heavytraffic")
                }else
                {
                  leafletProxy("map") %>%
@@ -390,10 +390,11 @@ server <- function(input, output) {
                    accidentkde_raster_scaled <- disaggregate(accidentkde_raster, fact=4 ,fun=mean)
                    proj4string(accidentkde_sgdf) = CRS("+init=epsg:3414")
                    proj4string(accidentkde_raster_scaled) = CRS("+init=epsg:3414")
+                   accidentkde_raster_scaled_adjusted <- setValues(accidentkde_raster_scaled, getValues(accidentkde_raster_scaled)*1000000)
                   
-                   summarykde.values <- fivenum(na.omit(getValues(accidentkde_raster_scaled)))
+                   summarykde.values <- fivenum(na.omit(getValues(accidentkde_raster_scaled_adjusted)))
                    at <- c(summarykde.values[1], summarykde.values[2], summarykde.values[3], summarykde.values[4], summarykde.values[5])
-                   cb <- colorBin(palette = "YlGnBu", bins = at, domain = at, na.color = "#00000000", reverse=FALSE)
+                   cb <- colorBin(palette = "YlOrRd", bins = at, domain = at, na.color = "#00000000", reverse=FALSE)
                    
                    leafletProxy("map") %>%
                      removeControl("leg") %>%
@@ -401,7 +402,7 @@ server <- function(input, output) {
                      clearGroup("Accidents without Constraint") %>%
                      clearGroup("Traffic without Constraint") %>%
                      clearGroup("Accidents with Constraint") %>%
-                     addRasterImage(accidentkde_raster_scaled, colors=cb, group='Accidents with Constraint', opacity=1.0) %>%
+                     addRasterImage(accidentkde_raster_scaled_adjusted, colors=cb, group='Accidents with Constraint', opacity=1.0) %>%
                      addLegend(pal = cb, values = at, title = "Density Function", position='bottomleft', labFormat = labelFormat(digits=6),layerId="leg") %>%
                      addLayersControl(
                        baseGroups = c("Dark","CartoDB", "OSM"),
@@ -415,7 +416,7 @@ server <- function(input, output) {
                      
                        sigma <- input$sigma
                        # at <- seq(0, 0.0060, 0.0010)
-                       # cb <- colorBin(palette = "YlGnBu", bins = at, domain = at, na.color = "#00000000", reverse=FALSE)
+                       # cb <- colorBin(palette = "YlOrRd", bins = at, domain = at, na.color = "#00000000", reverse=FALSE)
                        
                        #constraint traffic
                        heavytraffic_lpp <- lpp(heavytraffic_ppp, roadNetwork_linnet)
@@ -424,10 +425,11 @@ server <- function(input, output) {
                        heavytraffickde_raster <- raster(heavytraffickde_sgdf)
                        heavytraffickde_raster_scaled <- disaggregate(heavytraffickde_raster, fact=4 ,fun=mean)
                        proj4string(heavytraffickde_raster_scaled) = CRS("+init=epsg:3414")
+                       heavytraffickde_raster_scaled_adjusted <- setValues(heavytraffickde_raster_scaled, getValues(heavytraffickde_raster_scaled)*1000000)
                        
-                       summarykdeht.values <- fivenum(na.omit(getValues(heavytraffickde_raster_scaled)))
+                       summarykdeht.values <- fivenum(na.omit(getValues(heavytraffickde_raster_scaled_adjusted)))
                        at <- c(summarykdeht.values[1], summarykdeht.values[2], summarykdeht.values[3], summarykdeht.values[4], summarykdeht.values[5])
-                       cb <- colorBin(palette = "YlGnBu", bins = at, domain = at, na.color = "#00000000", reverse=FALSE)
+                       cb <- colorBin(palette = "YlOrRd", bins = at, domain = at, na.color = "#00000000", reverse=FALSE)
                        
                        leafletProxy("map") %>%
                          removeControl("leg") %>%
@@ -435,7 +437,7 @@ server <- function(input, output) {
                          clearGroup("Traffic without Constraint") %>%
                          clearGroup("Accidents with Constraint") %>%
                          clearGroup("Traffic with Constraint") %>%
-                         addRasterImage(heavytraffickde_raster_scaled, colors=cb, group="Traffic with Constraint",  opacity=1.0) %>%
+                         addRasterImage(heavytraffickde_raster_scaled_adjusted, colors=cb, group="Traffic with Constraint",  opacity=1.0) %>%
                          addLegend(pal = cb, values = at, title = "Density Function", position='bottomleft', labFormat = labelFormat(digits=6),layerId="leg") %>%
                          addLayersControl(
                            baseGroups = c("Dark","CartoDB", "OSM"),
@@ -461,10 +463,11 @@ server <- function(input, output) {
                    accidentkde_ppp_sgdf <- as.SpatialGridDataFrame.im(accidentskde_ppp)
                    accidentkde_ppp_raster <- raster(accidentkde_ppp_sgdf)
                    proj4string(accidentkde_ppp_raster) = CRS("+init=epsg:3414")
+                   accidentkde_ppp_sgdf_adjusted <- setValues(accidentkde_ppp_sgdf, getValues(accidentkde_ppp_sgdf)*1000000)
                    
-                   summarykdeppp.values <- fivenum(na.omit(getValues(accidentkde_ppp_raster)))
+                   summarykdeppp.values <- fivenum(na.omit(getValues(accidentkde_ppp_sgdf_adjusted)))
                    at <- c(summarykdeppp.values[1], summarykdeppp.values[2], summarykdeppp.values[3], summarykdeppp.values[4], summarykdeppp.values[5])
-                   cb <- colorBin(palette = "YlGnBu", bins = at, domain = at, na.color = "#00000000", reverse=FALSE)
+                   cb <- colorBin(palette = "YlOrRd", bins = at, domain = at, na.color = "#00000000", reverse=FALSE)
                    
                    leafletProxy("map") %>%
                      removeControl("leg") %>%
@@ -472,7 +475,7 @@ server <- function(input, output) {
                      clearGroup("Traffic with Constraint") %>%
                      clearGroup("Traffic without Constraint") %>%
                      clearGroup("Accidents without Constraint") %>%
-                     addRasterImage(accidentkde_ppp_raster, group="Accidents without Constraint", colors=cb, opacity=1.0) %>%
+                     addRasterImage(accidentkde_ppp_sgdf_adjusted, group="Accidents without Constraint", colors=cb, opacity=1.0) %>%
                      addLegend(pal = cb, values = at, title = "Density Function", position='bottomleft', labFormat = labelFormat(digits=8),layerId="leg") %>%
                      addLayersControl(
                        baseGroups = c("Dark","CartoDB", "OSM"),
@@ -485,7 +488,7 @@ server <- function(input, output) {
                      
                      sigma <- input$sigma
                      # at <- seq(0, 0.000030, 0.000005)
-                     # cb <- colorBin(palette = "YlGnBu", bins = at, domain = at, na.color = "#00000000", reverse=FALSE)
+                     # cb <- colorBin(palette = "YlOrRd", bins = at, domain = at, na.color = "#00000000", reverse=FALSE)
                      
                      
                      #non-constraint traffic
@@ -493,10 +496,11 @@ server <- function(input, output) {
                      heavytraffickde_ppp_sgdf <- as.SpatialGridDataFrame.im(heavytraffickde_ppp)
                      heavytraffickde_ppp_raster <- raster(heavytraffickde_ppp_sgdf)
                      proj4string(heavytraffickde_ppp_raster) = CRS("+init=epsg:3414")
+                     heavytraffickde_ppp_raster_adjusted <- setValues(heavytraffickde_ppp_raster, getValues(heavytraffickde_ppp_raster)*1000000)
                      
-                     summarykdepppht.values <- fivenum(na.omit(getValues(heavytraffickde_ppp_raster)))
+                     summarykdepppht.values <- fivenum(na.omit(getValues(heavytraffickde_ppp_raster_adjusted)))
                      at <- c(summarykdepppht.values[1], summarykdepppht.values[2], summarykdepppht.values[3], summarykdepppht.values[4], summarykdepppht.values[5])
-                     cb <- colorBin(palette = "YlGnBu", bins = at, domain = at, na.color = "#00000000", reverse=FALSE)
+                     cb <- colorBin(palette = "YlOrRd", bins = at, domain = at, na.color = "#00000000", reverse=FALSE)
                      
                      leafletProxy("map") %>%
                        removeControl("leg") %>%
@@ -504,7 +508,7 @@ server <- function(input, output) {
                        clearGroup("Traffic with Constraint") %>%
                        clearGroup("Accidents without Constraint") %>%
                        clearGroup("Traffic without Constraint") %>%
-                       addRasterImage(heavytraffickde_ppp_raster, group="Traffic without Constraint",colors=cb, opacity=1.0) %>%
+                       addRasterImage(heavytraffickde_ppp_raster_adjusted, group="Traffic without Constraint",colors=cb, opacity=1.0) %>%
                        addLegend(pal = cb, values = at, title = "Density Function", position='bottomleft', labFormat = labelFormat(digits=8),layerId="leg") %>%
                        addLayersControl(
                          baseGroups = c("Dark","CartoDB", "OSM"),
@@ -619,7 +623,7 @@ server <- function(input, output) {
       roadNetwork_linnet <- as.linnet.psp(roadNetwork_psp, sparse=TRUE)
       
       
-      if (input$mkfType == 'Heavy Traffic'){
+      if (input$mkfType == 'Heavy Traffic - Traffic Camera'){
       output$plot <-renderPlot({
       # Create heavytraffic_cameras ppp
       heavytraffic_cameras_ppp <- as.ppp(heavytraffic_cameras_sp)
@@ -640,7 +644,7 @@ server <- function(input, output) {
       plot(lnrkcross, . - r ~ r, xlab="d", ylab="K(d)-r",main = 'Multitype K Function with Linear Constraints')
       })
       } else 
-        if (input$mkfType == 'Accidents'){
+        if (input$mkfType == 'Accidents - Traffic Camera'){
           output$plot <-renderPlot({  
           # Create heavytraffic_cameras ppp
           accidents_cameras_ppp <- as.ppp(accidents_cameras_sp)
