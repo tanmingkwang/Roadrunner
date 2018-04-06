@@ -22,18 +22,16 @@ div.center{
   align-content: center;
 }
 
-.leaflet-control-layers-expanded { 
-  background: #000000 !important; 
+.leaflet-control-layers-expanded {
+  background: #000000 !important;
 }
 
 .leaflet-popup-content-wrapper{
-    background-color: #000000 !important; 
-    opacity: 0.8;
+    background-color: #000000 !important;
 }
 
 .leaflet-popup-tip {
-    background-color: #000000 !important; 
-    opacity: 0.8;
+    background-color: #000000 !important;
 }
 
 .container-fluid {
@@ -82,7 +80,7 @@ ul {
 
 
 /* Customize fonts */
-body, label, input, button, select { 
+body, label, input, button, select {
   font-family: 'Avenir';
   font-weight: 400;
   color: white;
