@@ -380,11 +380,8 @@ server <- function(input, output) {
                  if (input$analysis == 'Kernel Density Estimation (KDE)' && input$kdeType == 'Accidents'){
                  
                    sigma <- input$sigma
-                   at <- seq(0, 0.0020, 0.00025)
-                   cb <- colorBin(palette = "YlGnBu", bins = at, domain = at, na.color = "#00000000", reverse=FALSE)
-                   
+                   #at <- seq(0, 0.0020, 0.0005)
 
-                   
                    #constraint accident
                    accidents_lpp <- lpp(accidents_ppp, roadNetwork_linnet)
                    accidentskde <- density.lpp(accidents_lpp, sigma)
@@ -393,7 +390,10 @@ server <- function(input, output) {
                    accidentkde_raster_scaled <- disaggregate(accidentkde_raster, fact=4 ,fun=mean)
                    proj4string(accidentkde_sgdf) = CRS("+init=epsg:3414")
                    proj4string(accidentkde_raster_scaled) = CRS("+init=epsg:3414")
-                
+                  
+                   summarykde.values <- fivenum(na.omit(getValues(accidentkde_raster_scaled)))
+                   at <- c(summarykde.values[1], summarykde.values[2], summarykde.values[3], summarykde.values[4], summarykde.values[5])
+                   cb <- colorBin(palette = "YlGnBu", bins = at, domain = at, na.color = "#00000000", reverse=FALSE)
                    
                    leafletProxy("map") %>%
                      removeControl("leg") %>%
@@ -414,8 +414,8 @@ server <- function(input, output) {
                    if (input$analysis == 'Kernel Density Estimation (KDE)' && input$kdeType == 'Heavy Traffic'){
                      
                        sigma <- input$sigma
-                       at <- seq(0, 0.0060, 0.0010)
-                       cb <- colorBin(palette = "YlGnBu", bins = at, domain = at, na.color = "#00000000", reverse=FALSE)
+                       # at <- seq(0, 0.0060, 0.0010)
+                       # cb <- colorBin(palette = "YlGnBu", bins = at, domain = at, na.color = "#00000000", reverse=FALSE)
                        
                        #constraint traffic
                        heavytraffic_lpp <- lpp(heavytraffic_ppp, roadNetwork_linnet)
@@ -424,6 +424,10 @@ server <- function(input, output) {
                        heavytraffickde_raster <- raster(heavytraffickde_sgdf)
                        heavytraffickde_raster_scaled <- disaggregate(heavytraffickde_raster, fact=4 ,fun=mean)
                        proj4string(heavytraffickde_raster_scaled) = CRS("+init=epsg:3414")
+                       
+                       summarykdeht.values <- fivenum(na.omit(getValues(heavytraffickde_raster_scaled)))
+                       at <- c(summarykdeht.values[1], summarykdeht.values[2], summarykdeht.values[3], summarykdeht.values[4], summarykdeht.values[5])
+                       cb <- colorBin(palette = "YlGnBu", bins = at, domain = at, na.color = "#00000000", reverse=FALSE)
                        
                        leafletProxy("map") %>%
                          removeControl("leg") %>%
@@ -449,14 +453,18 @@ server <- function(input, output) {
                  if (input$analysis == 'Kernel Density Estimation (KDE)' && input$kdeType == 'Accidents'){
                    
                    sigma <- input$sigma
-                   at <- seq(0, 0.0000030, 0.0000005)
-                   cb <- colorBin(palette = "YlGnBu", bins = at, domain = at, na.color = "#00000000", reverse=FALSE)
+                   # at <- seq(0, 0.0000030, 0.0000005)
+                   
                    
                    #non-constraint accident
                    accidentskde_ppp <- density.ppp(accidents_ppp, sigma)
                    accidentkde_ppp_sgdf <- as.SpatialGridDataFrame.im(accidentskde_ppp)
                    accidentkde_ppp_raster <- raster(accidentkde_ppp_sgdf)
                    proj4string(accidentkde_ppp_raster) = CRS("+init=epsg:3414")
+                   
+                   summarykdeppp.values <- fivenum(na.omit(getValues(accidentkde_ppp_raster)))
+                   at <- c(summarykdeppp.values[1], summarykdeppp.values[2], summarykdeppp.values[3], summarykdeppp.values[4], summarykdeppp.values[5])
+                   cb <- colorBin(palette = "YlGnBu", bins = at, domain = at, na.color = "#00000000", reverse=FALSE)
                    
                    leafletProxy("map") %>%
                      removeControl("leg") %>%
@@ -476,8 +484,8 @@ server <- function(input, output) {
                    if (input$analysis == 'Kernel Density Estimation (KDE)' && input$kdeType == 'Heavy Traffic'){
                      
                      sigma <- input$sigma
-                     at <- seq(0, 0.000030, 0.000005)
-                     cb <- colorBin(palette = "YlGnBu", bins = at, domain = at, na.color = "#00000000", reverse=FALSE)
+                     # at <- seq(0, 0.000030, 0.000005)
+                     # cb <- colorBin(palette = "YlGnBu", bins = at, domain = at, na.color = "#00000000", reverse=FALSE)
                      
                      
                      #non-constraint traffic
@@ -485,6 +493,10 @@ server <- function(input, output) {
                      heavytraffickde_ppp_sgdf <- as.SpatialGridDataFrame.im(heavytraffickde_ppp)
                      heavytraffickde_ppp_raster <- raster(heavytraffickde_ppp_sgdf)
                      proj4string(heavytraffickde_ppp_raster) = CRS("+init=epsg:3414")
+                     
+                     summarykdepppht.values <- fivenum(na.omit(getValues(heavytraffickde_ppp_raster)))
+                     at <- c(summarykdepppht.values[1], summarykdepppht.values[2], summarykdepppht.values[3], summarykdepppht.values[4], summarykdepppht.values[5])
+                     cb <- colorBin(palette = "YlGnBu", bins = at, domain = at, na.color = "#00000000", reverse=FALSE)
                      
                      leafletProxy("map") %>%
                        removeControl("leg") %>%
