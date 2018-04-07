@@ -463,7 +463,7 @@ server <- function(input, output) {
                    accidentkde_ppp_sgdf <- as.SpatialGridDataFrame.im(accidentskde_ppp)
                    accidentkde_ppp_raster <- raster(accidentkde_ppp_sgdf)
                    proj4string(accidentkde_ppp_raster) = CRS("+init=epsg:3414")
-                   accidentkde_ppp_sgdf_adjusted <- setValues(accidentkde_ppp_sgdf, getValues(accidentkde_ppp_sgdf)*1000000)
+                   accidentkde_ppp_sgdf_adjusted <- setValues(accidentkde_ppp_raster, getValues(accidentkde_ppp_raster)*1000000)
                    
                    summarykdeppp.values <- fivenum(na.omit(getValues(accidentkde_ppp_sgdf_adjusted)))
                    at <- c(summarykdeppp.values[1], summarykdeppp.values[2], summarykdeppp.values[3], summarykdeppp.values[4], summarykdeppp.values[5])
