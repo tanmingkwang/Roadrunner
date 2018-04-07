@@ -1,31 +1,13 @@
-#
-# This is a Shiny web application. You can run the application by clicking
-# the 'Run App' button above.
-#
-# Find out more about building applications with Shiny here:
-#
-#    http://shiny.rstudio.com/
-#
+#Roadrunners - Singapore Expressway Traffic Analysis
 
-library(shiny)
-library(shinythemes)
-library(leaflet)
-library(readr)
-library(sf)
-library(spatstat)
-library(maptools)
-library(sqldf)
-library(tidyverse)
-library(polyCub)
-library(tmap)
-library(tmaptools)
-library(rgdal)
-library(RColorBrewer)
-library(classInt)
-library(polyCub)
-library(raster)
-library(rgeos)
+#install and load packages
+packages = c('shiny', 'leaflet', 'readr', 'sf', 'spatstat', 'maptools', 'tidyverse', 'polyCub', 'rgdal', 'RColorBrewer', 'classInt', 'polyCub', 'raster', 'rgeos') 
+for (p in packages){
+  if(!require(p, character.only = T)){ install.packages(p)
+  }
+  library(p,character.only = T) }
 
+#custom map style
 dark <<- "https://api.mapbox.com/styles/v1/mapbox/dark-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoid2xnd2VlIiwiYSI6ImNqZm02dWh0bTAzbWMyd25xY3ZrdWNrb3oifQ.uLcmOKcCxHqpj6rTIbCPKw"
 map_attr <<- "<a href='https://www.mapbox.com/map-feedback/'>Mapbox</a>"
 
@@ -77,14 +59,13 @@ heavytraffic_ppp <<- ppp(coordinates(heavytraffic_sp)[,1], coordinates(heavytraf
 speedcameras@data <- speedcameras@data[ , -(1:ncol(speedcameras@data))]
 speedcameras@data[['Type']] <- 'camera'
 
-## Multitype K Function - speed cameras vs heavy traffic
+# Multitype K Function - speed cameras vs heavy traffic
 heavytraffic_sp@data <- heavytraffic_sp@data[ , -(1:ncol(heavytraffic_sp@data))]
 heavytraffic_sp@data[['Type']] <- 'heavytraffic'
 heavytraffic_cameras_sp <<- spRbind(speedcameras, heavytraffic_sp)
 
 
-
-## Multitype K Function - accidents vs camera
+# Multitype K Function - accidents vs camera
 accidents_sp@data <- accidents_sp@data[ , -(1:ncol(accidents_sp@data))]
 accidents_sp@data[['Type']] <- 'accident'
 accidents_cameras_sp <<- spRbind(speedcameras, accidents_sp)
@@ -95,7 +76,6 @@ roadNetwork_psp <- as.psp(roadNetwork, window=NULL, marks=NULL, check=spatstat.o
 roadNetwork_linnet <<- as.linnet.psp(roadNetwork_psp, sparse=TRUE)
 roadNetwork_sp <<- spTransform(roadNetwork, CRS('+proj=tmerc +lat_0=1.366666666666667 +lon_0=103.8333333333333 +k=1 +x_0=28001.642 +y_0=38744.572 +ellps=WGS84 +units=m +no_defs'))
 
-# Define UI for application that draws a histogram
 ui <- fluidPage(
   
   tags$head(
@@ -105,8 +85,6 @@ ui <- fluidPage(
     )
   ),
   
-  #Navbar
-
   navbarPage(strong("Singapore Expressway Traffic Analysis"),
              
              tabPanel("Map",
@@ -125,8 +103,7 @@ ui <- fluidPage(
                       absolutePanel(id = "controls", class = "panel panel-default", fixed = TRUE,
                                     draggable = FALSE, top = 210, left = 15, right = 10, bottom = "auto",
                                     width = 315, height = "auto",
-                                  
-                                    #uiOutput("bounds"), 
+                                     
                                     br(), 
                                     conditionalPanel(condition = "input.accidentsFile == null",
                                                      selectizeInput(inputId="analysis",
@@ -143,7 +120,7 @@ ui <- fluidPage(
                                     conditionalPanel(condition = "input.analysis == 'Kernel Density Estimation (KDE)'",
                                                      sliderInput(inputId = "sigma",
                                                                  label = "Kernel distance (m):",
-                                                                 min = 1000, max = 6000, value = 3000
+                                                                 min = 200, max = 6000, value = 3000
                                                      )),
                                     
                                     conditionalPanel(condition = "input.analysis == 'K-Function'",
@@ -151,12 +128,6 @@ ui <- fluidPage(
                                                                     label = "Choose Variable:",
                                                                     choices = c("Accidents", "Heavy Traffic"),
                                                                     options = list(onInitialize = I('function() { this.setValue(""); }')))),
-                                    
-                                    # conditionalPanel(condition = "input.analysis == 'K-Function'",
-                                    #                  selectizeInput(inputId = "expressway",
-                                    #                                 label = "Choose Expressway:",
-                                    #                                 choices = c("AYE", "BKE", "CTE", "ECP", "KJE", "KPE", "MCE", "PIE", "SLE","TPE"),
-                                    #                                 options = list(onInitialize = I('function() { this.setValue(""); }')))),
                                     
                                     conditionalPanel(condition = "input.analysis == 'K-Function'",
                                                      sliderInput(inputId = "noOfSimulation",
@@ -169,18 +140,6 @@ ui <- fluidPage(
                                                                     label = "Choose Variable:",
                                                                     choices = c("Accidents - Traffic Camera", "Heavy Traffic - Traffic Camera"),
                                                                     options = list(onInitialize = I('function() { this.setValue(""); }')))),
-                                    
-                                    # conditionalPanel(condition = "input.analysis == 'Multitype K-Function' && input.mkfType == 'Accidents'",
-                                    #                  selectizeInput(inputId = "accidentsMKFunction",
-                                    #                                 label = "Choose 2nd Variable:",
-                                    #                                 choices = c("Traffic Cameras"),
-                                    #                                 options = list(onInitialize = I('function() { this.setValue(""); }')))),
-                                    # 
-                                    # conditionalPanel(condition = "input.analysis == 'Multitype K-Function' && input.mkfType == 'Heavy Traffic'",
-                                    #                  selectizeInput(inputId = "trafficMKFunction",
-                                    #                                 label = "Choose 2nd Variable:",
-                                    #                                 choices = c("Traffic Cameras"),
-                                    #                                 options = list(onInitialize = I('function() { this.setValue(""); }')))),
                                     
                                     conditionalPanel(condition = "input.analysis == 'Multitype K-Function'",
                                                      sliderInput(inputId = "noOfSimulationMK",
@@ -210,15 +169,10 @@ ui <- fluidPage(
                                     
                                     plotOutput(outputId = "plot")
                                     
-                      )
-
-                      ),
+                      )),
                       column(9, div(class="outer",
                              leafletOutput("map", width="100%", height="100%")
-                             ))          
-                      ) #fluidRow
-                      #div class 
-                      ), #end of map tabPanel
+                             )))), 
              tabPanel("Upload Data",
                       fluidRow(    
                         column(3,
@@ -241,22 +195,13 @@ ui <- fluidPage(
                                          multiple=TRUE,
 
                                          buttonLabel=icon("upload"))
-
                         
                       )),
-                      
                       column(9, div(class="outer",tableOutput("dataTable"))
-                      )
-                      ) #end of upload data tabPanel
-             )
-  
-))
+                      )))))
 
 
 server <- function(input, output) {
-  #at <- seq(0, 0.0030, 0.0005)
-  #cb <<- colorBin(palette = "YlOrRd", bins = at, domain = at, na.color = "#00000000")
-  
   observeEvent(input$camerasCheck,
                if (input$camerasCheck){
                  leafletProxy("map") %>%
@@ -274,7 +219,6 @@ server <- function(input, output) {
                  leafletProxy("map") %>%
                    addTiles() %>%
                    addPolylines(data = roadNetwork_wgs84, color = "Azure", popup = roadNetwork_wgs84@data$name, label = roadNetwork_wgs84@data$ref, opacity = 0.1, group = "network")
-                   # addPolylines(data = roadNetwork_wgs84, color = linecolor(roadNetwork_wgs84@data$ref), popup = roadNetwork_wgs84@data$name, label = roadNetwork_wgs84@data$ref, opacity = 0.1, group = "network")
                }else
                {
                  leafletProxy("map") %>%
@@ -286,8 +230,6 @@ server <- function(input, output) {
                if (input$accidentsCheck){
                  leafletProxy("map") %>%
                    addTiles() %>%
-                   # Idk if icon or circle nicer
-                   #addMarkers(data = accidents_sp_wgs84, lat = accidents_sp_wgs84@coords[,2], lng = accidents_sp_wgs84@coords[,1], label = accidents_sp_wgs84$Type, popup = accidents_sp_wgs84$Descriptions, icon = accidentsIcon,  group = "accidents")
                    addCircleMarkers(data = accidents_sp_wgs84, lat = accidents_sp_wgs84@coords[,2], lng = accidents_sp_wgs84@coords[,1], label = accidents_sp_wgs84$Type, popup = accidents_sp_wgs84$Descriptions, radius = 6, color = "springgreen", stroke = FALSE, fillOpacity = 0.7, group = "accidents")
                }else
                {
@@ -300,8 +242,6 @@ server <- function(input, output) {
                if (input$heavytrafficCheck){
                  leafletProxy("map") %>%
                    addTiles() %>%
-                   # Idk if icon or circle nicer
-                   # addMarkers(data = heavytraffic_sp_wgs84, lat = heavytraffic_sp_wgs84@coords[,2], lng = heavytraffic_sp_wgs84@coords[,1], label = heavytraffic_sp_wgs84$Type, popup = heavytraffic_sp_wgs84$Descriptions, icon = heavytrafficIcon, group = "heavytraffic")
                    addCircleMarkers(data = heavytraffic_sp_wgs84, lat = heavytraffic_sp_wgs84@coords[,2], lng = heavytraffic_sp_wgs84@coords[,1], label = heavytraffic_sp_wgs84$Type, popup = heavytraffic_sp_wgs84$Descriptions, radius = 6, color = "turquoise", stroke = FALSE, fillOpacity = 0.7, group = "heavytraffic")
                }else
                {
@@ -338,14 +278,7 @@ server <- function(input, output) {
     accidents_sf <- st_as_sf(accidents_filter, coords = c("Longitude", "Latitude"), crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs")
     accidents <- st_transform(accidents_sf, crs = 3414)
     accidents_sp <<- as(accidents, "Spatial")
-    
-    #trafficReport_shp <- st_as_sf(trafficReport, coords = c("Longitude", "Latitude"), crs = "+proj=longlat +datum=WGS84 +no_defs")
-    #traffic_Report_svy21 <- st_transform(trafficReport_shp, crs = 3414)
-    #accidents <- traffic_Report_svy21 %>% filter(Type == "Accident")
-    
-    #heavytraffic <- traffic_Report_svy21 %>% filter(Type == "Heavy Traffic")
-    #heavytraffic_sp <- as(heavytraffic, "Spatial")
-    
+
     heavytraffic_filter <- trafficReport %>% filter(grepl(paste(patterns, collapse="|"), Descriptions)) %>% filter(Type == 'Heavy Traffic')
     heavytraffic_sf <- st_as_sf(heavytraffic_filter, coords = c("Longitude", "Latitude"), crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs")
     heavytraffic <- st_transform(heavytraffic_sf, crs = 3414)
@@ -380,7 +313,6 @@ server <- function(input, output) {
                  if (input$analysis == 'Kernel Density Estimation (KDE)' && input$kdeType == 'Accidents'){
                  
                    sigma <- input$sigma
-                   #at <- seq(0, 0.0020, 0.0005)
 
                    #constraint accident
                    accidents_lpp <- lpp(accidents_ppp, roadNetwork_linnet)
@@ -415,9 +347,7 @@ server <- function(input, output) {
                    if (input$analysis == 'Kernel Density Estimation (KDE)' && input$kdeType == 'Heavy Traffic'){
                      
                        sigma <- input$sigma
-                       # at <- seq(0, 0.0060, 0.0010)
-                       # cb <- colorBin(palette = "YlOrRd", bins = at, domain = at, na.color = "#00000000", reverse=FALSE)
-                       
+                      
                        #constraint traffic
                        heavytraffic_lpp <- lpp(heavytraffic_ppp, roadNetwork_linnet)
                        heavytraffickde <- density.lpp(heavytraffic_lpp, sigma)
@@ -455,8 +385,6 @@ server <- function(input, output) {
                  if (input$analysis == 'Kernel Density Estimation (KDE)' && input$kdeType == 'Accidents'){
                    
                    sigma <- input$sigma
-                   # at <- seq(0, 0.0000030, 0.0000005)
-                   
                    
                    #non-constraint accident
                    accidentskde_ppp <- density.ppp(accidents_ppp, sigma)
@@ -487,9 +415,6 @@ server <- function(input, output) {
                    if (input$analysis == 'Kernel Density Estimation (KDE)' && input$kdeType == 'Heavy Traffic'){
                      
                      sigma <- input$sigma
-                     # at <- seq(0, 0.000030, 0.000005)
-                     # cb <- colorBin(palette = "YlOrRd", bins = at, domain = at, na.color = "#00000000", reverse=FALSE)
-                     
                      
                      #non-constraint traffic
                      heavytraffickde_ppp <- density.ppp(heavytraffic_ppp, sigma)
@@ -515,10 +440,7 @@ server <- function(input, output) {
                          overlayGroups = c("Traffic without Constraint"),
                          options = layersControlOptions(collapsed = TRUE)
                        )
-
-                     
                    }
-                 
                })
   
   observeEvent(input$kfunctionEnter, {
@@ -635,8 +557,6 @@ server <- function(input, output) {
       
       # Create heavytraffic_cameras_lpp
       heavytraffic_cameras_lpp <- lpp(heavytraffic_cameras_ppp, roadNetwork_linnet)
-      
-      
       
       #Multitype K Function
       simulation <- isolate({input$noOfSimulationMK})
