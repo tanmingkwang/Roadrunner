@@ -270,7 +270,6 @@ server <- function(input, output) {
     req(input$accidentsFile)
       
     inputAccidentsFile <-input$accidentsFile
-    trafficReport <- read.csv(inputAccidentsFile$datapath)
     
     trafficReport <- read.csv(inputAccidentsFile$datapath)
     patterns <- c('on AYE',	'on BKE',	'on CTE'	,'on ECP',	'on KJE'	,'on KPE',	'on MCE'	,'on PIE',	'on SLE',	'on TPE')
@@ -278,14 +277,35 @@ server <- function(input, output) {
     accidents_sf <- st_as_sf(accidents_filter, coords = c("Longitude", "Latitude"), crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs")
     accidents <- st_transform(accidents_sf, crs = 3414)
     accidents_sp <<- as(accidents, "Spatial")
-
+    accidents_sp_wgs84 <<- spTransform(accidents_sp, CRS("+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0"))
+    accidentsIcon <<- makeIcon(
+      iconUrl = "https://www.freeiconspng.com/uploads/car-icon-png-28.png",
+      iconWidth = 20, iconHeight = 20)
+      
     heavytraffic_filter <- trafficReport %>% filter(grepl(paste(patterns, collapse="|"), Descriptions)) %>% filter(Type == 'Heavy Traffic')
     heavytraffic_sf <- st_as_sf(heavytraffic_filter, coords = c("Longitude", "Latitude"), crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs")
     heavytraffic <- st_transform(heavytraffic_sf, crs = 3414)
     heavytraffic_sp <<- as(heavytraffic, "Spatial")
+    heavytraffic_sp_wgs84 <<- spTransform(heavytraffic_sp, CRS("+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0"))
+    heavytrafficIcon <<- makeIcon(
+      iconUrl = "https://png.icons8.com/android/1600/traffic-jam.png",
+      iconWidth = 20, iconHeight = 20
+    )
     
     accidents_ppp <<- ppp(coordinates(accidents_sp)[,1], coordinates(accidents_sp)[,2], costaloutline_owin)
     heavytraffic_ppp <<- ppp(coordinates(heavytraffic_sp)[,1], coordinates(heavytraffic_sp)[,2], costaloutline_owin)
+    
+    # Multitype K Function - speed cameras vs heavy traffic
+    heavytraffic_sp@data <- heavytraffic_sp@data[ , -(1:ncol(heavytraffic_sp@data))]
+    heavytraffic_sp@data[['Type']] <- 'heavytraffic'
+    heavytraffic_cameras_sp <<- spRbind(speedcameras, heavytraffic_sp)
+    
+    
+    # Multitype K Function - accidents vs camera
+    accidents_sp@data <- accidents_sp@data[ , -(1:ncol(accidents_sp@data))]
+    accidents_sp@data[['Type']] <- 'accident'
+    accidents_cameras_sp <<- spRbind(speedcameras, accidents_sp)
+    
     
     return (trafficReport)
     })
