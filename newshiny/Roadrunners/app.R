@@ -324,8 +324,8 @@ server <- function(input, output) {
                    proj4string(accidentkde_raster_scaled) = CRS("+init=epsg:3414")
                    accidentkde_raster_scaled_adjusted <- setValues(accidentkde_raster_scaled, getValues(accidentkde_raster_scaled)*1000000)
                   
-                   summarykde.values <- fivenum(na.omit(getValues(accidentkde_raster_scaled_adjusted)))
-                   at <- c(summarykde.values[1], summarykde.values[2], summarykde.values[3], summarykde.values[4], summarykde.values[5])
+                   summarykde.values <- quantile(na.omit(getValues(accidentkde_raster_scaled_adjusted)), seq(0,1,0.2))
+                   at <- c(summarykde.values[1], summarykde.values[2], summarykde.values[3], summarykde.values[4], summarykde.values[5],summarykde.values[6] )
                    cb <- colorBin(palette = "YlOrRd", bins = at, domain = at, na.color = "#00000000", reverse=FALSE)
                    
                    leafletProxy("map") %>%
@@ -357,8 +357,8 @@ server <- function(input, output) {
                        proj4string(heavytraffickde_raster_scaled) = CRS("+init=epsg:3414")
                        heavytraffickde_raster_scaled_adjusted <- setValues(heavytraffickde_raster_scaled, getValues(heavytraffickde_raster_scaled)*1000000)
                        
-                       summarykdeht.values <- fivenum(na.omit(getValues(heavytraffickde_raster_scaled_adjusted)))
-                       at <- c(summarykdeht.values[1], summarykdeht.values[2], summarykdeht.values[3], summarykdeht.values[4], summarykdeht.values[5])
+                       summarykdeht.values <- quantile(na.omit(getValues(heavytraffickde_raster_scaled_adjusted)), seq(0,1,0.2))
+                       at <- c(summarykdeht.values[1], summarykdeht.values[2], summarykdeht.values[3], summarykdeht.values[4], summarykdeht.values[5], summarykdeht.values[6] )
                        cb <- colorBin(palette = "YlOrRd", bins = at, domain = at, na.color = "#00000000", reverse=FALSE)
                        
                        leafletProxy("map") %>%
@@ -393,8 +393,8 @@ server <- function(input, output) {
                    proj4string(accidentkde_ppp_raster) = CRS("+init=epsg:3414")
                    accidentkde_ppp_sgdf_adjusted <- setValues(accidentkde_ppp_raster, getValues(accidentkde_ppp_raster)*1000000)
                    
-                   summarykdeppp.values <- fivenum(na.omit(getValues(accidentkde_ppp_sgdf_adjusted)))
-                   at <- c(summarykdeppp.values[1], summarykdeppp.values[2], summarykdeppp.values[3], summarykdeppp.values[4], summarykdeppp.values[5])
+                   summarykdeppp.values <- quantile(na.omit(getValues(accidentkde_ppp_sgdf_adjusted)), seq(0,1,0.2))
+                   at <- c(summarykdeppp.values[1], summarykdeppp.values[2], summarykdeppp.values[3], summarykdeppp.values[4], summarykdeppp.values[5], summarykdeppp.values[6])
                    cb <- colorBin(palette = "YlOrRd", bins = at, domain = at, na.color = "#00000000", reverse=FALSE)
                    
                    leafletProxy("map") %>%
@@ -423,8 +423,8 @@ server <- function(input, output) {
                      proj4string(heavytraffickde_ppp_raster) = CRS("+init=epsg:3414")
                      heavytraffickde_ppp_raster_adjusted <- setValues(heavytraffickde_ppp_raster, getValues(heavytraffickde_ppp_raster)*1000000)
                      
-                     summarykdepppht.values <- fivenum(na.omit(getValues(heavytraffickde_ppp_raster_adjusted)))
-                     at <- c(summarykdepppht.values[1], summarykdepppht.values[2], summarykdepppht.values[3], summarykdepppht.values[4], summarykdepppht.values[5])
+                     summarykdepppht.values <- quantile(na.omit(getValues(heavytraffickde_ppp_raster_adjusted)), seq(0,1,0.2))
+                     at <- c(summarykdepppht.values[1], summarykdepppht.values[2], summarykdepppht.values[3], summarykdepppht.values[4], summarykdepppht.values[5], summarykdepppht.values[6])
                      cb <- colorBin(palette = "YlOrRd", bins = at, domain = at, na.color = "#00000000", reverse=FALSE)
                      
                      leafletProxy("map") %>%
