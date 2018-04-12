@@ -45,6 +45,7 @@ div.center{
 .navbar-default .navbar-brand {
     background: #000000 !important;
     color: #FFFFFF !important;
+    font-weight: 700;
 }
 
 .navbar {

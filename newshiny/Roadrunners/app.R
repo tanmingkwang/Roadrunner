@@ -76,6 +76,19 @@ roadNetwork_psp <- as.psp(roadNetwork, window=NULL, marks=NULL, check=spatstat.o
 roadNetwork_linnet <<- as.linnet.psp(roadNetwork_psp, sparse=TRUE)
 roadNetwork_sp <<- spTransform(roadNetwork, CRS('+proj=tmerc +lat_0=1.366666666666667 +lon_0=103.8333333333333 +k=1 +x_0=28001.642 +y_0=38744.572 +ellps=WGS84 +units=m +no_defs'))
 
+library(leaflet)
+library(readr)
+library(sf)
+library(spatstat)
+library(maptools)
+library(tidyverse)
+library(polyCub)
+library(rgdal)
+library(RColorBrewer)
+library(classInt)
+library(polyCub)
+library(raster)
+library(rgeos)
 ui <- fluidPage(
   
   tags$head(
@@ -85,7 +98,7 @@ ui <- fluidPage(
     )
   ),
   
-  navbarPage(strong("Singapore Expressway Traffic Analysis"),
+  navbarPage("Singapore Expressway Traffic Analysis",
              
              tabPanel("Map",
                       
